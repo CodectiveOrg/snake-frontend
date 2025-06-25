@@ -15,26 +15,22 @@ const score = document.querySelector("#score");
 const buffer = new Buffer(3);
 
 export function runGame() {
-  let lastKeyHit;
-
-  document.addEventListeer("keydown", (e) => {
+  document.addEventListener("keydown", (e) => {
     if (e.code === "Escape") {
       buffer.clear();
       return;
     }
 
-    inputHandler(e.code);
-
-    lastKeyHit = e.code;
+    buffer.input(e.code);
   });
 
   temp = true;
 
-  intervalId = setInterval(() => runSnake(lastKeyHit), 250);
+  intervalId = setInterval(() => runSnake(), 100);
 }
 
-export function runSnake(lastKeyHit) {
-  setNewDirection(lastKeyHit);
+export function runSnake() {
+  setNewDirection();
 
   if (temp) {
     removeTail(snake[0]);
@@ -98,7 +94,9 @@ function removeTail({ x, y }) {
   cells[y][x].classList.remove("black");
 }
 
-export function setNewDirection(newDirection) {
+export function setNewDirection() {
+  const newDirection = buffer.output();
+
   if (newDirection === "KeyA" && direction !== "KeyD") {
     direction = "KeyA";
   } else if (newDirection === "KeyD" && direction !== "KeyA") {
