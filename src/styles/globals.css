@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+}
+
+body {
+  main {
+    display: grid;
+    place-items: center;
+
+    block-size: 100vh;
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(30, 1fr);
+
+      inline-size: 30rem;
+      block-size: 20rem;
+
+      border: 1px solid red;
+
+      .cell {
+        inline-size: 1rem;
+        block-size: 1rem;
+
+        &.black {
+          background-color: #000;
+        }
+
+        &.food {
+          background-color: red;
+        }
+      }
+    }
+  }
+}
