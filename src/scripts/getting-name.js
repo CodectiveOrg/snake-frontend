@@ -12,10 +12,24 @@ export function gettingName() {
   const sendName = document.querySelector("#send");
   let valueName;
 
+  valueName = localStorage.getItem("name");
+
+  if (valueName) {
+    getName();
+  }
+
   form.addEventListener("submit", (e) => e.preventDefault());
 
   nameInput.addEventListener("change", (e) => (valueName = e.target.value));
-  sendName.addEventListener("click", () => getName());
+  sendName.addEventListener("click", () => {
+    if (!valueName) {
+      valueName = "Lazy User!";
+    }
+
+    localStorage.setItem("name", valueName);
+
+    getName();
+  });
 
   function getName() {
     nameSpan.textContent = valueName;
@@ -23,11 +37,12 @@ export function gettingName() {
     main.removeChild(form);
 
     generateBoard();
+    generateCanvas(480, 320);
+
     generateSnake();
+    generateSnakeLines();
+
     generateFood();
     runGame();
-
-    generateCanvas(480, 320);
-    generateSnakeLines();
   }
 }

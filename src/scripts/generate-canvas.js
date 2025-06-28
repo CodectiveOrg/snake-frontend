@@ -14,6 +14,7 @@ export function generateSquare(row, col, color = "black") {
   const ctx = canvas.getContext("2d");
 
   ctx.fillStyle = color;
+
   ctx.fillRect(col * 16, row * 16, 16, 16);
 }
 
