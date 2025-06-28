@@ -3,6 +3,7 @@ import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
 import { Buffer } from "./buffer.js";
+import {generateSquare} from "./generate-canvas.js";
 
 let intervalId;
 let temp;
@@ -88,10 +89,14 @@ function newHead() {
 
 function addNewHead({ x, y }) {
   cells[y][x].classList.add("black");
+
+  generateSquare(y, x);
 }
 
 function removeTail({ x, y }) {
   cells[y][x].classList.remove("black");
+
+  generateSquare(y, x, "white");
 }
 
 export function setNewDirection() {
