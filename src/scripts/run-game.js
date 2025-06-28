@@ -3,7 +3,11 @@ import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
 import { Buffer } from "./buffer.js";
-import { generateRectangle, generateSquare } from "./generate-canvas.js";
+import {
+  clearCanvas,
+  generateRectangle,
+  generateSquare,
+} from "./generate-canvas.js";
 
 let intervalId;
 let temp;
@@ -53,6 +57,7 @@ function setupGameLoop() {
 
 export function runSnake(distance) {
   eraseSnake();
+  generateSquare(food.y, food.x, "red");
 
   isThereNewDirection = false;
   setNewDirection();
@@ -91,30 +96,28 @@ export function runSnake(distance) {
   }
 
   drawSnake();
-
-  // console.log(JSON.parse(JSON.stringify(snakeNodes)));
 }
 
 function newHead() {
   if (direction === "KeyS") {
     return {
-      x: snake[snake.length - 1].x,
-      y: snake[snake.length - 1].y + 1,
+      x: snake.at(-1).x,
+      y: snake.at(-1).y + 1,
     };
   } else if (direction === "KeyW") {
     return {
-      x: snake[snake.length - 1].x,
-      y: snake[snake.length - 1].y - 1,
+      x: snake.at(-1).x,
+      y: snake.at(-1).y - 1,
     };
   } else if (direction === "KeyD") {
     return {
-      x: snake[snake.length - 1].x + 1,
-      y: snake[snake.length - 1].y,
+      x: snake.at(-1).x + 1,
+      y: snake.at(-1).y,
     };
   } else {
     return {
-      x: snake[snake.length - 1].x - 1,
-      y: snake[snake.length - 1].y,
+      x: snake.at(-1).x - 1,
+      y: snake.at(-1).y,
     };
   }
 }
@@ -185,27 +188,21 @@ function updateSnake() {
 }
 
 function eraseSnake() {
-  snakeNodes.forEach((node, i) => {
-    if (i !== 0) {
-      generateRectangle(
-        snakeNodes[i - 1].x,
-        snakeNodes[i - 1].y,
-        node.x,
-        node.y,
-        "white"
-      );
-    }
-  });
+  clearCanvas();
 }
 
 function drawSnake() {
   snakeNodes.forEach((node, i) => {
     if (i !== 0) {
+      console.log(
+        `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${node.y}`,
+      );
+
       generateRectangle(
         snakeNodes[i - 1].x,
         snakeNodes[i - 1].y,
         node.x,
-        node.y
+        node.y,
       );
     }
   });

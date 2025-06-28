@@ -18,32 +18,32 @@ export function generateSquare(row, col, color = "black") {
   ctx.fillRect(col * 16, row * 16, 16, 16);
 }
 
-export function generateRectangle(
-  startRow,
-  startCol,
-  endRow,
-  endCol,
-  color = "black"
-) {
+export function generateRectangle(startX, startY, endX, endY, color = "black") {
   const canvas = document.getElementById("canvas");
 
   const ctx = canvas.getContext("2d");
 
   ctx.fillStyle = color;
 
-  if (startRow === endRow) {
-    ctx.fillRect(
-      startCol * 16,
-      startRow * 16,
-      16,
-      Math.abs(endCol - startCol) * 16
-    );
+  if (startX === endX) {
+    if (endY - startY >= 0) {
+      ctx.fillRect(startX * 16, startY * 16, 16, (endY - startY + 1) * 16);
+    } else {
+      ctx.fillRect(startX * 16, startY * 16, 16, (endY - startY) * 16);
+    }
   } else {
-    ctx.fillRect(
-      startCol * 16,
-      startRow * 16,
-      Math.abs(endRow - startRow) * 16,
-      16
-    );
+    if (endX - startX >= 0) {
+      ctx.fillRect(startX * 16, startY * 16, (endX - startX + 1) * 16, 16);
+    } else {
+      ctx.fillRect(startX * 16, startY * 16, (endX - startX) * 16, 16);
+    }
   }
+}
+
+export function clearCanvas() {
+  const canvas = document.getElementById("canvas");
+
+  const ctx = canvas.getContext("2d");
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
