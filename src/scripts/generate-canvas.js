@@ -34,16 +34,16 @@ export function generateRectangle(
   if (startRow === endRow) {
     ctx.fillRect(
       startCol * 16,
-      endRow * 16,
-      Math.abs(endRow - startRow) * 16,
-      16
+      startRow * 16,
+      16,
+      Math.abs(endCol - startCol) * 16
     );
   } else {
     ctx.fillRect(
       startCol * 16,
-      endRow * 16,
-      16,
-      Math.abs(endCol - startCol) * 16
+      startRow * 16,
+      Math.abs(endRow - startRow) * 16,
+      16
     );
   }
 }

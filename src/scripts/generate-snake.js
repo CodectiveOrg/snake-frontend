@@ -23,7 +23,7 @@ export function generateSnake() {
 export function generateSnakeLines() {
   snakeNodes.forEach(({ x, y }, i) => {
     if (i !== 0) {
-      generateRectangle(y, x, snakeNodes[i - 1].y, snakeNodes[i - 1].x);
+      generateRectangle(snakeNodes[i - 1].x, snakeNodes[i - 1].y, x, y);
     }
   });
 }

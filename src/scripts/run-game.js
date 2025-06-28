@@ -1,4 +1,4 @@
-import { snake } from "./generate-snake.js";
+import { snake, snakeNodes } from "./generate-snake.js";
 import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
@@ -8,6 +8,7 @@ import { generateSquare } from "./generate-canvas.js";
 let intervalId;
 let temp;
 let direction = "KeyD";
+let isThereNewDirection = false;
 
 let scoreCounter = 0;
 
@@ -44,18 +45,21 @@ function setupGameLoop() {
 
     requestAnimationFrame(update);
 
-    console.log("deltaTime: ", deltaTime,"distance: ", distance)
+    console.log("deltaTime: ", deltaTime, "distance: ", distance);
   }
 
   requestAnimationFrame(update);
 }
 
 export function runSnake(distance) {
+  isThereNewDirection = false;
   setNewDirection();
 
   if (temp) {
     removeTail(snake[0]);
     snake.shift();
+
+    updateSnake();
   }
 
   const newCell = newHead();
@@ -68,6 +72,8 @@ export function runSnake(distance) {
   } else {
     snake.push(newCell);
     addNewHead(snake[snake.length - 1]);
+
+    goAhead(newCell);
   }
 
   if (isFoodEaten(snake[snake.length - 1])) {
@@ -81,6 +87,8 @@ export function runSnake(distance) {
   } else {
     temp = true;
   }
+
+  console.log(JSON.parse(JSON.stringify(snakeNodes)));
 }
 
 function newHead() {
@@ -110,13 +118,13 @@ function newHead() {
 function addNewHead({ x, y }) {
   cells[y][x].classList.add("black");
 
-  generateSquare(y, x);
+  // generateSquare(y, x);
 }
 
 function removeTail({ x, y }) {
   cells[y][x].classList.remove("black");
 
-  generateSquare(y, x, "white");
+  // generateSquare(y, x, "white");
 }
 
 export function setNewDirection() {
@@ -130,7 +138,10 @@ export function setNewDirection() {
     direction = "KeyW";
   } else if (newDirection === "KeyS" && direction !== "KeyW") {
     direction = "KeyS";
+  } else {
+    return;
   }
+  isThereNewDirection = true;
 }
 
 function isFoodEaten({ x, y }) {
@@ -139,4 +150,32 @@ function isFoodEaten({ x, y }) {
 
 function deleteFood() {
   cells[food.y][food.x].classList.remove("food");
+}
+
+function goAhead(newCell) {
+  if (isThereNewDirection) {
+    snakeNodes.push(newCell);
+  } else {
+    snakeNodes[snakeNodes.length - 1] = newCell;
+  }
+}
+
+function updateSnake() {
+  if (snakeNodes[0].x === snakeNodes[1].x) {
+    if (snakeNodes[0].y > snakeNodes[1].y) {
+      snakeNodes[0].y--;
+    } else {
+      snakeNodes[0].y++;
+    }
+  } else {
+    if (snakeNodes[0].x > snakeNodes[1].x) {
+      snakeNodes[0].x--;
+    } else {
+      snakeNodes[0].x++;
+    }
+  }
+
+  if (JSON.stringify(snakeNodes[0]) === JSON.stringify(snakeNodes[1])) {
+    snakeNodes.shift();
+  }
 }
