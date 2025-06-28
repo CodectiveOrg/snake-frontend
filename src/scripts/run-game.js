@@ -3,7 +3,7 @@ import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
 import { Buffer } from "./buffer.js";
-import {generateSquare} from "./generate-canvas.js";
+import { generateSquare } from "./generate-canvas.js";
 
 let intervalId;
 let temp;
@@ -27,10 +27,27 @@ export function runGame() {
 
   temp = true;
 
-  intervalId = setInterval(() => runSnake(), 100);
+  setupGameLoop();
 }
 
-export function runSnake() {
+function setupGameLoop() {
+  const SPEED_PER_MILLISECOND = 160 / 1000;
+
+  let lastTime = Date.now();
+
+  function update() {
+    const deltaTime = Date.now() - lastTime;
+    const distance = deltaTime * SPEED_PER_MILLISECOND;
+
+    runSnake(distance);
+
+    requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+export function runSnake(distance) {
   setNewDirection();
 
   if (temp) {
