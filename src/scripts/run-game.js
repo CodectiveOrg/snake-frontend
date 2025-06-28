@@ -27,7 +27,8 @@ export function runGame() {
 
   temp = true;
 
-  setupGameLoop();
+  intervalId = setInterval(() => runSnake(), 100);
+  // setupGameLoop();
 }
 
 function setupGameLoop() {
@@ -42,6 +43,8 @@ function setupGameLoop() {
     runSnake(distance);
 
     requestAnimationFrame(update);
+
+    console.log("deltaTime: ", deltaTime,"distance: ", distance)
   }
 
   requestAnimationFrame(update);

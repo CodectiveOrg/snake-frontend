@@ -1,7 +1,8 @@
 import { generateBoard } from "./generate-board.js";
-import { generateSnake } from "./generate-snake.js";
+import { generateSnake, generateSnakeLines } from "./generate-snake.js";
 import { generateFood } from "./generate-food.js";
 import { runGame } from "./run-game.js";
+import { generateCanvas } from "./generate-canvas.js";
 
 export function gettingName() {
   const main = document.querySelector("main");
@@ -25,5 +26,8 @@ export function gettingName() {
     generateSnake();
     generateFood();
     runGame();
+
+    generateCanvas(480, 320);
+    generateSnakeLines();
   }
 }

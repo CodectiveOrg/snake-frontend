@@ -1,5 +1,3 @@
-import {generateCanvas} from "./generate-canvas.js";
-
 export const cells = [];
 
 export function generateBoard() {
@@ -18,6 +16,4 @@ export function generateBoard() {
     }
     cells.push(row);
   }
-
-  generateCanvas(480, 320);
 }
