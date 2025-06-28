@@ -3,7 +3,7 @@ import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
 import { Buffer } from "./buffer.js";
-import { generateSquare } from "./generate-canvas.js";
+import { generateRectangle, generateSquare } from "./generate-canvas.js";
 
 let intervalId;
 let temp;
@@ -52,6 +52,8 @@ function setupGameLoop() {
 }
 
 export function runSnake(distance) {
+  eraseSnake();
+
   isThereNewDirection = false;
   setNewDirection();
 
@@ -88,7 +90,9 @@ export function runSnake(distance) {
     temp = true;
   }
 
-  console.log(JSON.parse(JSON.stringify(snakeNodes)));
+  drawSnake();
+
+  // console.log(JSON.parse(JSON.stringify(snakeNodes)));
 }
 
 function newHead() {
@@ -178,4 +182,31 @@ function updateSnake() {
   if (JSON.stringify(snakeNodes[0]) === JSON.stringify(snakeNodes[1])) {
     snakeNodes.shift();
   }
+}
+
+function eraseSnake() {
+  snakeNodes.forEach((node, i) => {
+    if (i !== 0) {
+      generateRectangle(
+        snakeNodes[i - 1].x,
+        snakeNodes[i - 1].y,
+        node.x,
+        node.y,
+        "white"
+      );
+    }
+  });
+}
+
+function drawSnake() {
+  snakeNodes.forEach((node, i) => {
+    if (i !== 0) {
+      generateRectangle(
+        snakeNodes[i - 1].x,
+        snakeNodes[i - 1].y,
+        node.x,
+        node.y
+      );
+    }
+  });
 }
