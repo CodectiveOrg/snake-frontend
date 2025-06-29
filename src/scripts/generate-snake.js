@@ -1,5 +1,5 @@
 import { cells } from "./generate-board.js";
-import { generateRectangle, generateSquare } from "./generate-canvas.js";
+import { generateRectangle } from "./generate-canvas.js";
 
 export const snake = [
   { x: 0, y: 0 },
