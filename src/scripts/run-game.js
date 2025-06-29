@@ -10,7 +10,7 @@ import {
 } from "./generate-canvas.js";
 
 let intervalId;
-let temp;
+let shouldSnakeStayAtSameSize;
 let direction = "KeyD";
 let isThereNewDirection = false;
 
@@ -30,10 +30,10 @@ export function runGame() {
     buffer.input(e.code);
   });
 
-  temp = true;
+  shouldSnakeStayAtSameSize = true;
 
-  intervalId = setInterval(() => runSnake(), 100);
-  // setupGameLoop();
+  // intervalId = setInterval(() => runSnake(), 100);
+  setupGameLoop();
 }
 
 function setupGameLoop() {
@@ -62,7 +62,7 @@ export function runSnake(distance) {
   isThereNewDirection = false;
   setNewDirection();
 
-  if (temp) {
+  if (shouldSnakeStayAtSameSize) {
     removeTail(snake[0]);
     snake.shift();
 
@@ -90,9 +90,9 @@ export function runSnake(distance) {
     deleteFood();
     generateFood();
 
-    temp = false;
+    shouldSnakeStayAtSameSize = false;
   } else {
-    temp = true;
+    shouldSnakeStayAtSameSize = true;
   }
 
   drawSnake();
@@ -195,14 +195,16 @@ function drawSnake() {
   snakeNodes.forEach((node, i) => {
     if (i !== 0) {
       console.log(
-        `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${node.y}`,
+        `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${
+          node.y
+        }`
       );
 
       generateRectangle(
         snakeNodes[i - 1].x,
         snakeNodes[i - 1].y,
         node.x,
-        node.y,
+        node.y
       );
     }
   });
