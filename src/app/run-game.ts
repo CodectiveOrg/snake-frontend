@@ -1,13 +1,13 @@
-import { snake, snakeNodes } from "./generate-snake.js";
-import { cells } from "./generate-board.js";
-import { food, generateFood } from "./generate-food.js";
-import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
-import { Buffer } from "./buffer.js";
+import { snake, snakeNodes } from "./generate-snake";
+import { cells } from "./generate-board";
+import { food, generateFood } from "./generate-food";
+import { isSnakeEatItself, isSnakeHitWall } from "./rules";
+import { Buffer } from "./buffer";
 import {
   clearCanvas,
   generateRectangle,
   generateSquare,
-} from "./generate-canvas.js";
+} from "./generate-canvas";
 
 let intervalId;
 let shouldSnakeStayAtSameSize;

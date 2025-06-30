@@ -1,4 +1,4 @@
-import { snake } from "./generate-snake.js";
+import { snake } from "./generate-snake";
 
 export function isSnakeEatItself(headX, headY) {
   for (let i = 0; i < snake.length - 1; i++) {
