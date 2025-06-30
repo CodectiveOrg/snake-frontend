@@ -1,6 +1,6 @@
 import { snake } from "./generate-snake.js";
 import { cells } from "./generate-board.js";
-import {generateSquare} from "./generate-canvas.js";
+import { generateSquare } from "./generate-canvas.js";
 
 export let food;
 
