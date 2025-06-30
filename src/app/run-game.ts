@@ -8,6 +8,7 @@ import {
   generateRectangle,
   generateSquare,
 } from "./generate-canvas";
+import { DOM } from "../utils/dom.utils.ts";
 
 let intervalId;
 let shouldSnakeStayAtSameSize;
@@ -16,7 +17,7 @@ let isThereNewDirection = false;
 
 let scoreCounter = 0;
 
-const score = document.querySelector("#score");
+const score = DOM.score;
 
 const buffer = new Buffer(3);
 

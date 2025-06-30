@@ -8,8 +8,6 @@ import { runGame } from "../run-game.ts";
 export function initGamePage(username: string): void {
   DOM.nameSpan.textContent = username;
 
-  DOM.main.removeChild(DOM.introForm);
-
   generateBoard();
   generateCanvas(480, 320);
 

@@ -1,3 +1,5 @@
+import { DOM } from "../utils/dom.utils.ts";
+
 export function generateCanvas(width, height) {
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -5,11 +7,11 @@ export function generateCanvas(width, height) {
 
   canvas.id = "canvas";
 
-  document.querySelector("main").appendChild(canvas);
+  DOM.gameSection.appendChild(canvas);
 }
 
 export function generateSquare(row, col, color = "black") {
-  const canvas = document.getElementById("canvas");
+  const canvas = DOM.canvas;
 
   const ctx = canvas.getContext("2d");
 
@@ -19,7 +21,7 @@ export function generateSquare(row, col, color = "black") {
 }
 
 export function generateRectangle(startX, startY, endX, endY, color = "black") {
-  const canvas = document.getElementById("canvas");
+  const canvas = DOM.canvas;
 
   const ctx = canvas.getContext("2d");
 
@@ -41,7 +43,7 @@ export function generateRectangle(startX, startY, endX, endY, color = "black") {
 }
 
 export function clearCanvas() {
-  const canvas = document.getElementById("canvas");
+  const canvas = DOM.canvas;
 
   const ctx = canvas.getContext("2d");
 

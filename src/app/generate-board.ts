@@ -1,7 +1,9 @@
+import { DOM } from "../utils/dom.utils.ts";
+
 export const cells = [];
 
 export function generateBoard() {
-  const board = document.querySelector(".container");
+  const board = DOM.board;
 
   for (let i = 0; i < 20; i++) {
     const row = [];

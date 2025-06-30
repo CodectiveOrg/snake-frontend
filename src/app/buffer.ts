@@ -1,3 +1,5 @@
+import { DOM } from "../utils/dom.utils.ts";
+
 export class Buffer {
   #capacity;
   #items;
@@ -38,7 +40,7 @@ export class Buffer {
   }
 
   #render() {
-    const bufferElement = document.querySelector("#buffer");
+    const bufferElement = DOM.buffer;
 
     bufferElement.innerHTML = this.#items
       .map((item) => `<div class="item">${item}</div>`)
