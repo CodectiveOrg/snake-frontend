@@ -1,17 +1,12 @@
 import { snake, snakeNodes } from "../Entities/snake.ts";
-import { cells } from "./generate-board";
-import { food, generateFood } from "../Entities/food.ts";
-import { isSnakeEatItself, isSnakeHitWall } from "./rules";
-import { Buffer } from "./buffer";
-import {
-  clearCanvas,
-  generateRectangle,
-  generateSquare,
-} from "../components/canvas.ts";
+import { food } from "../Entities/food.ts";
+import { didSnakeEatItself, didSnakeHitWall } from "./rules";
+import { Buffer } from "../structures/buffer.ts";
 import { DOM } from "../utils/dom.utils.ts";
+import type { Point } from "../types/point.ts";
 
 let intervalId;
-let shouldSnakeStayAtSameSize;
+let shouldSnakeStayAtSameSize = true;
 let direction = "KeyD";
 let isThereNewDirection = false;
 
@@ -21,143 +16,56 @@ const score = DOM.score;
 
 const buffer = new Buffer(3);
 
-export function runGame() {
-  document.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
-      buffer.clear();
-      return;
-    }
+export function runSnake(distance): boolean {
+  this.canvas.clear();
+  this.canvas.drawFood(this.food.coords);
 
-    buffer.input(e.code);
-  });
-
-  shouldSnakeStayAtSameSize = true;
-
-  // intervalId = setInterval(() => runSnake(), 100);
-  setupGameLoop();
-}
-
-function setupGameLoop() {
-  const SPEED_PER_MILLISECOND = 160 / 1000;
-
-  let lastTime = Date.now();
-
-  function update() {
-    const deltaTime = Date.now() - lastTime;
-    const distance = deltaTime * SPEED_PER_MILLISECOND;
-
-    runSnake(distance);
-
-    requestAnimationFrame(update);
-
-    console.log("deltaTime: ", deltaTime, "distance: ", distance);
-  }
-
-  requestAnimationFrame(update);
-}
-
-export function runSnake(distance) {
-  eraseSnake();
-  generateSquare(food.y, food.x, "red");
-
-  isThereNewDirection = false;
-  setNewDirection();
+  this.controller.read();
 
   if (shouldSnakeStayAtSameSize) {
-    removeTail(snake[0]);
-    snake.shift();
-
     updateSnake();
   }
 
   const newCell = newHead();
 
-  if (
-    isSnakeEatItself(newCell.x, newCell.y) ||
-    isSnakeHitWall(newCell.x, newCell.y)
-  ) {
-    clearInterval(intervalId);
+  if (didSnakeEatItself(newCell) || didSnakeHitWall(newCell)) {
+    return false;
   } else {
-    snake.push(newCell);
-    addNewHead(snake[snake.length - 1]);
-
     goAhead(newCell);
   }
 
-  if (isFoodEaten(snake[snake.length - 1])) {
+  if (isFoodEaten(snake.at(-1))) {
     scoreCounter++;
     score.textContent = scoreCounter.toString();
 
-    deleteFood();
-    generateFood();
+    this.food.generateFood();
 
     shouldSnakeStayAtSameSize = false;
   } else {
     shouldSnakeStayAtSameSize = true;
   }
 
-  drawSnake();
+  this.canvas.drawSnake();
+
+  return true;
 }
 
-function newHead() {
+function newHead(): Point {
+  const { x, y } = this.master.snake.body.at(-1);
+
   if (direction === "KeyS") {
-    return {
-      x: snake.at(-1).x,
-      y: snake.at(-1).y + 1,
-    };
+    return { x, y: y + 1 };
   } else if (direction === "KeyW") {
-    return {
-      x: snake.at(-1).x,
-      y: snake.at(-1).y - 1,
-    };
+    return { x, y: y - 1 };
   } else if (direction === "KeyD") {
-    return {
-      x: snake.at(-1).x + 1,
-      y: snake.at(-1).y,
-    };
+    return { x: x + 1, y };
   } else {
-    return {
-      x: snake.at(-1).x - 1,
-      y: snake.at(-1).y,
-    };
+    return { x: x - 1, y };
   }
-}
-
-function addNewHead({ x, y }) {
-  cells[y][x].classList.add("black");
-
-  // generateSquare(y, x);
-}
-
-function removeTail({ x, y }) {
-  cells[y][x].classList.remove("black");
-
-  // generateSquare(y, x, "white");
-}
-
-export function setNewDirection() {
-  const newDirection = buffer.output();
-
-  if (newDirection === "KeyA" && direction !== "KeyD") {
-    direction = "KeyA";
-  } else if (newDirection === "KeyD" && direction !== "KeyA") {
-    direction = "KeyD";
-  } else if (newDirection === "KeyW" && direction !== "KeyS") {
-    direction = "KeyW";
-  } else if (newDirection === "KeyS" && direction !== "KeyW") {
-    direction = "KeyS";
-  } else {
-    return;
-  }
-  isThereNewDirection = true;
 }
 
 function isFoodEaten({ x, y }) {
   return x === food.x && y === food.y;
-}
-
-function deleteFood() {
-  cells[food.y][food.x].classList.remove("food");
 }
 
 function goAhead(newCell) {
@@ -168,45 +76,27 @@ function goAhead(newCell) {
   }
 }
 
-function updateSnake() {
-  if (snakeNodes[0].x === snakeNodes[1].x) {
-    if (snakeNodes[0].y > snakeNodes[1].y) {
-      snakeNodes[0].y--;
+function updateSnake(): void {
+  const snakeBody = this.master.snake.body;
+
+  const tail = snakeBody[0];
+  const yestertail = snakeBody[0];
+
+  if (tail.x === yestertail.x) {
+    if (tail.y > yestertail.y) {
+      tail.y--;
     } else {
-      snakeNodes[0].y++;
+      tail.y++;
     }
   } else {
-    if (snakeNodes[0].x > snakeNodes[1].x) {
-      snakeNodes[0].x--;
+    if (tail.x > yestertail.x) {
+      tail.x--;
     } else {
-      snakeNodes[0].x++;
+      tail.x++;
     }
   }
 
-  if (JSON.stringify(snakeNodes[0]) === JSON.stringify(snakeNodes[1])) {
-    snakeNodes.shift();
+  if (JSON.stringify(tail) === JSON.stringify(yestertail)) {
+    snakeBody.shift();
   }
-}
-
-function eraseSnake() {
-  clearCanvas();
-}
-
-function drawSnake() {
-  snakeNodes.forEach((node, i) => {
-    if (i !== 0) {
-      console.log(
-        `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${
-          node.y
-        }`,
-      );
-
-      generateRectangle(
-        snakeNodes[i - 1].x,
-        snakeNodes[i - 1].y,
-        node.x,
-        node.y,
-      );
-    }
-  });
 }

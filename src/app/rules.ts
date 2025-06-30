@@ -1,11 +1,10 @@
-import { snake } from "../Entities/snake.ts";
+import type { Point } from "../types/point.ts";
 
-export function isSnakeEatItself(headX, headY) {
-  for (let i = 0; i < snake.length - 1; i++) {
-    const x = snake[i].x,
-      y = snake[i].y;
+export function didSnakeEatItself(head: Point): boolean {
+  const snakeBody = this.master.snake.body;
 
-    if (headX === x && headY === y) {
+  for (let i = 0; i < snakeBody.length - 1; i++) {
+    if (snakeBody[i].x === head.x && snakeBody[i].y === head.y) {
       return true;
     }
   }
@@ -13,8 +12,6 @@ export function isSnakeEatItself(headX, headY) {
   return false;
 }
 
-export function isSnakeHitWall(headX, headY) {
-  if (headX < 0 || headY < 0 || headX > 29 || headY > 19) {
-    return true;
-  }
+export function didSnakeHitWall(head: Point): boolean {
+  return head.x < 0 || head.y < 0 || head.x > 29 || head.y > 19;
 }

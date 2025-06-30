@@ -5,5 +5,5 @@ export function initGamePage(username: string): void {
   DOM.nameSpan.textContent = username;
 
   const master = new GameMaster();
-  master.runGame();
+  master.run();
 }
