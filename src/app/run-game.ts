@@ -1,13 +1,13 @@
-import { snake, snakeNodes } from "./generate-snake";
+import { snake, snakeNodes } from "../Entities/snake.ts";
 import { cells } from "./generate-board";
-import { food, generateFood } from "./generate-food";
+import { food, generateFood } from "../Entities/food.ts";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules";
 import { Buffer } from "./buffer";
 import {
   clearCanvas,
   generateRectangle,
   generateSquare,
-} from "./generate-canvas";
+} from "../components/canvas.ts";
 import { DOM } from "../utils/dom.utils.ts";
 
 let intervalId;

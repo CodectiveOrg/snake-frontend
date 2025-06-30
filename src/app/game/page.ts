@@ -1,19 +1,9 @@
 import { DOM } from "../../utils/dom.utils.ts";
-import { generateBoard } from "../generate-board.ts";
-import { generateCanvas } from "../generate-canvas.ts";
-import { generateSnake, generateSnakeLines } from "../generate-snake.ts";
-import { generateFood } from "../generate-food.ts";
-import { runGame } from "../run-game.ts";
+import { GameMaster } from "../../Entities/game-master.ts";
 
 export function initGamePage(username: string): void {
   DOM.nameSpan.textContent = username;
 
-  generateBoard();
-  generateCanvas(480, 320);
-
-  generateSnake();
-  generateSnakeLines();
-
-  generateFood();
-  runGame();
+  const master = new GameMaster();
+  master.runGame();
 }
