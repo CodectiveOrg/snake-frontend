@@ -1,5 +1,6 @@
 import { snake } from "./generate-snake.js";
 import { cells } from "./generate-board.js";
+import {generateSquare} from "./generate-canvas.js";
 
 export let food;
 
@@ -9,6 +10,8 @@ export function generateFood() {
   const { j: x, i: y } = findingFoodCell(randomCell);
 
   cells[y][x].classList.add("food");
+
+  generateSquare(y, x, "red");
 
   food = { x, y };
 }

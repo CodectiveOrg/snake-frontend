@@ -40,5 +40,9 @@ body {
         }
       }
     }
+
+    canvas {
+      border: 1px solid red;
+    }
   }
 }

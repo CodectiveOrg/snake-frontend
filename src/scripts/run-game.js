@@ -1,12 +1,18 @@
-import { snake } from "./generate-snake.js";
+import { snake, snakeNodes } from "./generate-snake.js";
 import { cells } from "./generate-board.js";
 import { food, generateFood } from "./generate-food.js";
 import { isSnakeEatItself, isSnakeHitWall } from "./rules.js";
 import { Buffer } from "./buffer.js";
+import {
+  clearCanvas,
+  generateRectangle,
+  generateSquare,
+} from "./generate-canvas.js";
 
 let intervalId;
-let temp;
+let shouldSnakeStayAtSameSize;
 let direction = "KeyD";
+let isThereNewDirection = false;
 
 let scoreCounter = 0;
 
@@ -24,17 +30,43 @@ export function runGame() {
     buffer.input(e.code);
   });
 
-  temp = true;
+  shouldSnakeStayAtSameSize = true;
 
-  intervalId = setInterval(() => runSnake(), 100);
+  // intervalId = setInterval(() => runSnake(), 100);
+  setupGameLoop();
 }
 
-export function runSnake() {
+function setupGameLoop() {
+  const SPEED_PER_MILLISECOND = 160 / 1000;
+
+  let lastTime = Date.now();
+
+  function update() {
+    const deltaTime = Date.now() - lastTime;
+    const distance = deltaTime * SPEED_PER_MILLISECOND;
+
+    runSnake(distance);
+
+    requestAnimationFrame(update);
+
+    console.log("deltaTime: ", deltaTime, "distance: ", distance);
+  }
+
+  requestAnimationFrame(update);
+}
+
+export function runSnake(distance) {
+  eraseSnake();
+  generateSquare(food.y, food.x, "red");
+
+  isThereNewDirection = false;
   setNewDirection();
 
-  if (temp) {
+  if (shouldSnakeStayAtSameSize) {
     removeTail(snake[0]);
     snake.shift();
+
+    updateSnake();
   }
 
   const newCell = newHead();
@@ -47,6 +79,8 @@ export function runSnake() {
   } else {
     snake.push(newCell);
     addNewHead(snake[snake.length - 1]);
+
+    goAhead(newCell);
   }
 
   if (isFoodEaten(snake[snake.length - 1])) {
@@ -56,42 +90,48 @@ export function runSnake() {
     deleteFood();
     generateFood();
 
-    temp = false;
+    shouldSnakeStayAtSameSize = false;
   } else {
-    temp = true;
+    shouldSnakeStayAtSameSize = true;
   }
+
+  drawSnake();
 }
 
 function newHead() {
   if (direction === "KeyS") {
     return {
-      x: snake[snake.length - 1].x,
-      y: snake[snake.length - 1].y + 1,
+      x: snake.at(-1).x,
+      y: snake.at(-1).y + 1,
     };
   } else if (direction === "KeyW") {
     return {
-      x: snake[snake.length - 1].x,
-      y: snake[snake.length - 1].y - 1,
+      x: snake.at(-1).x,
+      y: snake.at(-1).y - 1,
     };
   } else if (direction === "KeyD") {
     return {
-      x: snake[snake.length - 1].x + 1,
-      y: snake[snake.length - 1].y,
+      x: snake.at(-1).x + 1,
+      y: snake.at(-1).y,
     };
   } else {
     return {
-      x: snake[snake.length - 1].x - 1,
-      y: snake[snake.length - 1].y,
+      x: snake.at(-1).x - 1,
+      y: snake.at(-1).y,
     };
   }
 }
 
 function addNewHead({ x, y }) {
   cells[y][x].classList.add("black");
+
+  // generateSquare(y, x);
 }
 
 function removeTail({ x, y }) {
   cells[y][x].classList.remove("black");
+
+  // generateSquare(y, x, "white");
 }
 
 export function setNewDirection() {
@@ -105,7 +145,10 @@ export function setNewDirection() {
     direction = "KeyW";
   } else if (newDirection === "KeyS" && direction !== "KeyW") {
     direction = "KeyS";
+  } else {
+    return;
   }
+  isThereNewDirection = true;
 }
 
 function isFoodEaten({ x, y }) {
@@ -114,4 +157,55 @@ function isFoodEaten({ x, y }) {
 
 function deleteFood() {
   cells[food.y][food.x].classList.remove("food");
+}
+
+function goAhead(newCell) {
+  if (isThereNewDirection) {
+    snakeNodes.push(newCell);
+  } else {
+    snakeNodes[snakeNodes.length - 1] = newCell;
+  }
+}
+
+function updateSnake() {
+  if (snakeNodes[0].x === snakeNodes[1].x) {
+    if (snakeNodes[0].y > snakeNodes[1].y) {
+      snakeNodes[0].y--;
+    } else {
+      snakeNodes[0].y++;
+    }
+  } else {
+    if (snakeNodes[0].x > snakeNodes[1].x) {
+      snakeNodes[0].x--;
+    } else {
+      snakeNodes[0].x++;
+    }
+  }
+
+  if (JSON.stringify(snakeNodes[0]) === JSON.stringify(snakeNodes[1])) {
+    snakeNodes.shift();
+  }
+}
+
+function eraseSnake() {
+  clearCanvas();
+}
+
+function drawSnake() {
+  snakeNodes.forEach((node, i) => {
+    if (i !== 0) {
+      console.log(
+        `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${
+          node.y
+        }`
+      );
+
+      generateRectangle(
+        snakeNodes[i - 1].x,
+        snakeNodes[i - 1].y,
+        node.x,
+        node.y
+      );
+    }
+  });
 }
