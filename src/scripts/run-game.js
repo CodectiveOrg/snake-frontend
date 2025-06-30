@@ -197,14 +197,14 @@ function drawSnake() {
       console.log(
         `draw ${snakeNodes[i - 1].x},${snakeNodes[i - 1].y} to ${node.x},${
           node.y
-        }`
+        }`,
       );
 
       generateRectangle(
         snakeNodes[i - 1].x,
         snakeNodes[i - 1].y,
         node.x,
-        node.y
+        node.y,
       );
     }
   });
