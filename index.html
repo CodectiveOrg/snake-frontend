@@ -7,27 +7,27 @@
     <title>Snake</title>
 
     <link rel="stylesheet" href="/src/styles/globals.css" />
-    <link rel="stylesheet" href="/src/styles/buffer.css" />
+    <link rel="stylesheet" href="/src/styles/canvas.css" />
 
-    <script type="module" src="/src/scripts/main.js"></script>
+    <script type="module" src="/src/app/main.ts"></script>
   </head>
   <body>
-    <main>
+    <section id="intro" style="display: none">
       <form>
-        <label for="name"
-          >لطفا نام خود را وارد کنید <input type="text" id="name-input"
-        /></label>
-        <button type="submit" id="send">ارسال</button>
+        <label>
+          لطفا نام خود را وارد کنید
+          <input type="text" name="username" />
+        </label>
+        <button>ارسال</button>
       </form>
-      <div class="container"></div>
+    </section>
+    <section id="game" style="display: none">
+      <canvas></canvas>
       <div class="info">
         Name: <span id="name"></span>
         <br />
         Score: <span id="score">0</span>
       </div>
-    </main>
-    <aside>
-      <div id="buffer"></div>
-    </aside>
+    </section>
   </body>
 </html>

@@ -16,33 +16,4 @@ body {
   place-items: center;
 
   min-block-size: 100dvh;
-
-  main {
-    .container {
-      display: grid;
-      grid-template-columns: repeat(30, 1fr);
-
-      inline-size: 30rem;
-      block-size: 20rem;
-
-      border: 1px solid red;
-
-      .cell {
-        inline-size: 1rem;
-        block-size: 1rem;
-
-        &.black {
-          background-color: #000;
-        }
-
-        &.food {
-          background-color: red;
-        }
-      }
-    }
-
-    canvas {
-      border: 1px solid red;
-    }
-  }
 }
