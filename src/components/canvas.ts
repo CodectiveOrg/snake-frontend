@@ -1,10 +1,10 @@
 import type { Point } from "../types/point.ts";
 import { DOM } from "../utils/dom.utils.ts";
-import type { GameMaster } from "../Entities/game-master.ts";
+import type { Snake } from "../Entities/snake.ts";
 
 export class Canvas {
   public static readonly BOARD_WIDTH = 30;
-  public static readonly BOARD_HEIGHT = 30;
+  public static readonly BOARD_HEIGHT = 20;
 
   private readonly SNAKE_COLOR = "black";
   private readonly SNAKE_SIZE = 16;
@@ -13,16 +13,14 @@ export class Canvas {
 
   private ctx: CanvasRenderingContext2D;
 
-  public constructor(private master: GameMaster) {
+  public constructor(private snake: Snake) {
     this.init();
     this.ctx = DOM.canvas.getContext("2d")!;
   }
 
   private init(): void {
-    const { width, height } = DOM.canvas.getBoundingClientRect();
-
-    DOM.canvas.width = width;
-    DOM.canvas.height = height;
+    DOM.canvas.width = Canvas.BOARD_WIDTH * this.SNAKE_SIZE;
+    DOM.canvas.height = Canvas.BOARD_HEIGHT * this.SNAKE_SIZE;
   }
 
   public drawFood(point: Point): void {
@@ -37,19 +35,21 @@ export class Canvas {
   }
 
   public drawSnake(): void {
-    const snakeBody = this.master.snake.body;
-
     this.ctx.fillStyle = this.SNAKE_COLOR;
     this.ctx.strokeStyle = this.SNAKE_COLOR;
     this.ctx.lineWidth = this.SNAKE_SIZE;
 
-    this.ctx.moveTo(snakeBody[0].x, snakeBody[0].y);
-    for (let i = 1; i < snakeBody.length; i++) {
-      this.ctx.lineTo(snakeBody[i].x, snakeBody[i].y);
+    this.ctx.beginPath();
+
+    this.ctx.moveTo(this.snake.body[0].x * 16, this.snake.body[0].y * 16);
+    for (let i = 1; i < this.snake.body.length; i++) {
+      this.ctx.lineTo(this.snake.body[i].x * 16, this.snake.body[i].y * 16);
     }
+
+    this.ctx.stroke();
   }
 
-  public clearCanvas(): void {
+  public clear(): void {
     this.ctx.clearRect(0, 0, DOM.canvas.width, DOM.canvas.height);
   }
 }

@@ -1,11 +1,11 @@
 import { Canvas } from "../components/canvas.ts";
 import type { Point } from "../types/point.ts";
-import { GameMaster } from "./game-master.ts";
+import type { Snake } from "./snake.ts";
 
 export class Food {
   public coords!: Point;
 
-  public constructor(private master: GameMaster) {
+  public constructor(private snake: Snake) {
     this.generateFood();
   }
 
@@ -15,18 +15,15 @@ export class Food {
     const snakeLength = this.calculateSnakeLength();
 
     const index = Math.floor(Math.random() * (totalCellsCount - snakeLength));
-
     this.coords = this.calculateFoodCoords(index);
   }
 
   private calculateSnakeLength(): number {
-    const snakeBody = this.master.snake.body;
-
     let length = 0;
 
-    for (let i = 1; i < snakeBody.length; i++) {
-      length += Math.abs(snakeBody[i].x - snakeBody[i - 1].x);
-      length += Math.abs(snakeBody[i].y - snakeBody[i - 1].y);
+    for (let i = 1; i < this.snake.body.length; i++) {
+      length += Math.abs(this.snake.body[i].x - this.snake.body[i - 1].x);
+      length += Math.abs(this.snake.body[i].y - this.snake.body[i - 1].y);
     }
 
     return length + 1;
