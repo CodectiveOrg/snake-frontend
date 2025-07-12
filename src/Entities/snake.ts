@@ -2,11 +2,11 @@ import type { Point } from "../types/point.ts";
 import { Controller } from "./controller.ts";
 
 export class Snake {
-  public static readonly SPEED = 8 / 1000;
+  public static readonly SPEED = 16 / 1000;
 
   public body: Point[] = [
-    { x: 1, y: 3 },
-    { x: 3, y: 3 },
+    { x: 0, y: 0 },
+    { x: 4, y: 0 },
   ];
 
   public constructor(private controller: Controller) {}

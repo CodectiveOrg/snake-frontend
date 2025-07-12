@@ -36,20 +36,33 @@ export class Canvas {
 
   public drawSnake(): void {
     this.ctx.fillStyle = this.SNAKE_COLOR;
-    this.ctx.strokeStyle = this.SNAKE_COLOR;
-    this.ctx.lineWidth = this.SNAKE_SIZE;
 
-    this.ctx.beginPath();
-
-    this.ctx.moveTo(this.snake.body[0].x * 16, this.snake.body[0].y * 16);
     for (let i = 1; i < this.snake.body.length; i++) {
-      this.ctx.lineTo(this.snake.body[i].x * 16, this.snake.body[i].y * 16);
-    }
+      const [point1, point2] = this.getSortedPoints(i - 1, i);
 
-    this.ctx.stroke();
+      const width = point2.x - point1.x + 1;
+      const height = point2.y - point1.y + 1;
+
+      this.ctx.fillRect(
+        point1.x * this.SNAKE_SIZE,
+        point1.y * this.SNAKE_SIZE,
+        width * this.SNAKE_SIZE,
+        height * this.SNAKE_SIZE,
+      );
+    }
   }
 
   public clear(): void {
     this.ctx.clearRect(0, 0, DOM.canvas.width, DOM.canvas.height);
+  }
+
+  private getSortedPoints(i: number, j: number): [Point, Point] {
+    const point1 = this.snake.body[i];
+    const point2 = this.snake.body[j];
+
+    return [
+      { x: Math.min(point1.x, point2.x), y: Math.min(point1.y, point2.y) },
+      { x: Math.max(point1.x, point2.x), y: Math.max(point1.y, point2.y) },
+    ];
   }
 }
