@@ -5,9 +5,9 @@ import type { Snake } from "../Entities/snake.ts";
 export class Canvas {
   public static readonly BOARD_WIDTH = 30;
   public static readonly BOARD_HEIGHT = 20;
+  public static readonly CELL_SIZE = 16;
 
   private readonly SNAKE_COLOR = "black";
-  private readonly SNAKE_SIZE = 16;
 
   private readonly FOOD_COLOR = "red";
 
@@ -19,18 +19,18 @@ export class Canvas {
   }
 
   private init(): void {
-    DOM.canvas.width = Canvas.BOARD_WIDTH * this.SNAKE_SIZE;
-    DOM.canvas.height = Canvas.BOARD_HEIGHT * this.SNAKE_SIZE;
+    DOM.canvas.width = Canvas.BOARD_WIDTH * Canvas.CELL_SIZE;
+    DOM.canvas.height = Canvas.BOARD_HEIGHT * Canvas.CELL_SIZE;
   }
 
   public drawFood(point: Point): void {
     this.ctx.fillStyle = this.FOOD_COLOR;
 
     this.ctx.fillRect(
-      point.x * this.SNAKE_SIZE,
-      point.y * this.SNAKE_SIZE,
-      this.SNAKE_SIZE,
-      this.SNAKE_SIZE,
+      point.x * Canvas.CELL_SIZE,
+      point.y * Canvas.CELL_SIZE,
+      Canvas.CELL_SIZE,
+      Canvas.CELL_SIZE,
     );
   }
 
@@ -44,10 +44,10 @@ export class Canvas {
       const height = point2.y - point1.y + 1;
 
       this.ctx.fillRect(
-        point1.x * this.SNAKE_SIZE,
-        point1.y * this.SNAKE_SIZE,
-        width * this.SNAKE_SIZE,
-        height * this.SNAKE_SIZE,
+        point1.x * Canvas.CELL_SIZE,
+        point1.y * Canvas.CELL_SIZE,
+        width * Canvas.CELL_SIZE,
+        height * Canvas.CELL_SIZE,
       );
     }
   }

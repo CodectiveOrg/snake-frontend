@@ -37,7 +37,7 @@ export class GameMaster {
       const deltaTime = now - lastTime;
       lastTime = now;
 
-      const distance = deltaTime * Snake.SPEED;
+      const distance = (deltaTime * Canvas.CELL_SIZE) / 1000;
 
       this.update(distance);
 
@@ -65,6 +65,8 @@ export class GameMaster {
       DOM.score.textContent = this.score.toString();
 
       this.food.generateFood();
+
+      this.snake.tailDebt++;
     }
   }
 

@@ -11,12 +11,12 @@ import {
 } from "../utils/geometry.utils.ts";
 
 export class Snake {
-  public static readonly SPEED = 16 / 1000;
-
   public body: Point[] = [
     { x: 0, y: 0 },
     { x: 4, y: 0 },
   ];
+
+  public tailDebt: number = 0;
 
   public constructor(private controller: Controller) {}
 
@@ -97,6 +97,14 @@ export class Snake {
   }
 
   private moveTail(totalDistance: number): void {
+    if (this.tailDebt >= totalDistance) {
+      this.tailDebt -= totalDistance;
+      return;
+    }
+
+    totalDistance -= this.tailDebt;
+    this.tailDebt = 0;
+
     const distanceToNextPoint = calculateDistance(this.body[0], this.body[1]);
 
     if (totalDistance < distanceToNextPoint) {
