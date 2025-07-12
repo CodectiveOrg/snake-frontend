@@ -17,12 +17,6 @@ export const DOM = {
   get canvas() {
     return select<HTMLCanvasElement>("canvas");
   },
-  get buffer() {
-    return select("#buffer");
-  },
-  get board() {
-    return select(".container");
-  },
 };
 
 function select<T extends Element = HTMLElement>(selectors: string): T {

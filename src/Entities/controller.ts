@@ -2,7 +2,6 @@ import { Buffer } from "../structures/buffer.ts";
 
 export class Controller {
   public direction: string = "KeyD";
-  public previousDirection: string = "KeyD";
 
   private buffer: Buffer<string>;
 
@@ -12,22 +11,12 @@ export class Controller {
     this.initEventListeners();
   }
 
-  public read(): void {
-    const newDirection = this.buffer.output();
+  public get requestedDirection(): string | undefined {
+    return this.buffer.peak();
+  }
 
-    if (newDirection === this.direction) {
-      return;
-    }
-
-    if (
-      (newDirection === "KeyA" && this.direction !== "KeyD") ||
-      (newDirection === "KeyD" && this.direction !== "KeyA") ||
-      (newDirection === "KeyW" && this.direction !== "KeyS") ||
-      (newDirection === "KeyS" && this.direction !== "KeyW")
-    ) {
-      this.previousDirection = this.direction;
-      this.direction = newDirection;
-    }
+  public consume(): void {
+    this.direction = this.buffer.output() ?? this.direction;
   }
 
   private initEventListeners(): void {
@@ -37,7 +26,25 @@ export class Controller {
         return;
       }
 
-      this.buffer.input(e.code);
+      if (this.shouldRegisterInput(e.code)) {
+        this.buffer.input(e.code);
+        console.log(this.buffer);
+      }
     });
+  }
+
+  private shouldRegisterInput(newDirection: string): boolean {
+    const previousDirection = this.buffer.peak() || this.direction;
+
+    if (newDirection === previousDirection) {
+      return false;
+    }
+
+    return (
+      (newDirection === "KeyA" && previousDirection !== "KeyD") ||
+      (newDirection === "KeyD" && previousDirection !== "KeyA") ||
+      (newDirection === "KeyW" && previousDirection !== "KeyS") ||
+      (newDirection === "KeyS" && previousDirection !== "KeyW")
+    );
   }
 }

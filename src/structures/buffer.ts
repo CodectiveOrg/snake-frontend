@@ -19,6 +19,14 @@ export class Buffer<T> {
     return this.items.shift();
   }
 
+  public peak(): T | undefined {
+    return this.items[0];
+  }
+
+  public size(): number {
+    return this.items.length;
+  }
+
   public clear() {
     this.items = [];
   }

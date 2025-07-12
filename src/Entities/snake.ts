@@ -60,12 +60,52 @@ export class Snake {
     return "KeyA";
   }
 
-  public move(distance: number): boolean {
-    if (this.hasDirectionChanged()) {
-    } else {
-      this.moveBody(this.body.length - 1, this.controller.direction, distance);
-      this.recur(distance);
+  private moveToTurningPoint(distance: number): number {
+    const { x, y } = this.body.at(-1)!;
+
+    let remainingDistanceToWholeNumber = 0;
+
+    switch (this.controller.direction) {
+      case "KeyS":
+        remainingDistanceToWholeNumber = Math.floor(y + distance) - y;
+        break;
+      case "KeyW":
+        remainingDistanceToWholeNumber = y - Math.floor(y - distance);
+        break;
+      case "KeyD":
+        remainingDistanceToWholeNumber = Math.floor(x + distance) - x;
+        break;
+      default:
+        remainingDistanceToWholeNumber = x - Math.floor(x - distance);
     }
+
+    if (remainingDistanceToWholeNumber <= 0) {
+      return 0;
+    }
+
+    this.moveBody(
+      this.body.length - 1,
+      this.controller.direction,
+      remainingDistanceToWholeNumber,
+    );
+
+    this.recur(remainingDistanceToWholeNumber);
+
+    this.body.push({ ...this.body.at(-1)! });
+
+    this.controller.consume();
+
+    return remainingDistanceToWholeNumber;
+  }
+
+  public move(distance: number): boolean {
+    if (this.controller.requestedDirection) {
+      const consumedDistance = this.moveToTurningPoint(distance);
+      distance -= consumedDistance;
+    }
+
+    this.moveBody(this.body.length - 1, this.controller.direction, distance);
+    this.recur(distance);
 
     // if (shouldSnakeStayAtSameSize) {
     //   this.updateSnake();
@@ -91,11 +131,6 @@ export class Snake {
     // }
 
     return true;
-  }
-
-  private hasDirectionChanged(): boolean {
-    this.controller.read();
-    return this.controller.direction !== this.controller.previousDirection;
   }
 
   // private isFoodEaten({ x, y }: Point): boolean {
