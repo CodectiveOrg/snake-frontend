@@ -126,8 +126,8 @@ export class Snake {
     this.recur(distance);
   }
 
-  public doesCollideWithPoint(point: Point): boolean {
-    for (let i = 1; i <= this.body.length - 3; i++) {
+  public doesCollideWithPoint(point: Point, offset: number = 1): boolean {
+    for (let i = 1; i <= this.body.length - offset; i++) {
       if (doesPointCollideWithLine(point, this.body[i], this.body[i - 1])) {
         return true;
       }
@@ -137,7 +137,7 @@ export class Snake {
   }
 
   public doesCollideWithItself(): boolean {
-    return this.doesCollideWithPoint(this.intHead);
+    return this.doesCollideWithPoint(this.intHead, 3);
   }
 
   public doesCollideWithFood(food: Point): boolean {
