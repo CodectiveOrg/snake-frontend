@@ -1,6 +1,7 @@
 import { Canvas } from "../components/canvas.ts";
 import type { Point } from "../types/point.ts";
 import type { Snake } from "./snake.ts";
+import { clamp } from "../utils/math.utils.ts";
 
 export class Food {
   public coords!: Point;
@@ -30,14 +31,13 @@ export class Food {
   }
 
   private calculateFoodCoords(index: number): Point {
-    const board = this.generateBoard();
+    const isSnake = this.generateIsSnakeBoard();
 
     let counter = 0;
 
-    for (let x = 0; x < board.length; x++) {
-      for (let y = 0; y < board[x].length; y++) {
-        const isSnake = board[x][y].isSnake;
-        if (isSnake) {
+    for (let x = 0; x < isSnake.length; x++) {
+      for (let y = 0; y < isSnake[x].length; y++) {
+        if (isSnake[x][y]) {
           continue;
         }
 
@@ -52,19 +52,37 @@ export class Food {
     throw new Error("Welcome to the bot community :)");
   }
 
-  private generateBoard(): { isSnake: boolean }[][] {
-    const board: { isSnake: boolean }[][] = [];
+  private generateIsSnakeBoard(): boolean[][] {
+    const isSnake: boolean[][] = [];
 
     for (let x = 0; x < Canvas.BOARD_WIDTH; x++) {
-      const column: { isSnake: boolean }[] = [];
+      const column: boolean[] = [];
 
       for (let y = 0; y < Canvas.BOARD_HEIGHT; y++) {
-        column.push({ isSnake: false });
+        column.push(false);
       }
 
-      board.push(column);
+      isSnake.push(column);
     }
 
-    return board;
+    for (let i = 0; i < this.snake.body.length - 1; i++) {
+      const x1 = Math.floor(this.snake.body[i].x);
+      const y1 = Math.floor(this.snake.body[i].y);
+      const x2 = Math.floor(this.snake.body[i + 1].x);
+      const y2 = Math.floor(this.snake.body[i + 1].y);
+
+      isSnake[x1][y1] = true;
+      isSnake[x2][y2] = true;
+
+      for (let x = x1; x !== x2; x += clamp(-1, x2 - x1, 1)) {
+        isSnake[x][y1] = true;
+      }
+
+      for (let y = y1; y !== y2; y += clamp(-1, y2 - y1, 1)) {
+        isSnake[x1][y] = true;
+      }
+    }
+
+    return isSnake;
   }
 }

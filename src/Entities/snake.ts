@@ -1,13 +1,17 @@
 import type { Point } from "../types/point.ts";
 import { Controller } from "./controller.ts";
 import { Canvas } from "../components/canvas.ts";
+import {
+  doesPointCollideWithLine,
+  doesPointCollideWithPoint,
+} from "../utils/geometry.utils.ts";
 
 export class Snake {
   public static readonly SPEED = 16 / 1000;
 
   public body: Point[] = [
     { x: 0, y: 0 },
-    { x: 10, y: 0 },
+    { x: 4, y: 0 },
   ];
 
   public constructor(private controller: Controller) {}
@@ -122,24 +126,22 @@ export class Snake {
     this.recur(distance);
   }
 
-  public doesCollideWithFood(food: Point): boolean {
-    return this.doesTwoPointsCollide(this.intHead, food);
-  }
-
-  public doesCollideWithItself(): boolean {
+  public doesCollideWithPoint(point: Point): boolean {
     for (let i = 1; i <= this.body.length - 3; i++) {
-      if (
-        this.doesPointCollideWithLine(
-          this.intHead,
-          this.body[i],
-          this.body[i - 1],
-        )
-      ) {
+      if (doesPointCollideWithLine(point, this.body[i], this.body[i - 1])) {
         return true;
       }
     }
 
     return false;
+  }
+
+  public doesCollideWithItself(): boolean {
+    return this.doesCollideWithPoint(this.intHead);
+  }
+
+  public doesCollideWithFood(food: Point): boolean {
+    return doesPointCollideWithPoint(this.intHead, food);
   }
 
   public doesCollideWithWall(): boolean {
@@ -149,31 +151,5 @@ export class Snake {
       this.head.x >= Canvas.BOARD_WIDTH ||
       this.head.y >= Canvas.BOARD_HEIGHT
     );
-  }
-
-  private doesTwoPointsCollide(point1: Point, point2: Point): boolean {
-    return Math.abs(point1.x - point2.x) + Math.abs(point1.y - point2.y) < 1;
-  }
-
-  private doesPointCollideWithLine(
-    point1: Point,
-    point2: Point,
-    point3: Point,
-  ): boolean {
-    if (point2.x === point3.x) {
-      return (
-        point1.x === point2.x &&
-        Math.min(point2.y, point3.y) <= point1.y &&
-        point1.y <= Math.max(point2.y, point3.y)
-      );
-    } else if (point2.y === point3.y) {
-      return (
-        point1.y === point2.y &&
-        Math.min(point2.x, point3.x) <= point1.x &&
-        point1.x <= Math.max(point2.x, point3.x)
-      );
-    }
-
-    return false;
   }
 }
