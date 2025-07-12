@@ -2,7 +2,7 @@ import type { Point } from "../types/point.ts";
 import { Controller } from "./controller.ts";
 
 export class Snake {
-  public static readonly SPEED = 16 / 1000;
+  public static readonly SPEED = 8 / 1000;
 
   public body: Point[] = [
     { x: 1, y: 3 },
@@ -70,13 +70,13 @@ export class Snake {
         remainingDistanceToWholeNumber = Math.floor(y + distance) - y;
         break;
       case "KeyW":
-        remainingDistanceToWholeNumber = y - Math.floor(y - distance);
+        remainingDistanceToWholeNumber = y - Math.ceil(y - distance);
         break;
       case "KeyD":
         remainingDistanceToWholeNumber = Math.floor(x + distance) - x;
         break;
       default:
-        remainingDistanceToWholeNumber = x - Math.floor(x - distance);
+        remainingDistanceToWholeNumber = x - Math.ceil(x - distance);
     }
 
     if (remainingDistanceToWholeNumber <= 0) {
