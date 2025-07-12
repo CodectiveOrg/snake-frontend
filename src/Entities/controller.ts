@@ -15,11 +15,11 @@ export class Controller {
   }
 
   public get requestedDirection(): string | undefined {
-    return this.buffer.peak();
+    return this.buffer.first();
   }
 
   public consume(): void {
-    this.direction = this.buffer.output() ?? this.direction;
+    this.direction = this.buffer.dequeue() ?? this.direction;
   }
 
   private initEventListeners(): void {
@@ -34,13 +34,13 @@ export class Controller {
       }
 
       if (this.shouldRegisterInput(e.code)) {
-        this.buffer.input(e.code);
+        this.buffer.enqueue(e.code);
       }
     });
   }
 
   private shouldRegisterInput(newDirection: Direction): boolean {
-    const previousDirection = this.buffer.peak() || this.direction;
+    const previousDirection = this.buffer.first() || this.direction;
     return VALID_DIRECTIONS[previousDirection].includes(newDirection);
   }
 }

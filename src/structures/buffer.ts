@@ -7,7 +7,7 @@ export class Buffer<T> {
     this.items = [...items];
   }
 
-  public input(value: T): void {
+  public enqueue(value: T): void {
     if (this.items.length >= this.capacity) {
       return;
     }
@@ -15,11 +15,11 @@ export class Buffer<T> {
     this.items.push(value);
   }
 
-  public output(): T | undefined {
+  public dequeue(): T | undefined {
     return this.items.shift();
   }
 
-  public peak(): T | undefined {
+  public first(): T | undefined {
     return this.items[0];
   }
 
