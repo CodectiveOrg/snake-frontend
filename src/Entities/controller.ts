@@ -3,7 +3,7 @@ import { Buffer } from "../structures/buffer.ts";
 export class Controller {
   public direction: string = "KeyD";
 
-  private buffer: Buffer<string>;
+  private readonly buffer: Buffer<string>;
 
   public constructor() {
     this.buffer = new Buffer<string>(3);

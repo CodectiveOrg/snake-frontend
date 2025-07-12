@@ -73,7 +73,7 @@ export class Snake {
   }
 
   private moveToTurningPoint(distance: number): number {
-    let remainingDistanceToWholeNumber = 0;
+    let remainingDistanceToWholeNumber: number;
 
     switch (this.controller.direction) {
       case "KeyS":
