@@ -55,7 +55,7 @@ export function doesPointCollideWithPoint(
   point1: Point,
   point2: Point,
 ): boolean {
-  return Math.abs(point1.x - point2.x) + Math.abs(point1.y - point2.y) < 1;
+  return calculateDistance(point1, point2) < 1;
 }
 
 export function doesPointCollideWithLine(

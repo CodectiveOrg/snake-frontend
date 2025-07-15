@@ -56,7 +56,7 @@ export class Snake {
   }
 
   public doesCollideWithFood(food: Point): boolean {
-    return doesPointCollideWithPoint(this.intHead, food);
+    return doesPointCollideWithPoint(this.head, food);
   }
 
   public doesCollideWithWall(): boolean {
