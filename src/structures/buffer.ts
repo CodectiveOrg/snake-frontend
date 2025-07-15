@@ -23,6 +23,10 @@ export class Buffer<T> {
     return this.items[0];
   }
 
+  public last(): T | undefined {
+    return this.items.at(-1);
+  }
+
   public size(): number {
     return this.items.length;
   }

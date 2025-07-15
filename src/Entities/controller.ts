@@ -40,7 +40,7 @@ export class Controller {
   }
 
   private shouldRegisterInput(newDirection: Direction): boolean {
-    const previousDirection = this.buffer.first() || this.direction;
+    const previousDirection = this.buffer.last() || this.direction;
     return VALID_DIRECTIONS[previousDirection].includes(newDirection);
   }
 }
