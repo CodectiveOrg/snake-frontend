@@ -19,7 +19,12 @@ export class Controller {
   }
 
   public consume(): void {
-    this.direction = this.buffer.dequeue() ?? this.direction;
+    const newDirection = this.buffer.dequeue();
+    if (!newDirection) {
+      return;
+    }
+
+    this.direction = newDirection;
   }
 
   private initEventListeners(): void {
