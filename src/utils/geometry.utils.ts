@@ -63,10 +63,14 @@ export function doesPointCollideWithLine(
   linePoint1: Point,
   linePoint2: Point,
 ): boolean {
-  return (
-    Math.min(linePoint1.x, linePoint2.x) <= point.x &&
-    point.x <= Math.max(linePoint1.x, linePoint2.x) &&
-    Math.min(linePoint1.y, linePoint2.y) <= point.y &&
-    point.y <= Math.max(linePoint1.y, linePoint2.y)
-  );
+  const minX = Math.min(linePoint1.x, linePoint2.x);
+  const maxX = Math.max(linePoint1.x, linePoint2.x);
+
+  const minY = Math.min(linePoint1.y, linePoint2.y);
+  const maxY = Math.max(linePoint1.y, linePoint2.y);
+
+  const condition1 = minX <= point.x && point.x <= maxX;
+  const condition2 = minY <= point.y && point.y <= maxY;
+
+  return condition1 && condition2;
 }
