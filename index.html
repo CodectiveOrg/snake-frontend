@@ -2,32 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake</title>
-
-    <link rel="stylesheet" href="/src/styles/globals.css" />
-    <link rel="stylesheet" href="/src/styles/canvas.css" />
-
-    <script type="module" src="/src/app/main.ts"></script>
   </head>
   <body>
-    <section id="intro" style="display: none">
-      <form>
-        <label>
-          لطفا نام خود را وارد کنید
-          <input type="text" name="username" />
-        </label>
-        <button>ارسال</button>
-      </form>
-    </section>
-    <section id="game" style="display: none">
-      <canvas></canvas>
-      <div class="info">
-        Name: <span id="name"></span>
-        <br />
-        Score: <span id="score">0</span>
-      </div>
-    </section>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
