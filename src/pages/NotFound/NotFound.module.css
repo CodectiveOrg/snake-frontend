@@ -1,0 +1,10 @@
+.not-found {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+    text-align: center;
+
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+}
