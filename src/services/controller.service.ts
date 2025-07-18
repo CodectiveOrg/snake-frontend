@@ -1,15 +1,18 @@
-import { Buffer } from "../structures/buffer.ts";
-import { VALID_DIRECTIONS } from "../configs/valid-directions.ts";
-import { type Direction } from "../types/direction.ts";
-import { isDirection } from "../utils/type.utils.ts";
+import { VALID_DIRECTIONS } from "@/configs/valid-directions.ts";
 
-export class Controller {
-  public direction: Direction = "KeyD";
+import { BufferStructure } from "@/structures/buffer.structure.ts";
 
-  private readonly buffer: Buffer<Direction>;
+import { type DirectionType } from "@/types/direction.type.ts";
+
+import { isDirection } from "@/utils/type.utils.ts";
+
+export class ControllerService {
+  public direction: DirectionType = "KeyD";
+
+  private readonly buffer: BufferStructure<DirectionType>;
 
   public constructor() {
-    this.buffer = new Buffer(3);
+    this.buffer = new BufferStructure(3);
 
     this.initEventListeners();
   }
@@ -44,7 +47,7 @@ export class Controller {
     });
   }
 
-  private shouldRegisterInput(newDirection: Direction): boolean {
+  private shouldRegisterInput(newDirection: DirectionType): boolean {
     const previousDirection = this.buffer.last() || this.direction;
     return VALID_DIRECTIONS[previousDirection].includes(newDirection);
   }

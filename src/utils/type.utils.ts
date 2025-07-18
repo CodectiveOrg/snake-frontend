@@ -1,5 +1,5 @@
-import { type Direction, DIRECTIONS } from "../types/direction.ts";
+import { DIRECTIONS, type DirectionType } from "@/types/direction.type.ts";
 
-export function isDirection(value: string): value is Direction {
-  return DIRECTIONS.includes(value as Direction);
+export function isDirection(value: string): value is DirectionType {
+  return DIRECTIONS.includes(value as DirectionType);
 }
