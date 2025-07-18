@@ -15,7 +15,7 @@ export default function IntroPage(): ReactNode {
     const username = (formData.get("username") as string) || "Lazy User!";
     localStorage.setItem("username", username);
 
-    navigate("game");
+    navigate("/game");
   };
 
   return (
