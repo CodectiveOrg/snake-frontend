@@ -8,6 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write",
+    "stylelint:check": "stylelint \"**/*.css\"",
+    "stylelint:fix": "stylelint \"**/*.css\" --fix",
     "lint-staged": "lint-staged",
     "prepare": "husky"
   },
