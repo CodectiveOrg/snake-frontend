@@ -4,14 +4,13 @@ import { Controller } from "@/entities/controller.ts";
 import { Food } from "@/entities/food.ts";
 import { Snake } from "@/entities/snake.ts";
 
+import { useGameStore } from "@/stores/game.store.ts";
+
 export class GameMaster {
   public controller: Controller;
   public canvas: Canvas;
   public food: Food;
   public snake: Snake;
-
-  public score: number = 0;
-  private isGameOver: boolean = false;
 
   public constructor(canvas: HTMLCanvasElement) {
     this.controller = new Controller();
@@ -28,19 +27,20 @@ export class GameMaster {
     let lastTime = Date.now();
 
     const frameCallback = (): void => {
-      if (this.isGameOver) {
+      if (useGameStore.getState().gameState === "over") {
         return;
       }
 
       const now = Date.now();
 
-      const deltaTime = now - lastTime;
+      if (useGameStore.getState().gameState === "running") {
+        const deltaTime = now - lastTime;
+        const distance = (deltaTime * Canvas.CELL_SIZE) / 1000;
+
+        this.update(distance);
+      }
+
       lastTime = now;
-
-      const distance = (deltaTime * Canvas.CELL_SIZE) / 1000;
-
-      this.update(distance);
-
       requestAnimationFrame(frameCallback);
     };
 
@@ -55,13 +55,17 @@ export class GameMaster {
   }
 
   private checkForGameOver(): void {
-    this.isGameOver =
-      this.snake.doesCollideWithWall() || this.snake.doesCollideWithItself();
+    if (
+      this.snake.doesCollideWithWall() ||
+      this.snake.doesCollideWithItself()
+    ) {
+      useGameStore.getState().gameOver();
+    }
   }
 
   private checkForFood(): void {
     if (this.snake.doesCollideWithFood(this.food.coords)) {
-      this.score++;
+      useGameStore.getState().incrementScore();
       this.food.generateFood();
       this.snake.tailDebt++;
     }

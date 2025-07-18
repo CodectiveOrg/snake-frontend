@@ -21,6 +21,7 @@
     "^@/models",
     "^@/pages",
     "^@/providers",
+    "^@/stores",
     "^@/structures",
     "^@/types",
     "^@/utils",

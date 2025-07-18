@@ -4,10 +4,14 @@ import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 
 import { GameMaster } from "@/entities/game-master.ts";
 
+import { useGameStore } from "@/stores/game.store.ts";
+
 import styles from "./game.module.css";
 
 export default function GamePage(): ReactNode {
   const username = localStorage.getItem("username");
+
+  const score = useGameStore((state) => state.score);
 
   const masterRef = useRef<GameMaster>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -27,7 +31,7 @@ export default function GamePage(): ReactNode {
       <div className="info">
         Name: <span id="name">{username}</span>
         <br />
-        Score: <span id="score">{masterRef.current?.score}</span>
+        Score: <span id="score">{score}</span>
       </div>
     </div>
   );
