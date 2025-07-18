@@ -2,7 +2,6 @@ import { Snake } from "./snake.ts";
 import { Food } from "./food.ts";
 import { Canvas } from "../components/canvas.ts";
 import { Controller } from "./controller.ts";
-import { DOM } from "../utils/dom.utils.ts";
 
 export class GameMaster {
   public controller: Controller;
@@ -10,13 +9,13 @@ export class GameMaster {
   public food: Food;
   public snake: Snake;
 
-  private score: number = 0;
+  public score: number = 0;
   private isGameOver: boolean = false;
 
-  public constructor() {
+  public constructor(canvas: HTMLCanvasElement) {
     this.controller = new Controller();
     this.snake = new Snake(this.controller);
-    this.canvas = new Canvas(this.snake);
+    this.canvas = new Canvas(canvas, this.snake);
     this.food = new Food(this.snake);
   }
 
@@ -62,10 +61,7 @@ export class GameMaster {
   private checkForFood(): void {
     if (this.snake.doesCollideWithFood(this.food.coords)) {
       this.score++;
-      DOM.score.textContent = this.score.toString();
-
       this.food.generateFood();
-
       this.snake.tailDebt++;
     }
   }

@@ -4,12 +4,11 @@ import IntroPage from "../../pages/intro/intro.page.tsx";
 import GamePage from "../../pages/game/game.page.tsx";
 
 export default function RouterComponent(): ReactNode {
-  const username = localStorage.getItem("username");
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={username ? <IntroPage /> : <GamePage />} />
+        <Route path="/" element={<IntroPage />} />
+        <Route path="/game" element={<GamePage />} />
       </Routes>
     </BrowserRouter>
   );

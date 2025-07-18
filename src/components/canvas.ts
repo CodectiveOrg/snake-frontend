@@ -1,5 +1,4 @@
 import type { Point } from "../types/point.ts";
-import { DOM } from "../utils/dom.utils.ts";
 import type { Snake } from "../entities/snake.ts";
 
 export class Canvas {
@@ -13,14 +12,17 @@ export class Canvas {
 
   private ctx: CanvasRenderingContext2D;
 
-  public constructor(private snake: Snake) {
+  public constructor(
+    private canvas: HTMLCanvasElement,
+    private snake: Snake,
+  ) {
     this.init();
-    this.ctx = DOM.canvas.getContext("2d")!;
+    this.ctx = this.canvas.getContext("2d")!;
   }
 
   private init(): void {
-    DOM.canvas.width = Canvas.BOARD_WIDTH * Canvas.CELL_SIZE;
-    DOM.canvas.height = Canvas.BOARD_HEIGHT * Canvas.CELL_SIZE;
+    this.canvas.width = Canvas.BOARD_WIDTH * Canvas.CELL_SIZE;
+    this.canvas.height = Canvas.BOARD_HEIGHT * Canvas.CELL_SIZE;
   }
 
   public drawFood(point: Point): void {
@@ -53,7 +55,7 @@ export class Canvas {
   }
 
   public clear(): void {
-    this.ctx.clearRect(0, 0, DOM.canvas.width, DOM.canvas.height);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   private getSortedPoints(i: number, j: number): [Point, Point] {
