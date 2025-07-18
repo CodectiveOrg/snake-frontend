@@ -1,2 +1,7 @@
 .playground {
+  padding: 2rem;
+
+  h1 {
+    margin-block-end: 2rem;
+  }
 }
