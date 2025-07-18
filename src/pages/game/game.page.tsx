@@ -1,8 +1,8 @@
 import { type ReactNode, useEffect, useRef } from "react";
 
-import { GameMasterService } from "@/services/game-master.service.ts";
-
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
+
+import { GameMasterService } from "@/services/game-master.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
