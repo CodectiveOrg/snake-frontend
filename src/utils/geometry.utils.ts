@@ -1,11 +1,11 @@
-import type { Direction } from "@/types/direction.ts";
-import type { Point } from "@/types/point.ts";
+import type { DirectionType } from "@/types/direction.type.ts";
+import type { PointType } from "@/types/point.type.ts";
 
 export function movePoint(
-  point: Point,
-  direction: Direction,
+  point: PointType,
+  direction: DirectionType,
   distance: number,
-): Point {
+): PointType {
   switch (direction) {
     case "KeyW":
       return { ...point, y: point.y - distance };
@@ -18,7 +18,10 @@ export function movePoint(
   }
 }
 
-export function findDistanceToTurn(point: Point, direction: Direction): number {
+export function findDistanceToTurn(
+  point: PointType,
+  direction: DirectionType,
+): number {
   switch (direction) {
     case "KeyW":
       return point.y - Math.floor(point.y);
@@ -31,11 +34,17 @@ export function findDistanceToTurn(point: Point, direction: Direction): number {
   }
 }
 
-export function calculateDistance(point1: Point, point2: Point): number {
+export function calculateDistance(
+  point1: PointType,
+  point2: PointType,
+): number {
   return Math.abs(point2.x - point1.x) + Math.abs(point2.y - point1.y);
 }
 
-export function calculateDirection(point1: Point, point2: Point): Direction {
+export function calculateDirection(
+  point1: PointType,
+  point2: PointType,
+): DirectionType {
   if (point2.y < point1.y) {
     return "KeyW";
   }
@@ -52,16 +61,16 @@ export function calculateDirection(point1: Point, point2: Point): Direction {
 }
 
 export function doesPointCollideWithPoint(
-  point1: Point,
-  point2: Point,
+  point1: PointType,
+  point2: PointType,
 ): boolean {
   return calculateDistance(point1, point2) < 1;
 }
 
 export function doesPointCollideWithLine(
-  point: Point,
-  linePoint1: Point,
-  linePoint2: Point,
+  point: PointType,
+  linePoint1: PointType,
+  linePoint2: PointType,
 ): boolean {
   const minX = Math.min(linePoint1.x, linePoint2.x);
   const maxX = Math.max(linePoint1.x, linePoint2.x);

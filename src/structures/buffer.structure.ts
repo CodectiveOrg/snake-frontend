@@ -1,4 +1,4 @@
-export class Buffer<T> {
+export class BufferStructure<T> {
   private readonly capacity: number;
   private items: T[];
 

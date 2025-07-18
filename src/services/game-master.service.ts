@@ -1,22 +1,21 @@
-import { Canvas } from "@/components/canvas.ts";
-
-import { Controller } from "@/entities/controller.ts";
-import { Food } from "@/entities/food.ts";
-import { Snake } from "@/entities/snake.ts";
+import { CanvasService } from "@/services/canvas.service.ts";
+import { ControllerService } from "@/services/controller.service.ts";
+import { FoodService } from "@/services/food.service.ts";
+import { SnakeService } from "@/services/snake.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
-export class GameMaster {
-  public controller: Controller;
-  public canvas: Canvas;
-  public food: Food;
-  public snake: Snake;
+export class GameMasterService {
+  public controller: ControllerService;
+  public canvas: CanvasService;
+  public food: FoodService;
+  public snake: SnakeService;
 
   public constructor(canvas: HTMLCanvasElement) {
-    this.controller = new Controller();
-    this.snake = new Snake(this.controller);
-    this.canvas = new Canvas(canvas, this.snake);
-    this.food = new Food(this.snake);
+    this.controller = new ControllerService();
+    this.snake = new SnakeService(this.controller);
+    this.canvas = new CanvasService(canvas, this.snake);
+    this.food = new FoodService(this.snake);
   }
 
   public run(): void {
@@ -35,7 +34,7 @@ export class GameMaster {
 
       if (useGameStore.getState().gameState === "running") {
         const deltaTime = now - lastTime;
-        const distance = (deltaTime * Canvas.CELL_SIZE) / 1000;
+        const distance = (deltaTime * CanvasService.CELL_SIZE) / 1000;
 
         this.update(distance);
       }

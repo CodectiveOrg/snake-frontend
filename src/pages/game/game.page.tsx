@@ -1,8 +1,8 @@
 import { type ReactNode, useEffect, useRef } from "react";
 
-import CanvasComponent from "@/components/canvas/canvas.component.tsx";
+import { GameMasterService } from "@/services/game-master.service.ts";
 
-import { GameMaster } from "@/entities/game-master.ts";
+import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
@@ -13,7 +13,7 @@ export default function GamePage(): ReactNode {
 
   const score = useGameStore((state) => state.score);
 
-  const masterRef = useRef<GameMaster>(null);
+  const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function GamePage(): ReactNode {
       return;
     }
 
-    masterRef.current = new GameMaster(canvasRef.current);
+    masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
   }, []);
 

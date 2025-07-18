@@ -1,4 +1,4 @@
-export type Point = {
+export type PointType = {
   x: number;
   y: number;
 };
