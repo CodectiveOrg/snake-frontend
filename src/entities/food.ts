@@ -1,6 +1,8 @@
-import { Canvas } from "../components/canvas.ts";
-import type { Point } from "../types/point.ts";
-import type { Snake } from "./snake.ts";
+import { Canvas } from "@/components/canvas.ts";
+
+import type { Snake } from "@/entities/snake.ts";
+
+import type { Point } from "@/types/point.ts";
 
 export class Food {
   public coords!: Point;

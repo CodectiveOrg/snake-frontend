@@ -1,7 +1,8 @@
-import { Snake } from "./snake.ts";
-import { Food } from "./food.ts";
-import { Canvas } from "../components/canvas.ts";
-import { Controller } from "./controller.ts";
+import { Canvas } from "@/components/canvas.ts";
+
+import { Controller } from "@/entities/controller.ts";
+import { Food } from "@/entities/food.ts";
+import { Snake } from "@/entities/snake.ts";
 
 export class GameMaster {
   public controller: Controller;

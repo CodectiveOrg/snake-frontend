@@ -1,7 +1,10 @@
 import { type ReactNode, useEffect, useRef } from "react";
+
+import CanvasComponent from "@/components/canvas/canvas.component.tsx";
+
+import { GameMaster } from "@/entities/game-master.ts";
+
 import styles from "./game.module.css";
-import CanvasComponent from "../../components/canvas/canvas.component.tsx";
-import { GameMaster } from "../../entities/game-master.ts";
 
 export default function GamePage(): ReactNode {
   const username = localStorage.getItem("username");

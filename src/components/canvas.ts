@@ -1,5 +1,6 @@
-import type { Point } from "../types/point.ts";
-import type { Snake } from "../entities/snake.ts";
+import type { Snake } from "@/entities/snake.ts";
+
+import type { Point } from "@/types/point.ts";
 
 export class Canvas {
   public static readonly BOARD_WIDTH = 30;

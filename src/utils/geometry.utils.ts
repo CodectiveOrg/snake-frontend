@@ -1,5 +1,5 @@
-import type { Point } from "../types/point.ts";
-import type { Direction } from "../types/direction.ts";
+import type { Direction } from "@/types/direction.ts";
+import type { Point } from "@/types/point.ts";
 
 export function movePoint(
   point: Point,

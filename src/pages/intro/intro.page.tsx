@@ -1,6 +1,8 @@
 import type { FormEvent, ReactNode } from "react";
-import styles from "./intro.module.css";
+
 import { useNavigate } from "react-router";
+
+import styles from "./intro.module.css";
 
 export default function IntroPage(): ReactNode {
   const navigate = useNavigate();

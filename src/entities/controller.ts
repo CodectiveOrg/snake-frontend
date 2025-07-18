@@ -1,7 +1,10 @@
-import { Buffer } from "../structures/buffer.ts";
-import { VALID_DIRECTIONS } from "../configs/valid-directions.ts";
-import { type Direction } from "../types/direction.ts";
-import { isDirection } from "../utils/type.utils.ts";
+import { VALID_DIRECTIONS } from "@/configs/valid-directions.ts";
+
+import { Buffer } from "@/structures/buffer.ts";
+
+import { type Direction } from "@/types/direction.ts";
+
+import { isDirection } from "@/utils/type.utils.ts";
 
 export class Controller {
   public direction: Direction = "KeyD";

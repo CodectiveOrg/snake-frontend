@@ -1,6 +1,9 @@
-import type { Point } from "../types/point.ts";
-import { Controller } from "./controller.ts";
-import { Canvas } from "../components/canvas.ts";
+import { Canvas } from "@/components/canvas.ts";
+
+import { Controller } from "@/entities/controller.ts";
+
+import type { Point } from "@/types/point.ts";
+
 import {
   calculateDirection,
   calculateDistance,
@@ -8,7 +11,7 @@ import {
   doesPointCollideWithPoint,
   findDistanceToTurn,
   movePoint,
-} from "../utils/geometry.utils.ts";
+} from "@/utils/geometry.utils.ts";
 
 export class Snake {
   public body: Point[] = [
