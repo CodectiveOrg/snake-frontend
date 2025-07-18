@@ -29,9 +29,9 @@ export default function GamePage(): ReactNode {
     <div className={styles.game}>
       <CanvasComponent ref={canvasRef} />
       <div className="info">
-        Name: <span id="name">{username}</span>
+        Name: {username}
         <br />
-        Score: <span id="score">{score}</span>
+        Score: {score}
       </div>
     </div>
   );
