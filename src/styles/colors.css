@@ -1,0 +1,8 @@
+:root {
+  --color-background: hsl(222deg 100% 59%);
+  --color-border: hsl(222deg 100% 59%);
+  --color-on-surface: hsl(0deg 0% 100%);
+  --color-surface: hsl(222deg 100% 50%);
+  --color-on-disabled: hsl(0deg 0% 44%);
+  --color-glass: hsl(0deg 0% 0% / 61%);
+}
