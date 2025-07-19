@@ -2,28 +2,31 @@ import type { ReactNode, SVGProps } from "react";
 
 import clsx from "clsx";
 
+import { Size } from "@/configs/size.config.ts";
+
+import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
+
 import styles from "./modal-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
-  width: number;
-  height: number;
   contentWidth: number;
 };
 
 export default function ModalFrameComponent({
-  width,
-  height,
   contentWidth,
   className,
   ...props
 }: Props): ReactNode {
-  const offset = 10;
-  const remainWidth = (width - contentWidth) / 2;
+  const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
-  const strokeWidth = 2;
+  const offset = Size.MODAL_OFFSET;
+  const strokeWidth = Size.MODAL_CORNER_WIDTH;
+  const remainWidth =
+    (width - Math.max(Size.MODAL_MIN_CONTENT_WIDTH, contentWidth)) / 2;
 
   return (
     <svg
+      ref={ref}
       className={clsx(styles["modal-frame"], className)}
       width={width + 2 * strokeWidth}
       height={height + 2 * strokeWidth}

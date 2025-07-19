@@ -1,4 +1,4 @@
-import { VALID_DIRECTIONS } from "@/configs/valid-directions.ts";
+import { VALID_DIRECTIONS } from "@/configs/valid-directions.config.ts";
 
 import { BufferStructure } from "@/structures/buffer.structure.ts";
 

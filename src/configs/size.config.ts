@@ -1,0 +1,5 @@
+export const Size = {
+  MODAL_OFFSET: 30,
+  MODAL_CORNER_WIDTH: 4,
+  MODAL_MIN_CONTENT_WIDTH: 200,
+};

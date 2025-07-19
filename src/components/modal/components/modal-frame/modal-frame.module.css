@@ -1,11 +1,10 @@
 .modal-frame {
   .perimeter {
     fill: color-mix(in hsl, var(--color-primary) 50%, transparent);
+    stroke: var(--color-primary);
+    stroke-width: 2px;
 
     backdrop-filter: blur(2rem);
-
-    stroke: var(--color-primary);
-    stroke-width: 1px;
   }
 
   .corner {

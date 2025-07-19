@@ -8,6 +8,7 @@
     "<THIRD_PARTY_MODULES>",
     "^@/components",
     "^@/configs",
+    "^@/hooks",
     "^@/pages",
     "^@/services",
     "^@/stores",
