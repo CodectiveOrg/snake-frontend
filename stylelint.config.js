@@ -48,6 +48,12 @@ export default {
         ],
       },
       {
+        groupName: "theme",
+        emptyLineBefore: "always",
+        noEmptyLineBetween: true,
+        properties: ["color-scheme", "caret-color", "accent-color"],
+      },
+      {
         groupName: "color",
         emptyLineBefore: "always",
         noEmptyLineBetween: true,
@@ -63,7 +69,6 @@ export default {
           "background-repeat",
           "background-size",
           "color",
-          "accent-color",
           "fill",
           "box-shadow",
           "mix-blend-mode",

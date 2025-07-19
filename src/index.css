@@ -10,8 +10,9 @@
 html {
   color-scheme: dark;
   caret-color: var(--color-primary);
-
   accent-color: var(--color-primary);
+
+  font-family: Orbitron, sans-serif;
 }
 
 body {

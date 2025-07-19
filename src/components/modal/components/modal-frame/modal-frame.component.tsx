@@ -9,11 +9,11 @@ import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 import styles from "./modal-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
-  contentWidth: number;
+  titleWidth: number;
 };
 
 export default function ModalFrameComponent({
-  contentWidth,
+  titleWidth,
   className,
   ...props
 }: Props): ReactNode {
@@ -21,8 +21,10 @@ export default function ModalFrameComponent({
 
   const offset = Size.MODAL_OFFSET;
   const strokeWidth = Size.MODAL_CORNER_WIDTH;
-  const remainWidth =
-    (width - Math.max(Size.MODAL_MIN_CONTENT_WIDTH, contentWidth)) / 2;
+  const titlePadding = Size.MODAL_TITLE_PADDING;
+
+  titleWidth = Math.max(Size.MODAL_MIN_CONTENT_WIDTH, titleWidth);
+  const remainWidth = (width - titleWidth) / 2 - titlePadding;
 
   return (
     <svg

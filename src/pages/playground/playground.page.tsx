@@ -9,7 +9,9 @@ export default function PlaygroundPage(): ReactNode {
     <div className={styles.playground}>
       <h1>Playground</h1>
       <main>
-        <ModalComponent />
+        <ModalComponent title="Settings">
+          <p>This is the content!</p>
+        </ModalComponent>
       </main>
     </div>
   );

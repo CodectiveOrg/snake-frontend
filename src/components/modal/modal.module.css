@@ -1,7 +1,13 @@
 .modal {
+  --offset: 0;
+  --row-height: calc(var(--offset, 0) * 1px);
+
   position: relative;
 
-  width: 400px;
+  display: grid;
+  grid-template-rows: var(--row-height) 1fr var(--row-height);
+
+  width: 800px;
   height: 300px;
 
   .frame {
@@ -13,14 +19,18 @@
     height: 100%;
   }
 
+  .title {
+    justify-self: center;
+
+    inline-size: fit-content;
+
+    translate: 0 -100%;
+
+    font-size: 2.5rem;
+    font-weight: 900;
+  }
+
   .content {
-    color: hsl(0deg 0% 100%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    font-family: monospace;
+    padding: 2rem;
   }
 }
