@@ -1,0 +1,7 @@
+.button-frame {
+  .perimeter {
+    fill: hsl(222deg 97% 26%);
+    stroke: var(--color-primary);
+    stroke-width: 2px;
+  }
+}

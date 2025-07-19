@@ -22,10 +22,11 @@ export default function IntroPage(): ReactNode {
     <div className={styles.intro}>
       <form onSubmit={formSubmitHandler}>
         <label>
-          لطفا نام خود را وارد کنید
+          Username:
+          <br />
           <input type="text" name="username" />
         </label>
-        <button>ارسال</button>
+        <button>Submit</button>
       </form>
     </div>
   );

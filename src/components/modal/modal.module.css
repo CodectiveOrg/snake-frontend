@@ -1,0 +1,38 @@
+.modal {
+  --offset: 0;
+  --row-height: calc(var(--offset, 0) * 1px);
+
+  backdrop-filter: blur(5px);
+
+  position: relative;
+
+  display: grid;
+  grid-template-rows: var(--row-height) 1fr var(--row-height);
+
+  .frame {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  .title {
+    align-self: end;
+    justify-self: center;
+
+    inline-size: fit-content;
+
+    translate: 0 -0.5rem;
+
+    font-size: 2.5rem;
+    font-weight: 900;
+
+    text-transform: uppercase;
+  }
+
+  .content {
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,44 @@
+.table {
+  .row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+
+    font-size: 1.5rem;
+
+    .cell {
+      padding: 0.5rem;
+    }
+  }
+
+  .head {
+    .row {
+      background-color: color-mix(
+        in hsl,
+        var(--color-primary) 50%,
+        transparent
+      );
+
+      font-weight: 700;
+    }
+  }
+
+  .body {
+    overflow: auto;
+
+    display: grid;
+    gap: 0.5rem;
+
+    max-block-size: 20rem;
+
+    .row {
+      background-color: color-mix(
+        in hsl,
+        var(--color-on-surface) 4%,
+        transparent
+      );
+
+      font-weight: 500;
+    }
+  }
+}

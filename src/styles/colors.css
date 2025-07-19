@@ -1,0 +1,12 @@
+:root {
+  --color-primary: hsl(222deg 100% 59%); /* #2E6DFF */
+  --color-background: var(--color-primary); /* #2E6DFF */
+  --color-border: var(--color-primary); /* #2E6DFF */
+  --color-on-surface: hsl(0deg 0% 100%); /* #FFFFFF */
+  --color-surface: hsl(222deg 100% 50%); /* #004CFF */
+  --color-on-disabled: hsl(0deg 0% 44%); /* #707070 */
+  --color-glass: hsl(0deg 0% 0% / 61%); /* #000000 61.18% */
+
+  --color-body-overlay: hsl(0deg 0% 0% / 60%);
+  --color-canvas-background: hsl(0deg 0% 0% / 80%);
+}

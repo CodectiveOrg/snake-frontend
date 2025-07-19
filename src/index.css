@@ -5,12 +5,42 @@
 
   margin: 0;
   padding: 0;
+
+  scrollbar-color: var(--color-primary) hsl(0deg 0% 0% / 30%);
+  scrollbar-width: thin;
+}
+
+html {
+  color-scheme: dark;
+  caret-color: var(--color-primary);
+  accent-color: var(--color-primary);
+
+  font-family: Orbitron, sans-serif;
 }
 
 body {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  place-items: center;
+  background-image: url("/images/galaxy.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--color-on-surface);
+
+  position: relative;
+  isolation: isolate;
 
   min-block-size: 100dvh;
+
+  &::before {
+    content: "";
+
+    background-image: url("/images/isometric-grid.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 }

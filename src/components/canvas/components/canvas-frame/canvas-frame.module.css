@@ -1,0 +1,9 @@
+.canvas-frame {
+  .perimeter {
+    fill: color-mix(in hsl, var(--color-primary) 20%, transparent);
+  }
+
+  .corner {
+    stroke: var(--color-primary);
+  }
+}

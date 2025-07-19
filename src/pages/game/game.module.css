@@ -1,0 +1,6 @@
+.game {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100dvh;
+}
