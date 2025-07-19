@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import InputComponent from "@/components/input/input.component.tsx";
+import ModalComponent from "@/components/modal/modal.component.tsx";
 
 import styles from "./playground.module.css";
 
@@ -9,7 +9,7 @@ export default function PlaygroundPage(): ReactNode {
     <div className={styles.playground}>
       <h1>Playground</h1>
       <main>
-        <InputComponent />
+        <ModalComponent />
       </main>
     </div>
   );
