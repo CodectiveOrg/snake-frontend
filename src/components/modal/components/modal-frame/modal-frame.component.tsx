@@ -19,12 +19,17 @@ export default function ModalFrameComponent({
 }: Props): ReactNode {
   const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
-  const offset = Size.MODAL_OFFSET;
+  const titleOffset = Size.MODAL_TITLE_OFFSET;
+  const footerOffset = Size.MODAL_FOOTER_OFFSET;
+  const footerWidth = Size.MODAL_FOOTER_WIDTH;
+  const cornerOffset = Size.MODAL_CORNER_OFFSET;
   const strokeWidth = Size.MODAL_CORNER_WIDTH;
   const titlePadding = Size.MODAL_TITLE_PADDING;
 
-  titleWidth = Math.max(Size.MODAL_MIN_CONTENT_WIDTH, titleWidth);
+  titleWidth = Math.max(Size.MODAL_MIN_TITLE_WIDTH, titleWidth);
   const remainWidth = (width - titleWidth) / 2 - titlePadding;
+
+  const footerRemainWidth = (width - footerWidth) / 2;
 
   return (
     <svg
@@ -39,26 +44,26 @@ export default function ModalFrameComponent({
     >
       <path
         className={styles.perimeter}
-        d={`M${offset} 0L0 ${offset}V${height - offset}L${offset} ${height}H${remainWidth}L${remainWidth + offset} ${height - offset}H${width - remainWidth - offset}L${width - remainWidth} ${height}H${width - offset}L${width} ${height - offset}V${offset}L${width - offset} 0H${width - remainWidth}L${width - remainWidth - offset} ${offset}H${remainWidth + offset}L${remainWidth} 0H${offset}Z`}
+        d={`M${cornerOffset} 0L0 ${cornerOffset}V${height - cornerOffset}L${cornerOffset} ${height}H${footerRemainWidth}L${footerRemainWidth + cornerOffset} ${height - footerOffset}H${width - footerRemainWidth - cornerOffset}L${width - footerRemainWidth} ${height}H${width - cornerOffset}L${width} ${height - cornerOffset}V${cornerOffset}L${width - cornerOffset} 0H${width - remainWidth}L${width - remainWidth - cornerOffset} ${titleOffset}H${remainWidth + cornerOffset}L${remainWidth} 0H${cornerOffset}Z`}
       />
       <path
         className={styles.corner}
-        d={`M${2 * offset} 0H${offset}L0 ${offset}V${2 * offset}`}
+        d={`M${2 * cornerOffset} 0H${cornerOffset}L0 ${cornerOffset}V${2 * cornerOffset}`}
         strokeWidth={strokeWidth}
       />
       <path
         className={styles.corner}
-        d={`M0 ${height - 2 * offset}V${height - offset}L${offset} ${height}H${2 * offset}`}
+        d={`M0 ${height - 2 * cornerOffset}V${height - cornerOffset}L${cornerOffset} ${height}H${2 * cornerOffset}`}
         strokeWidth={strokeWidth}
       />
       <path
         className={styles.corner}
-        d={`M${width - 2 * offset} ${height}H${width - offset}L${width} ${height - offset}V${height - 2 * offset}`}
+        d={`M${width - 2 * cornerOffset} ${height}H${width - cornerOffset}L${width} ${height - cornerOffset}V${height - 2 * cornerOffset}`}
         strokeWidth={strokeWidth}
       />
       <path
         className={styles.corner}
-        d={`M${width} ${2 * offset}V${offset}L${width - offset} 0H${width - 2 * offset}`}
+        d={`M${width} ${2 * cornerOffset}V${cornerOffset}L${width - cornerOffset} 0H${width - 2 * cornerOffset}`}
         strokeWidth={strokeWidth}
       />
     </svg>

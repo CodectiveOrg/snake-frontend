@@ -16,5 +16,13 @@ html {
 }
 
 body {
+  background-image: url("/images/galaxy.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-on-surface);
+
+  position: relative;
+
+  min-block-size: 100dvh;
 }

@@ -26,7 +26,7 @@ export default function ModalComponent({
   return (
     <div
       className={clsx(styles.modal, className)}
-      style={{ "--offset": Size.MODAL_OFFSET } as CSSProperties}
+      style={{ "--offset": Size.MODAL_TITLE_OFFSET } as CSSProperties}
     >
       <ModalFrameComponent className={styles.frame} titleWidth={titleWidth} />
       <div ref={titleRef} className={styles.title}>

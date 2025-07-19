@@ -1,7 +1,11 @@
 .playground {
   padding: 2rem;
 
-  h1 {
+  > h1 {
     margin-block-end: 2rem;
+  }
+
+  .modal {
+    max-width: 50ch;
   }
 }
