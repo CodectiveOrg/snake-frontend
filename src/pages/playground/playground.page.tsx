@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
-import RadioComponent from "@/components/radio/radio.component.tsx";
+import { toast } from "sonner";
+
+import ButtonComponent from "@/components/button/button.component.tsx";
 
 import styles from "./playground.module.css";
 
@@ -9,8 +11,9 @@ export default function PlaygroundPage(): ReactNode {
     <div className={styles.playground}>
       <h1>Playground</h1>
       <main style={{ display: "grid", gap: "1rem", width: "fit-content" }}>
-        <RadioComponent label="Male" name="gender" />
-        <RadioComponent label="Female" name="gender" />
+        <ButtonComponent onClick={() => toast("Hello, friend!")}>
+          Toast
+        </ButtonComponent>
       </main>
     </div>
   );
