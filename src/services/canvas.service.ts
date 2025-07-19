@@ -7,7 +7,7 @@ export class CanvasService {
   public static readonly BOARD_HEIGHT = 20;
   public static readonly CELL_SIZE = 16;
 
-  private readonly SNAKE_COLOR = "black";
+  private readonly SNAKE_COLOR = "white";
 
   private readonly FOOD_COLOR = "red";
 
