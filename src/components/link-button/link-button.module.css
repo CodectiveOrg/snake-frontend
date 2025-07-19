@@ -1,0 +1,52 @@
+.link-button {
+  --border-width: 4px;
+  --horizontal-offset: 10px;
+  --vertical-offset: calc(var(--border-width) + 1px);
+
+  background-color: hsl(0deg 0% 44% / 24%);
+  color: hsl(0deg 0% 44%);
+
+  display: inline-block;
+
+  padding: 1rem;
+
+  border: var(--border-width) solid hsl(0deg 0% 44%);
+
+  scale: 1;
+
+  clip-path: polygon(
+    0 0,
+    var(--horizontal-offset) 0,
+    var(--horizontal-offset) var(--vertical-offset),
+    calc(100% - var(--horizontal-offset)) var(--vertical-offset),
+    calc(100% - var(--horizontal-offset)) 0,
+    100% 0,
+    100% 100%,
+    calc(100% - var(--horizontal-offset)) 100%,
+    calc(100% - var(--horizontal-offset)) calc(100% - var(--vertical-offset)),
+    var(--horizontal-offset) calc(100% - var(--vertical-offset)),
+    var(--horizontal-offset) 100%,
+    0 100%
+  );
+
+  font-size: 1.75rem;
+  font-weight: 700;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: background-color, color, border-color, scale;
+
+  &:hover {
+    background-color: hsl(222deg 100% 59% / 24%);
+    color: var(--color-on-surface);
+
+    border-color: var(--color-on-surface);
+
+    scale: 1.1;
+
+    transition-duration: 250ms;
+  }
+}
