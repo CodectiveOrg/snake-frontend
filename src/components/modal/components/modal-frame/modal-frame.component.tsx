@@ -1,5 +1,7 @@
 import type { ReactNode, SVGProps } from "react";
 
+import clsx from "clsx";
+
 import styles from "./modal-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
@@ -12,6 +14,7 @@ export default function ModalFrameComponent({
   width,
   height,
   contentWidth,
+  className,
   ...props
 }: Props): ReactNode {
   const offset = 10;
@@ -21,7 +24,7 @@ export default function ModalFrameComponent({
 
   return (
     <svg
-      className={styles["modal-frame"]}
+      className={clsx(styles["modal-frame"], className)}
       width={width + 2 * strokeWidth}
       height={height + 2 * strokeWidth}
       viewBox={`${-strokeWidth} ${-strokeWidth} ${width + 2 * strokeWidth} ${height + 2 * strokeWidth}`}
@@ -30,27 +33,27 @@ export default function ModalFrameComponent({
       {...props}
     >
       <path
+        className={styles.perimeter}
         d={`M${offset} 0L0 ${offset}V${height - offset}L${offset} ${height}H${remainWidth}L${remainWidth + offset} ${height - offset}H${width - remainWidth - offset}L${width - remainWidth} ${height}H${width - offset}L${width} ${height - offset}V${offset}L${width - offset} 0H${width - remainWidth}L${width - remainWidth - offset} ${offset}H${remainWidth + offset}L${remainWidth} 0H${offset}Z`}
-        fill="#00FF00"
       />
       <path
+        className={styles.corner}
         d={`M${2 * offset} 0H${offset}L0 ${offset}V${2 * offset}`}
-        stroke="#FFF"
         strokeWidth={strokeWidth}
       />
       <path
+        className={styles.corner}
         d={`M0 ${height - 2 * offset}V${height - offset}L${offset} ${height}H${2 * offset}`}
-        stroke="#FFF"
         strokeWidth={strokeWidth}
       />
       <path
+        className={styles.corner}
         d={`M${width - 2 * offset} ${height}H${width - offset}L${width} ${height - offset}V${height - 2 * offset}`}
-        stroke="#FFF"
         strokeWidth={strokeWidth}
       />
       <path
+        className={styles.corner}
         d={`M${width} ${2 * offset}V${offset}L${width - offset} 0H${width - 2 * offset}`}
-        stroke="#FFF"
         strokeWidth={strokeWidth}
       />
     </svg>
