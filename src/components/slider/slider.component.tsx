@@ -2,6 +2,8 @@ import { type ReactNode, useState } from "react";
 
 import clsx from "clsx";
 
+import SliderFrameComponent from "@/components/slider/components/slider-frame/slider-frame.component.tsx";
+
 import styles from "./slider.module.css";
 
 type Props = {
@@ -47,6 +49,10 @@ export default function SliderComponent({ className }: Props): ReactNode {
               onMouseEnter={() => mouseEnterHandler(index)}
             ></button>
           ))}
+      </div>
+      <div className={styles.value}>
+        <SliderFrameComponent className={styles.frame} />
+        {value}
       </div>
     </div>
   );
