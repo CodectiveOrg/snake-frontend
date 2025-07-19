@@ -23,6 +23,21 @@ body {
   color: var(--color-on-surface);
 
   position: relative;
+  isolation: isolate;
 
   min-block-size: 100dvh;
+
+  &::before {
+    content: "";
+
+    background-image: url("/images/isometric-grid.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 }
