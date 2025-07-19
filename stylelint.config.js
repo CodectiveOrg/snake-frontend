@@ -336,7 +336,14 @@ export default {
         groupName: "transform",
         emptyLineBefore: "always",
         noEmptyLineBetween: true,
-        properties: ["transform", "transform-origin", "transform-style"],
+        properties: [
+          "translate",
+          "rotate",
+          "scale",
+          "transform",
+          "transform-origin",
+          "transform-style",
+        ],
       },
       {
         groupName: "clip-path",
