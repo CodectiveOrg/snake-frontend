@@ -1,3 +1,25 @@
 .canvas {
-  border: 1px solid hsl(0deg 0% 20%);
+  --padding: 4rem;
+
+  position: relative;
+
+  padding: var(--padding);
+
+  .frame {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  canvas {
+    background-color: var(--color-canvas-background);
+
+    block-size: 100%;
+    inline-size: 100%;
+
+    border: 1px solid var(--color-primary);
+  }
 }

@@ -8,4 +8,5 @@
   --color-glass: hsl(0deg 0% 0% / 61%); /* #000000 61.18% */
 
   --color-body-overlay: hsl(0deg 0% 0% / 60%);
+  --color-canvas-background: hsl(0deg 0% 0% / 80%);
 }
