@@ -5,7 +5,7 @@
   height: 300px;
 
   .frame {
-    --filter-color: hsl(0deg 100% 50%);
+    --filter-color: transparent;
 
     filter: drop-shadow(2px 0 0 var(--filter-color))
       drop-shadow(-2px 0 0 var(--filter-color))
