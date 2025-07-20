@@ -6,27 +6,27 @@ import { Size } from "@/configs/size.config.ts";
 
 import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
-import styles from "./modal-frame.module.css";
+import styles from "./pane-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
   titleWidth: number;
 };
 
-export default function ModalFrameComponent({
+export default function PaneFrameComponent({
   titleWidth,
   className,
   ...otherProps
 }: Props): ReactNode {
   const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
-  const titleOffset = Size.MODAL_TITLE_OFFSET;
-  const footerOffset = Size.MODAL_FOOTER_OFFSET;
-  const footerWidth = Size.MODAL_FOOTER_WIDTH;
-  const cornerOffset = Size.MODAL_CORNER_OFFSET;
-  const strokeWidth = Size.MODAL_CORNER_WIDTH;
-  const titlePadding = Size.MODAL_TITLE_PADDING;
+  const titleOffset = Size.PANE_TITLE_OFFSET;
+  const footerOffset = Size.PANE_FOOTER_OFFSET;
+  const footerWidth = Size.PANE_FOOTER_WIDTH;
+  const cornerOffset = Size.PANE_CORNER_OFFSET;
+  const strokeWidth = Size.PANE_CORNER_WIDTH;
+  const titlePadding = Size.PANE_TITLE_PADDING;
 
-  titleWidth = Math.max(Size.MODAL_MIN_TITLE_WIDTH, titleWidth);
+  titleWidth = Math.max(Size.PANE_MIN_TITLE_WIDTH, titleWidth);
   const remainWidth = (width - titleWidth) / 2 - titlePadding;
 
   const footerRemainWidth = (width - footerWidth) / 2;
@@ -34,8 +34,8 @@ export default function ModalFrameComponent({
   return (
     <svg
       ref={ref}
-      className={clsx(styles["modal-frame"], className)}
-      viewBox={`${-strokeWidth} ${-strokeWidth} ${width + 2 * strokeWidth} ${height + 2 * strokeWidth}`}
+      className={clsx(styles["pane-frame"], className)}
+      viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${width + strokeWidth} ${height + strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}

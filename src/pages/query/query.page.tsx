@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
 
-import ModalComponent from "@/components/modal/modal.component.tsx";
+import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import styles from "./query.module.css";
 
@@ -24,7 +24,7 @@ export default function QueryPage(): ReactNode {
 
   return (
     <div className={styles.query}>
-      <ModalComponent title="Leaderboard">
+      <PaneComponent title="Leaderboard">
         <table>
           <thead>
             <tr>
@@ -43,7 +43,7 @@ export default function QueryPage(): ReactNode {
             ))}
           </tbody>
         </table>
-      </ModalComponent>
+      </PaneComponent>
     </div>
   );
 }
