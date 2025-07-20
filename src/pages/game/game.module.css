@@ -4,3 +4,7 @@
 
   min-block-size: 100dvh;
 }
+
+.modal {
+  width: 98rem;
+}

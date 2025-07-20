@@ -28,8 +28,8 @@ export default function TableComponent({ items, className }: Props): ReactNode {
         </div>
       </div>
       <div className={styles.body}>
-        {items.map((item) => (
-          <div className={styles.row}>
+        {items.map((item, index) => (
+          <div className={styles.row} key={index}>
             <div className={styles.cell}>{item.rank}</div>
             <div className={styles.cell}>{item.username}</div>
             <div className={styles.cell}>{item.todayHighScore}</div>

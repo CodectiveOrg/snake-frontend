@@ -1,7 +1,13 @@
+.message {
+  text-align: center;
+}
+
 .game-over-modal {
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
+
+  padding: 6rem 7rem 2rem;
 }
 
 .user-board {
