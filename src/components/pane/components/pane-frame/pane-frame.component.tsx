@@ -19,14 +19,14 @@ export default function PaneFrameComponent({
 }: Props): ReactNode {
   const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
-  const titleOffset = Size.MODAL_TITLE_OFFSET;
-  const footerOffset = Size.MODAL_FOOTER_OFFSET;
-  const footerWidth = Size.MODAL_FOOTER_WIDTH;
-  const cornerOffset = Size.MODAL_CORNER_OFFSET;
-  const strokeWidth = Size.MODAL_CORNER_WIDTH;
-  const titlePadding = Size.MODAL_TITLE_PADDING;
+  const titleOffset = Size.PANE_TITLE_OFFSET;
+  const footerOffset = Size.PANE_FOOTER_OFFSET;
+  const footerWidth = Size.PANE_FOOTER_WIDTH;
+  const cornerOffset = Size.PANE_CORNER_OFFSET;
+  const strokeWidth = Size.PANE_CORNER_WIDTH;
+  const titlePadding = Size.PANE_TITLE_PADDING;
 
-  titleWidth = Math.max(Size.MODAL_MIN_TITLE_WIDTH, titleWidth);
+  titleWidth = Math.max(Size.PANE_MIN_TITLE_WIDTH, titleWidth);
   const remainWidth = (width - titleWidth) / 2 - titlePadding;
 
   const footerRemainWidth = (width - footerWidth) / 2;
