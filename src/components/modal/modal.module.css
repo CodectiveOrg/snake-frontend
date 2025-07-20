@@ -9,7 +9,12 @@
   display: grid;
   grid-template-rows: var(--row-height) 1fr var(--row-height);
 
+  padding-block-start: 2rem;
+
   .frame {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
     position: absolute;
     inset: 0;
     z-index: -1;
