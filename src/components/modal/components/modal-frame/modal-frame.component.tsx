@@ -15,7 +15,7 @@ type Props = SVGProps<SVGSVGElement> & {
 export default function ModalFrameComponent({
   titleWidth,
   className,
-  ...props
+  ...otherProps
 }: Props): ReactNode {
   const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
@@ -38,7 +38,7 @@ export default function ModalFrameComponent({
       viewBox={`${-strokeWidth} ${-strokeWidth} ${width + 2 * strokeWidth} ${height + 2 * strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...otherProps}
     >
       <path
         className={styles.perimeter}
