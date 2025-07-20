@@ -17,7 +17,7 @@ export default function PlaygroundPage(): ReactNode {
           height: "30rem",
         }}
       >
-        <PaneComponent title="Settings">
+        <PaneComponent shade title="Settings">
           <ButtonComponent>Confirm</ButtonComponent>
           <ButtonComponent color="secondary">Cancel</ButtonComponent>
         </PaneComponent>
