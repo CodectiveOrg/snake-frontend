@@ -1,6 +1,8 @@
 import { type ReactNode, useEffect, useRef } from "react";
 
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
+import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component";
+import ModalComponent from "@/components/modal/modal.component";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
 
@@ -15,9 +17,10 @@ export default function GamePage(): ReactNode {
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (masterRef.current || !canvasRef.current) {
+    if (masterRef.current || !canvasRef.current || !modalRef.current) {
       return;
     }
 
@@ -33,6 +36,9 @@ export default function GamePage(): ReactNode {
         <br />
         Score: {score}
       </div>
+      <ModalComponent title="GAME OVER" ref={modalRef}>
+        <GameOverModalComponent />
+      </ModalComponent>
     </div>
   );
 }

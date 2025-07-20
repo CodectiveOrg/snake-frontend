@@ -1,0 +1,25 @@
+.game-over-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.user-board {
+  background-color: var(--color-primary);
+
+  width: 75rem;
+  height: 6rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 3.25rem;
+
+  width: fit-content;
+
+  margin: 0 auto;
+}
+
+.button {
+  width: 10.75rem;
+}
