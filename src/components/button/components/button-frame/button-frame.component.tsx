@@ -6,10 +6,17 @@ import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
 import styles from "./button-frame.module.css";
 
+export type ButtonFrameColor = "primary" | "secondary";
+
+type Props = SVGProps<SVGSVGElement> & {
+  color?: ButtonFrameColor;
+};
+
 export default function ButtonFrameComponent({
+  color = "primary",
   className,
-  ...props
-}: SVGProps<SVGSVGElement>): ReactNode {
+  ...otherProps
+}: Props): ReactNode {
   const { ref, width, height } = useResizeObserver<SVGSVGElement>();
 
   const offset = 10;
@@ -17,11 +24,11 @@ export default function ButtonFrameComponent({
   return (
     <svg
       ref={ref}
-      className={clsx(styles["button-frame"], className)}
+      className={clsx(styles["button-frame"], styles[color], className)}
       viewBox={`-1 -1 ${width + 2} ${height + 2}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...otherProps}
     >
       <path
         className={styles.perimeter}
