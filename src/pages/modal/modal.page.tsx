@@ -1,32 +1,32 @@
 import { type ReactNode, useRef } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
-import DialogComponent from "@/components/dialog/dialog.component.tsx";
+import ModalComponent from "@/components/modal/modal.component.tsx";
 
-import styles from "./dialog.module.css";
+import styles from "./modal.module.css";
 
-export default function DialogPage(): ReactNode {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+export default function ModalPage(): ReactNode {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   const openButtonClickHandler = () => {
-    dialogRef.current?.showModal();
+    modalRef.current?.showModal();
   };
 
   const closeButtonClickHandler = () => {
-    dialogRef.current?.close();
+    modalRef.current?.close();
   };
 
   return (
-    <div className={styles.dialog}>
+    <div className={styles.modal}>
       <ButtonComponent onClick={openButtonClickHandler}>
-        Open Dialog
+        Open Modal
       </ButtonComponent>
-      <DialogComponent ref={dialogRef} title="Settings">
+      <ModalComponent ref={modalRef} title="Settings">
         <p>Hello, friend!</p>
         <ButtonComponent onClick={closeButtonClickHandler}>
           Close
         </ButtonComponent>
-      </DialogComponent>
+      </ModalComponent>
     </div>
   );
 }
