@@ -6,13 +6,13 @@ import { Size } from "@/configs/size.config.ts";
 
 import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
-import styles from "./modal-frame.module.css";
+import styles from "./xyz-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
   titleWidth: number;
 };
 
-export default function ModalFrameComponent({
+export default function XyzFrameComponent({
   titleWidth,
   className,
   ...otherProps
@@ -34,7 +34,7 @@ export default function ModalFrameComponent({
   return (
     <svg
       ref={ref}
-      className={clsx(styles["modal-frame"], className)}
+      className={clsx(styles["xyz-frame"], className)}
       viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${width + strokeWidth} ${height + strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

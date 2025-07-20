@@ -21,11 +21,7 @@ export default function DialogPage(): ReactNode {
       <ButtonComponent onClick={openButtonClickHandler}>
         Open Dialog
       </ButtonComponent>
-      <DialogComponent
-        ref={dialogRef}
-        className={styles.modal}
-        title="Settings"
-      >
+      <DialogComponent ref={dialogRef} title="Settings">
         <p>Hello, friend!</p>
         <ButtonComponent onClick={closeButtonClickHandler}>
           Close

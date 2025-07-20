@@ -2,20 +2,20 @@ import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 import clsx from "clsx";
 
-import ModalFrameComponent from "@/components/modal/components/modal-frame/modal-frame.component.tsx";
+import XyzFrameComponent from "@/components/xyz/components/xyz-frame/xyz-frame.component.tsx";
 
 import { Size } from "@/configs/size.config.ts";
 
 import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
-import styles from "./modal.module.css";
+import styles from "./xyz.module.css";
 
 type Props = PropsWithChildren<{
   title: string;
   className?: string;
 }>;
 
-export default function ModalComponent({
+export default function XyzComponent({
   title,
   className,
   children,
@@ -25,10 +25,10 @@ export default function ModalComponent({
 
   return (
     <div
-      className={clsx(styles.modal, className)}
+      className={clsx(styles.xyz, className)}
       style={{ "--offset": Size.MODAL_TITLE_OFFSET } as CSSProperties}
     >
-      <ModalFrameComponent className={styles.frame} titleWidth={titleWidth} />
+      <XyzFrameComponent className={styles.frame} titleWidth={titleWidth} />
       <div ref={titleRef} className={styles.title}>
         {title}
       </div>
