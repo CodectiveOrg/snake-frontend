@@ -6,13 +6,13 @@ import { Size } from "@/configs/size.config.ts";
 
 import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
-import styles from "./xyz-frame.module.css";
+import styles from "./pane-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
   titleWidth: number;
 };
 
-export default function XyzFrameComponent({
+export default function PaneFrameComponent({
   titleWidth,
   className,
   ...otherProps
@@ -34,7 +34,7 @@ export default function XyzFrameComponent({
   return (
     <svg
       ref={ref}
-      className={clsx(styles["xyz-frame"], className)}
+      className={clsx(styles["pane-frame"], className)}
       viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${width + strokeWidth} ${height + strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

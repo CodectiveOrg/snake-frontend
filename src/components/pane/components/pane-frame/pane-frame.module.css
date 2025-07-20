@@ -1,4 +1,4 @@
-.xyz-frame {
+.pane-frame {
   .perimeter {
     fill: color-mix(in hsl, var(--color-primary) 20%, transparent);
     stroke: var(--color-primary);

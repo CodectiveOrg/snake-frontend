@@ -1,10 +1,10 @@
 import type { ComponentProps, ReactNode, Ref } from "react";
 
-import XyzComponent from "@/components/xyz/xyz.component.tsx";
+import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import styles from "./modal.module.css";
 
-type Props = ComponentProps<typeof XyzComponent> & {
+type Props = ComponentProps<typeof PaneComponent> & {
   ref: Ref<HTMLDialogElement>;
 };
 
@@ -14,7 +14,7 @@ export default function ModalComponent({
 }: Props): ReactNode {
   return (
     <dialog ref={ref} className={styles.modal}>
-      <XyzComponent {...otherProps} />
+      <PaneComponent {...otherProps} />
     </dialog>
   );
 }

@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
-import XyzComponent from "@/components/xyz/xyz.component.tsx";
+import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import styles from "./playground.module.css";
 
@@ -17,10 +17,10 @@ export default function PlaygroundPage(): ReactNode {
           height: "30rem",
         }}
       >
-        <XyzComponent title="Settings">
+        <PaneComponent title="Settings">
           <ButtonComponent>Confirm</ButtonComponent>
           <ButtonComponent color="secondary">Cancel</ButtonComponent>
-        </XyzComponent>
+        </PaneComponent>
       </main>
     </div>
   );

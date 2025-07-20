@@ -2,20 +2,20 @@ import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 import clsx from "clsx";
 
-import XyzFrameComponent from "@/components/xyz/components/xyz-frame/xyz-frame.component.tsx";
+import PaneFrameComponent from "@/components/pane/components/pane-frame/pane-frame.component.tsx";
 
 import { Size } from "@/configs/size.config.ts";
 
 import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
 
-import styles from "./xyz.module.css";
+import styles from "./pane.module.css";
 
 type Props = PropsWithChildren<{
   title: string;
   className?: string;
 }>;
 
-export default function XyzComponent({
+export default function PaneComponent({
   title,
   className,
   children,
@@ -25,10 +25,10 @@ export default function XyzComponent({
 
   return (
     <div
-      className={clsx(styles.xyz, className)}
+      className={clsx(styles.pane, className)}
       style={{ "--offset": Size.MODAL_TITLE_OFFSET } as CSSProperties}
     >
-      <XyzFrameComponent className={styles.frame} titleWidth={titleWidth} />
+      <PaneFrameComponent className={styles.frame} titleWidth={titleWidth} />
       <div ref={titleRef} className={styles.title}>
         {title}
       </div>
