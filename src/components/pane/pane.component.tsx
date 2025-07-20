@@ -23,10 +23,23 @@ export default function PaneComponent({
   const { ref: titleRef, width: titleWidth } =
     useResizeObserver<HTMLDivElement>();
 
+  const minBleed =
+    Size.MODAL_MIN_BLEED +
+    2 * Size.MODAL_TITLE_PADDING +
+    2 * Size.MODAL_TITLE_OFFSET +
+    2 * Size.MODAL_CORNER_OFFSET;
+
+  const minWidth = titleWidth + minBleed;
+
   return (
     <div
       className={clsx(styles.pane, className)}
-      style={{ "--offset": Size.MODAL_TITLE_OFFSET } as CSSProperties}
+      style={
+        {
+          "--offset": Size.MODAL_TITLE_OFFSET,
+          minWidth: `${minWidth}px`,
+        } as CSSProperties
+      }
     >
       <PaneFrameComponent className={styles.frame} titleWidth={titleWidth} />
       <div ref={titleRef} className={styles.title}>
