@@ -4,15 +4,15 @@ import clsx from "clsx";
 
 import { Size } from "@/configs/size.config.ts";
 
-import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
+import { useResizeObserverHook } from "@/hooks/use-resize-observer.hook.ts";
 
 import styles from "./canvas-frame.module.css";
 
 export default function CanvasFrameComponent({
   className,
-  ...props
+  ...otherProps
 }: SVGProps<SVGSVGElement>): ReactNode {
-  const { ref, width, height } = useResizeObserver<SVGSVGElement>();
+  const { ref, width, height } = useResizeObserverHook<SVGSVGElement>();
 
   const offset = Size.CANVAS_CORNER_OFFSET;
   const strokeWidth = Size.CANVAS_CORNER_WIDTH;
@@ -24,7 +24,7 @@ export default function CanvasFrameComponent({
       viewBox={`${-strokeWidth} ${-strokeWidth} ${width + 2 * strokeWidth} ${height + 2 * strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...otherProps}
     >
       <path
         className={styles.perimeter}
