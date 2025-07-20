@@ -35,7 +35,7 @@ export default function ModalFrameComponent({
     <svg
       ref={ref}
       className={clsx(styles["modal-frame"], className)}
-      viewBox={`${-strokeWidth} ${-strokeWidth} ${width + 2 * strokeWidth} ${height + 2 * strokeWidth}`}
+      viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${width + strokeWidth} ${height + strokeWidth}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}

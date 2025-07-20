@@ -1,0 +1,13 @@
+.dialog {
+  background-color: transparent;
+
+  margin: auto;
+
+  border: none;
+
+  &::backdrop {
+    background-color: hsl(0deg 0% 0% / 50%);
+
+    backdrop-filter: blur(5px);
+  }
+}

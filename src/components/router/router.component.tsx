@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router";
 
+import DialogPage from "@/pages/dialog/dialog.page.tsx";
 import GamePage from "@/pages/game/game.page.tsx";
 import IntroPage from "@/pages/intro/intro.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
@@ -14,6 +15,7 @@ export default function RouterComponent(): ReactNode {
         <Route path="/" element={<IntroPage />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/query" element={<QueryPage />} />
+        <Route path="/dialog" element={<DialogPage />} />
         <Route path="/playground" element={<PlaygroundPage />} />
       </Routes>
     </BrowserRouter>
