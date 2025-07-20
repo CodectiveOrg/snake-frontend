@@ -6,7 +6,7 @@ type Result<T extends Element> = {
   height: number;
 };
 
-export function useResizeObserver<T extends Element>(): Result<T> {
+export function useResizeObserverHook<T extends Element>(): Result<T> {
   const [width, setWidth] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
 

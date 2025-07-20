@@ -2,7 +2,7 @@ import type { ReactNode, SVGProps } from "react";
 
 import clsx from "clsx";
 
-import { useResizeObserver } from "@/hooks/use-resize-observer.ts";
+import { useResizeObserverHook } from "@/hooks/use-resize-observer.hook.ts";
 
 import styles from "./button-frame.module.css";
 
@@ -17,7 +17,7 @@ export default function ButtonFrameComponent({
   className,
   ...otherProps
 }: Props): ReactNode {
-  const { ref, width, height } = useResizeObserver<SVGSVGElement>();
+  const { ref, width, height } = useResizeObserverHook<SVGSVGElement>();
 
   const offset = 10;
 

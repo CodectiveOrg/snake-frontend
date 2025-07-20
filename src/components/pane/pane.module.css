@@ -5,22 +5,33 @@
   backdrop-filter: blur(5px);
 
   position: relative;
+  isolation: isolate;
 
   display: grid;
   grid-template-rows: var(--row-height) 1fr var(--row-height);
 
   padding-block-start: 2rem;
 
-  .frame {
+  .frame,
+  .shade {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
 
     position: absolute;
     inset: 0;
-    z-index: -1;
 
     block-size: 100%;
     inline-size: 100%;
+  }
+
+  .frame {
+    z-index: -2;
+  }
+
+  .shade {
+    z-index: -1;
+
+    padding: 2rem;
   }
 
   .title {
@@ -37,7 +48,15 @@
     text-transform: uppercase;
   }
 
-  .content {
-    padding: 2rem;
+  &:not(:has(.shade)) {
+    .content {
+      padding: 2rem;
+    }
+  }
+
+  &:has(.shade) {
+    .content {
+      padding: 4rem;
+    }
   }
 }
