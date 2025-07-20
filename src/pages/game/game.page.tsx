@@ -27,6 +27,30 @@ export default function GamePage(): ReactNode {
 
   return (
     <div className={styles.game}>
+      <div className={styles["info-board"]}>
+        <div className={styles["left-section"]}>
+          <img className={styles.img} src="" alt="Profile" />
+          <div className={styles["username-wrapper"]}>
+            <p className={styles.username}>Player Name</p>
+          </div>
+        </div>
+
+        <div className={styles["middle-section"]}>
+          <p className={styles.score}>12</p>
+        </div>
+
+        <div className={styles["right-section"]}>
+          <div className={styles["rank-section"]}>
+            <p className={styles.rank}>232</p>
+          </div>
+
+          <button className={styles["play-btn"]}>BTN</button>
+
+          {/* <button className={styles}>
+            Pause
+          </button> */}
+        </div>
+      </div>
       <CanvasComponent ref={canvasRef} />
       <div className="info">
         Name: {username}

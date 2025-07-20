@@ -6,6 +6,8 @@
   --color-surface: hsl(222deg 100% 50%); /* #004CFF */
   --color-on-disabled: hsl(0deg 0% 44%); /* #707070 */
   --color-glass: hsl(0deg 0% 0% / 61%); /* #000000 61.18% */
+  --color-secondary: hsl(0deg 0% 21%) /* #363636 */;
+  --color-border-secondary: var(--color-secondary);
 
   --color-body-overlay: hsl(0deg 0% 0% / 60%);
   --color-canvas-background: hsl(0deg 0% 0% / 80%);
