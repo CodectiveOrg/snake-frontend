@@ -1,8 +1,8 @@
 import { type ReactNode } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
-import InputComponent from "@/components/input/input.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
+import TextInputComponent from "@/components/text-input/text-input.component.tsx";
 
 import styles from "./playground.module.css";
 
@@ -19,7 +19,7 @@ export default function PlaygroundPage(): ReactNode {
         }}
       >
         <PaneComponent shade title="Settings">
-          <InputComponent type="text" name="chiz" />
+          <TextInputComponent type="text" name="chiz" />
           <br />
           <ButtonComponent>Confirm</ButtonComponent>
           <ButtonComponent color="secondary">Cancel</ButtonComponent>
