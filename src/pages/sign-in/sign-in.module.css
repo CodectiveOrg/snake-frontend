@@ -1,97 +1,92 @@
-.parent {
-  display: flex;
-  justify-content: center;
+.sign-in {
+  display: grid;
+  place-content: center;
 
-  width: 100%;
+  min-block-size: 100dvh;
 
-  padding-top: 2rem;
-}
+  padding-block-start: 2rem;
 
-.pane-signup-page {
-  max-width: 40rem;
-}
+  .pane {
+    max-inline-size: 37.5rem;
 
-.container {
-  display: flex;
-  flex-direction: column;
+    .logo {
+      color: var(--color-on-disabled);
 
-  width: 100%;
-}
+      margin-block: 0.25rem 2.25rem;
 
-.game-name {
-  color: var(--color-on-disabled);
+      font-size: 1.25rem;
+      font-weight: 700;
 
-  padding-bottom: 1.25rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      line-height: 1;
+    }
 
-  font-size: 1.25rem;
-  font-weight: 700;
-  font-weight: bold;
+    form {
+      display: grid;
+      grid-template-areas: "fields fields" "checkbox link" "button button";
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
 
-  text-align: center;
-  line-height: 100%;
-}
+      .fields {
+        grid-area: fields;
 
-.input-fields {
-  background-color: color-mix(in hsl, var(--color-primary) 20%, transparent);
+        background-color: color-mix(
+          in hsl,
+          var(--color-primary) 20%,
+          transparent
+        );
 
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.25rem;
 
-  width: 100%;
+        width: 100%;
 
-  padding: 0.75rem 1.25rem;
+        padding: 1.25rem 2.25rem;
 
-  border: 3px solid color-mix(in hsl, var(--color-primary) 30%, transparent);
-  border-radius: 3px;
-}
+        border: 3px solid
+          color-mix(in hsl, var(--color-primary) 30%, transparent);
+        border-radius: 3px;
 
-.input-box {
-  display: flex;
-  align-items: center;
-  gap: 0 1.25rem;
-}
+        label {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
 
-.input-style {
-  display: inline-block;
-}
+          font-size: 1.5rem;
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
 
-  padding: 0.5rem 1rem;
-}
+          .input {
+            flex: 1 1 0;
+          }
+        }
+      }
 
-.signup-button-parent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      .checkbox {
+        grid-area: checkbox;
 
-  width: 100%;
+        margin-inline-start: 1.25rem;
+      }
 
-  padding-top: 1rem;
-}
+      a {
+        grid-area: link;
 
-.signin-button {
-  width: 13.25rem;
-  height: 3.25rem;
-}
+        margin-inline-end: 1.25rem;
+      }
 
-.checkbox-field {
-  display: flex;
-  align-items: center;
-}
+      button {
+        grid-area: button;
+        justify-self: center;
 
-.checkbox-input {
-  accent-color: var(--color-on-surface);
-}
+        inline-size: 12rem;
 
-.checkbox-label {
-  padding-right: 0.75rem;
-}
-
-.signup-link {
-  font-weight: lighter;
+        margin-block-start: 1rem;
+      }
+    }
+  }
 }

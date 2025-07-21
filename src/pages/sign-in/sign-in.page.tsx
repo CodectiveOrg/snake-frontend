@@ -16,7 +16,6 @@ export default function SignInPage(): ReactNode {
   return (
     <div className={styles["sign-in"]}>
       <PaneComponent
-        shade
         className={styles.pane}
         contentClassName={styles.container}
         title="Welcome"
@@ -27,6 +26,7 @@ export default function SignInPage(): ReactNode {
             <label>
               Your Name
               <TextInputComponent
+                className={styles.input}
                 name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -35,6 +35,7 @@ export default function SignInPage(): ReactNode {
             <label>
               Password
               <TextInputComponent
+                className={styles.input}
                 type="password"
                 name="password"
                 value={password}
@@ -48,7 +49,9 @@ export default function SignInPage(): ReactNode {
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
           />
-          <LinkButtonComponent to="/signup">Sign Up</LinkButtonComponent>
+          <LinkButtonComponent to="/signup" color="light" size="small">
+            Sign Up
+          </LinkButtonComponent>
           <ButtonComponent>Login</ButtonComponent>
         </form>
       </PaneComponent>
