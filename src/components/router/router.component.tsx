@@ -22,10 +22,10 @@ export default function RouterComponent(): ReactNode {
         <Route element={<LoggedInOnlyGuard />}>
           <Route path="/" element={<IntroPage />} />
           <Route path="/game" element={<GamePage />} />
-          <Route path="/query" element={<QueryPage />} />
-          <Route path="/modal" element={<ModalPage />} />
-          <Route path="/playground" element={<PlaygroundPage />} />
         </Route>
+        <Route path="/query" element={<QueryPage />} />
+        <Route path="/modal" element={<ModalPage />} />
+        <Route path="/playground" element={<PlaygroundPage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
