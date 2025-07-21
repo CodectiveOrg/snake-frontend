@@ -71,11 +71,11 @@
 
   padding: 1rem;
 
-  font-size: 7.5rem;
-  font-style: italic;
-
-  /* font-family: DS-Digital; */
-  font-weight: 700;
+  font-family:
+    "Digital Number",
+    sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
 }
 
 .right-section {
@@ -101,10 +101,11 @@
 .rank {
   color: var(--color-on-surface);
 
-  font-size: 3rem;
-
-  /* font-family: DS-Digital; */
-  font-weight: 700;
+  font-family:
+    "Digital Number",
+    sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 .play-btn {
@@ -115,8 +116,22 @@
 
   border: none;
   border-radius: 1rem;
+
+  cursor: pointer;
 }
 
-/* .pauseBtn {
+.play-btn img {
+  width: 2.5rem;
+}
 
-} */
+.pause-btn {
+  display: flex;
+  justify-content: space-around;
+
+  width: 2rem;
+  height: 2.5rem;
+}
+
+.pause-btn img {
+  width: 0.75rem;
+}
