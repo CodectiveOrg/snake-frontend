@@ -1,48 +1,16 @@
 .input {
-  position: relative;
-
   input {
-    background-color: var(--color-glass);
+    background-color: transparent;
 
     block-size: 2.75rem;
     inline-size: 100%;
 
-    padding-inline: 1.5rem;
-
-    border-block: 1px solid var(--color-border);
-    border-inline: none;
-
-    clip-path: polygon(
-      1rem 0%,
-      calc(100% - 1rem) 0%,
-      calc(100% - 0.25rem) 50%,
-      calc(100% - 1rem) 100%,
-      1rem 100%,
-      0.25rem 50%
-    );
+    border: none;
 
     font-size: 1.5rem;
 
     &:focus {
       outline: none;
-    }
-  }
-
-  .frame {
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-
-    translate: 0 -50%;
-
-    &.left {
-      left: 0;
-    }
-
-    &.right {
-      right: 0;
-
-      scale: -1;
     }
   }
 }
