@@ -9,20 +9,23 @@
   block-size: 100%;
   aspect-ratio: 1 / 1;
 
+  border: 0.25rem solid var(--color-surface);
+  border-radius: 50%;
+
   &::before {
     content: "";
 
     background-color: hsl(0deg 0% 0% / 82%);
+    opacity: 0;
 
     position: absolute;
-    top: 0;
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
     z-index: 50;
 
-    width: 100%;
-    height: 100%;
+    block-size: 100%;
+    inline-size: 100%;
 
-    border: 0.25rem solid var(--color-surface);
     border-radius: 50%;
   }
 
@@ -35,6 +38,7 @@
 
     svg {
       color: var(--color-on-surface);
+      opacity: 0;
 
       position: absolute;
       top: 50%;
@@ -52,6 +56,25 @@
   }
 
   img {
+    max-block-size: 23.5rem;
+    max-inline-size: 23.5rem;
+    aspect-ratio: 1 / 1;
+
     border-radius: 50%;
+  }
+
+  &.active,
+  &:hover {
+    &::before {
+      opacity: 1;
+
+      transition: opacity ease 0.3s;
+    }
+
+    > label {
+      svg {
+        opacity: 1;
+      }
+    }
   }
 }

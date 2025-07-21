@@ -31,7 +31,7 @@ export default function EditProfilePage(): ReactNode {
     <div className={styles["edit-profile"]}>
       <PaneComponent shade={true} title="profile">
         <form onSubmit={formSubmitHandler}>
-          <ProfilePickerComponent />
+          <ProfilePickerComponent user={user} />
           <div className={styles["user-data"]}>
             <div className={styles.username}>
               <label htmlFor="username">username</label>
