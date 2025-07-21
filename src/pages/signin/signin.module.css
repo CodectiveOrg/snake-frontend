@@ -1,0 +1,97 @@
+.parent {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+
+  padding-top: 2rem;
+}
+
+.pane-signup-page {
+  max-width: 37.7rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.game-name {
+  color: var(--color-on-disabled);
+
+  padding-bottom: 1.25rem;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-weight: bold;
+
+  text-align: center;
+  line-height: 100%;
+}
+
+.input-fields {
+  background-color: color-mix(in hsl, var(--color-primary) 20%, transparent);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.25rem;
+
+  width: 100%;
+
+  padding: 0.75rem 1.25rem;
+
+  border: 3px solid color-mix(in hsl, var(--color-primary) 30%, transparent);
+  border-radius: 3px;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 0 1.25rem;
+}
+
+.input-style {
+  display: inline-block;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.5rem 1rem;
+}
+
+.signup-button-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding-top: 1rem;
+}
+
+.signin-button {
+  width: 13.25rem;
+  height: 3.25rem;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  accent-color: var(--color-on-surface);
+}
+
+.checkbox-label {
+  padding-right: 0.75rem;
+}
+
+.signup-link {
+  font-weight: lighter;
+}
