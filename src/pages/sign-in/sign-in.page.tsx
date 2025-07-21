@@ -1,6 +1,7 @@
 import { type ReactNode, useState } from "react";
 
 import ButtonComponent from "@/components/button/button.component";
+import CheckboxComponent from "@/components/checkbox/checkbox.component.tsx";
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component";
 import TextInputComponent from "@/components/text-input/text-input.component";
@@ -13,62 +14,43 @@ export default function SignInPage(): ReactNode {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className={styles.parent}>
+    <div className={styles["sign-in"]}>
       <PaneComponent
         shade
-        key={"signup"}
-        title="welcome"
-        className={styles["pane-signup-page"]}
+        className={styles.pane}
+        contentClassName={styles.container}
+        title="Welcome"
       >
-        <div className={styles.container}>
-          <h2 className={styles["game-name"]}>G A M E &nbsp;N A M E</h2>
-          <div className={styles["input-fields"]}>
-            <div className={styles["input-box"]}>
-              <label htmlFor="username">YOUR NAME</label>
+        <div className={styles.logo}>Game Name</div>
+        <form>
+          <div className={styles.fields}>
+            <label>
+              Your Name
               <TextInputComponent
                 name="username"
-                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={styles["input-style"]}
               />
-            </div>
-            <div className={styles["input-box"]}>
-              <label htmlFor="password">PASSWORD</label>
+            </label>
+            <label>
+              Password
               <TextInputComponent
+                type="password"
                 name="password"
-                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                className={styles["input-style"]}
               />
-            </div>
+            </label>
           </div>
-          <div className={styles.buttons}>
-            <div className={styles["checkbox-field"]}>
-              <label className={styles["checkbox-label"]}>remember me</label>
-              <input
-                type="checkbox"
-                checked={checked}
-                className={styles["checkbox-input"]}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-            </div>
-
-            <LinkButtonComponent
-              to={"/signup"}
-              className={styles["signup-link"]}
-            >
-              SIGN UP
-            </LinkButtonComponent>
-          </div>
-          <div className={styles["signup-button-parent"]}>
-            <ButtonComponent className={styles["signin-button"]}>
-              LOGIN
-            </ButtonComponent>
-          </div>
-        </div>
+          <CheckboxComponent
+            className={styles.checkbox}
+            label="Remember Me"
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+          />
+          <LinkButtonComponent to="/signup">Sign Up</LinkButtonComponent>
+          <ButtonComponent>Login</ButtonComponent>
+        </form>
       </PaneComponent>
     </div>
   );
