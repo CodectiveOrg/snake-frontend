@@ -1,0 +1,62 @@
+.pane {
+  --offset: 0;
+  --row-height: calc(var(--offset, 0) * 1px);
+
+  backdrop-filter: blur(5px);
+
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  grid-template-rows: var(--row-height) 1fr var(--row-height);
+
+  padding-block-start: 2rem;
+
+  .frame,
+  .shade {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
+    position: absolute;
+    inset: 0;
+
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  .frame {
+    z-index: -2;
+  }
+
+  .shade {
+    z-index: -1;
+
+    padding: 2rem;
+  }
+
+  .title {
+    align-self: end;
+    justify-self: center;
+
+    inline-size: fit-content;
+
+    translate: 0 -0.5rem;
+
+    font-size: 2.5rem;
+    font-weight: 900;
+
+    text-transform: uppercase;
+  }
+
+  &:not(:has(.shade)) {
+    .content {
+      padding: 2rem;
+    }
+  }
+
+  &:has(.shade) {
+    .content {
+      padding: 4rem;
+    }
+  }
+}
