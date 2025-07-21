@@ -1,7 +1,18 @@
 .button-frame {
   .perimeter {
-    fill: hsl(222deg 97% 26%);
     stroke: var(--color-primary);
     stroke-width: 2px;
+  }
+
+  &.primary {
+    .perimeter {
+      fill: hsl(222deg 97% 26%);
+    }
+  }
+
+  &.secondary {
+    .perimeter {
+      fill: hsl(0deg 0% 85% / 11%);
+    }
   }
 }

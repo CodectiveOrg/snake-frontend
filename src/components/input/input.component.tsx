@@ -19,7 +19,7 @@ export default function InputComponent({
   );
 }
 
-function FrameRight(props: SVGProps<SVGSVGElement>) {
+function FrameRight({ ...otherProps }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="72"
@@ -27,7 +27,7 @@ function FrameRight(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 72 74"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...otherProps}
     >
       <path
         d="M15.9527 15.8114L51.7713 15.8117L63.0547 37.812L51.7713 60.0621L18.4043 60.0621"
@@ -43,7 +43,7 @@ function FrameRight(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function FrameLeft(props: SVGProps<SVGSVGElement>) {
+function FrameLeft({ ...otherProps }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="71"
@@ -51,7 +51,7 @@ function FrameLeft(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 71 74"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...otherProps}
     >
       <path
         d="M55.3168 15.1176L19.4983 15.118L8.21479 37.4349L19.4983 60.0051L52.8653 60.0051"
