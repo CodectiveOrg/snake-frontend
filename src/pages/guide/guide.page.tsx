@@ -4,27 +4,33 @@ import style from "./guide.module.css";
 
 export default function GuidePage() {
   return (
-    <PaneComponent title={"guide"}>
-      <div className={style.guide}>
-        <div className="navigation-keys">
-          <img src="./../../../public/images/guide/wads.svg" alt="wasd" />
+    <div className={style["guide-page"]}>
+      <PaneComponent title={"guide"}>
+        <div className={style.guide}>
+          <div className={style["navigation-keys"]}>
+            <img src="./../../../public/images/guide/wads.svg" alt="wasd" />
+            <span className="explain">Navigation keys</span>
+          </div>
+          <div className={style["esc-key"]}>
+            <img src="./../../../public/images/guide/button.svg" alt="button" />
+            <span className="explain">Access Game menu</span>
+          </div>
+          <div className={style["move-with-touch"]}>
+            <img
+              src="./../../../public/images/guide/TOUCH%20SCREEN%20CONTROLL.svg"
+              alt="touch"
+            />
+            <span className="explain">Move with touch</span>
+          </div>
+          <div className={style["pause-game"]}>
+            <img
+              src="./../../../public/images/guide/pause%20btn.svg"
+              alt="pause"
+            />
+            <span className="explain">Pause the Game</span>
+          </div>
         </div>
-        <div className="esc-key">
-          <img src="./../../../public/images/guide/button.svg" alt="button" />
-        </div>
-        <div className="move-with-touch">
-          <img
-            src="./../../../public/images/guide/TOUCH%20SCREEN%20CONTROLL.svg"
-            alt="touch"
-          />
-        </div>
-        <div className="pause-game">
-          <img
-            src="./../../../public/images/guide/pause%20btn.svg"
-            alt="pause"
-          />
-        </div>
-      </div>
-    </PaneComponent>
+      </PaneComponent>
+    </div>
   );
 }

@@ -1,4 +1,35 @@
-.guide {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.guide-page {
+  .guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    .navigation-keys,
+    .pause-game {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .navigation-keys,
+    .esc-key {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .navigation-keys,
+    .pause-game,
+    .move-with-touch,
+    .esc-key {
+      span {
+        align-self: center;
+        justify-self: center;
+
+        background-color: hsl(0deg 0% 85% / 100%);
+        color: hsl(0deg 0% 0% / 100%);
+
+        font-size: 2rem;
+        font-weight: 700;
+      }
+    }
+  }
 }
