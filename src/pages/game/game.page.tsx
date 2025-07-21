@@ -22,7 +22,7 @@ export default function GamePage(): ReactNode {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const resetGameStates = (): void => {
-    useGameStore.getState().resetScore();
+    useGameStore.getState().reset();
     useGameStore.getState().run();
   };
 
