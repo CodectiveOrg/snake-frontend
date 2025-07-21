@@ -1,11 +1,10 @@
 .ribbon {
+  --indent-width: 0.75rem;
+
   position: relative;
 
   .content {
     background-color: var(--color-glass);
-
-    block-size: 2.75rem;
-    inline-size: 100%;
 
     padding-inline: 1.5rem;
 
@@ -13,12 +12,12 @@
     border-inline: none;
 
     clip-path: polygon(
-      1rem 0%,
-      calc(100% - 1rem) 0%,
-      calc(100% - 0.25rem) 50%,
-      calc(100% - 1rem) 100%,
-      1rem 100%,
-      0.25rem 50%
+      var(--indent-width) 0,
+      calc(100% - var(--indent-width)) 0,
+      100% 50%,
+      calc(100% - var(--indent-width)) 100%,
+      var(--indent-width) 100%,
+      0 50%
     );
   }
 
@@ -26,6 +25,8 @@
     position: absolute;
     top: 50%;
     z-index: 1;
+
+    block-size: calc(100% + 0.5rem);
 
     translate: 0 -50%;
 

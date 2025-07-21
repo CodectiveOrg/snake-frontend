@@ -9,22 +9,24 @@ import styles from "./ribbon.module.css";
 type Props = PropsWithChildren;
 
 export default function RibbonComponent({ children }: Props): ReactNode {
+  const indentWidth = 12;
+  const largeOffset = 36;
+  const smallOffset = 24;
+
   return (
     <div className={styles.ribbon}>
       <RibbonFrameComponent
         className={clsx(styles.frame, styles.left)}
-        width={12}
-        height={44}
-        largeOffset={36}
-        smallOffset={24}
+        indentWidth={indentWidth}
+        largeOffset={largeOffset}
+        smallOffset={smallOffset}
       />
       <div className={styles.content}>{children}</div>
       <RibbonFrameComponent
         className={clsx(styles.frame, styles.right)}
-        width={12}
-        height={44}
-        largeOffset={36}
-        smallOffset={24}
+        indentWidth={indentWidth}
+        largeOffset={largeOffset}
+        smallOffset={smallOffset}
       />
     </div>
   );
