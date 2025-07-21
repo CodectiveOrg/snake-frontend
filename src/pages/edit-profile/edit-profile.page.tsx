@@ -2,7 +2,7 @@ import { type ReactNode, useState } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
 import InputComponent from "@/components/input/input.component.tsx";
-import ModalComponent from "@/components/modal/modal.component.tsx";
+import PaneComponent from "@/components/pane/pane.component.tsx";
 import ProfilePickerComponent from "@/components/profile-picker/profile-picker.component.tsx";
 import RadioComponent from "@/components/radio/radio.component.tsx";
 
@@ -17,7 +17,7 @@ export default function EditProfilePage(): ReactNode {
 
   return (
     <div className={styles["edit-profile"]}>
-      <ModalComponent title="profile">
+      <PaneComponent shade={true} title="profile">
         <form>
           <ProfilePickerComponent />
           <div className={styles["user-data"]}>
@@ -95,12 +95,12 @@ export default function EditProfilePage(): ReactNode {
             </div>
 
             <div className={styles["action-buttons"]}>
-              <ButtonComponent>CANCEL</ButtonComponent>
+              <ButtonComponent color="secondary">CANCEL</ButtonComponent>
               <ButtonComponent>CONFIRM</ButtonComponent>
             </div>
           </div>
         </form>
-      </ModalComponent>
+      </PaneComponent>
     </div>
   );
 }
