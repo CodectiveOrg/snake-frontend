@@ -1,0 +1,13 @@
+.ribbon-frame {
+  .corner {
+    stroke: var(--color-primary);
+
+    &.small {
+      stroke-width: 2;
+    }
+
+    &.large {
+      stroke-width: 4;
+    }
+  }
+}
