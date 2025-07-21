@@ -1,9 +1,9 @@
 import { type ReactNode, useState } from "react";
 
 import ButtonComponent from "@/components/button/button.component";
-import InputComponent from "@/components/input/input.component";
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component";
+import TextInputComponent from "@/components/text-input/text-input.component";
 
 import styles from "./signin.module.css";
 
@@ -25,7 +25,7 @@ export default function SigninPage(): ReactNode {
           <div className={styles["input-fields"]}>
             <div className={styles["input-box"]}>
               <label htmlFor="username">YOUR NAME</label>
-              <InputComponent
+              <TextInputComponent
                 name="username"
                 id="username"
                 value={username}
@@ -35,7 +35,7 @@ export default function SigninPage(): ReactNode {
             </div>
             <div className={styles["input-box"]}>
               <label htmlFor="password">PASSWORD</label>
-              <InputComponent
+              <TextInputComponent
                 name="password"
                 id="password"
                 value={password}
