@@ -1,4 +1,9 @@
 .guide-page {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100dvh;
+
   .guide {
     display: grid;
     grid-template-columns: 1fr 1fr;
