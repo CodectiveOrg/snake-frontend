@@ -2,7 +2,7 @@ import type { VerifyDto } from "@/dto/verify.dto";
 
 import { richFetch } from "@/utils/fetch.utils.ts";
 
-export async function getVerifyUserTokenApi(): Promise<VerifyDto> {
+export async function verifyTokenApi(): Promise<VerifyDto> {
   const data = await richFetch<VerifyDto>("/auth/verify");
 
   if ("error" in data) {

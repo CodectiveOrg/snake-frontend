@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getVerifyUserTokenApi } from "@/api/public/get-VerifyUserToken.api.ts";
+import { verifyTokenApi } from "@/api/public/verify-token.api.ts";
 
 export default function useVerifyQuery() {
   return useQuery({
     queryKey: ["verify"],
-    queryFn: getVerifyUserTokenApi,
+    queryFn: verifyTokenApi,
     retry: 1,
   });
 }
