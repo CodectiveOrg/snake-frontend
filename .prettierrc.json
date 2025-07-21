@@ -16,6 +16,7 @@
     "^@/hooks",
     "^@/pages",
     "^@/providers",
+    "^@/queries",
     "^@/services",
     "^@/stores",
     "^@/structures",
