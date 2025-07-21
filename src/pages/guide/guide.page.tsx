@@ -5,7 +5,7 @@ import style from "./guide.module.css";
 export default function GuidePage() {
   return (
     <div className={style["guide-page"]}>
-      <PaneComponent title={"guide"}>
+      <PaneComponent title={"guide"} shade={true}>
         <div className={style.guide}>
           <div className={style["navigation-keys"]}>
             <img src="./../../../public/images/guide/wads.svg" alt="wasd" />

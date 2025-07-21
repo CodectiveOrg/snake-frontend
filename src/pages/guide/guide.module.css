@@ -20,6 +20,11 @@
     .pause-game,
     .move-with-touch,
     .esc-key {
+      img {
+        align-self: center;
+        justify-self: center;
+      }
+
       span {
         align-self: center;
         justify-self: center;
