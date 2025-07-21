@@ -1,0 +1,68 @@
+.edit-profile {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100dvh;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25rem;
+
+    inline-size: 100%;
+
+    padding-inline: 2rem;
+
+    .user-data {
+      flex-grow: 1;
+
+      display: grid;
+      gap: 1.75rem;
+
+      max-inline-size: min(100%, 29.5rem);
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        font-size: 1.5rem;
+        font-weight: 4;
+
+        text-transform: uppercase;
+
+        &:nth-child(2) {
+          flex-grow: 1;
+        }
+
+        &.email {
+          input {
+            font-size: 1rem;
+          }
+        }
+
+        &.gender {
+          padding-inline-end: 2.5rem;
+
+          :nth-child(1) {
+            flex-grow: 1;
+          }
+
+          :nth-child(2),
+          :nth-child(3) {
+            flex-direction: row-reverse;
+
+            font-size: 0.75rem;
+          }
+        }
+
+        &.action-buttons {
+          justify-content: center;
+          gap: 2.5rem;
+        }
+      }
+    }
+  }
+}

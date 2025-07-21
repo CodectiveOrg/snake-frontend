@@ -1,0 +1,57 @@
+.profile-picture {
+  flex-grow: 1;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  block-size: 100%;
+  aspect-ratio: 1 / 1;
+
+  &::before {
+    content: "";
+
+    background-color: hsl(0deg 0% 0% / 82%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0.25rem solid var(--color-surface);
+    border-radius: 50%;
+  }
+
+  > label {
+    position: absolute;
+    z-index: 100;
+
+    block-size: 100%;
+    inline-size: 100%;
+
+    svg {
+      color: var(--color-on-surface);
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      block-size: 5rem;
+      inline-size: 5rem;
+
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  img {
+    border-radius: 50%;
+  }
+}
