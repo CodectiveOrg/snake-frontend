@@ -45,19 +45,23 @@ export default function SignUpPage(): ReactNode {
   const mutation = useMutation({
     mutationKey: ["sign-up"],
     mutationFn: postSignupApi,
+    onError: (error: Error) => {
+      const message =
+        error?.message ??
+        (typeof error === "string" ? error : "An unknown error occurred");
+      toast.error(message);
+    },
+    onSuccess: () => {
+      toast.success("You created account successfully!");
+      navigate("/sign-in");
+    },
   });
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      await mutation.mutateAsync({ username, email, password });
-      navigate("/sign-in");
-      toast("You created account successfully!");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
+    await mutation.mutateAsync({ username, email, password });
   };
 
   return (

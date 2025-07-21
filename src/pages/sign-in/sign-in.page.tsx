@@ -44,19 +44,23 @@ export default function SignInPage(): ReactNode {
   const mutation = useMutation({
     mutationKey: ["sign-in"],
     mutationFn: postSigninApi,
+    onError: (error: Error) => {
+      const message =
+        error?.message ??
+        (typeof error === "string" ? error : "An unknown error occurred");
+      toast.error(message);
+    },
+    onSuccess: () => {
+      toast.success("You Are Login Successfully!");
+      navigate("/");
+    },
   });
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      await mutation.mutateAsync({ username, password });
-      navigate("/");
-      toast("You sign-in successfully!");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
+    await mutation.mutateAsync({ username, password });
   };
 
   return (
