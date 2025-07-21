@@ -10,21 +10,12 @@
     gap: 2rem;
 
     .navigation-keys,
-    .pause-game {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    .navigation-keys,
-    .esc-key {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .navigation-keys,
     .pause-game,
     .move-with-touch,
     .esc-key {
+      display: grid;
+      gap: 1rem;
+
       img {
         align-self: center;
         justify-self: center;
@@ -39,7 +30,14 @@
 
         font-size: 2rem;
         font-weight: 700;
+
+        text-align: center;
       }
+    }
+
+    .move-with-touch,
+    .esc-key {
+      grid-template-columns: 1fr 1fr;
     }
   }
 }

@@ -16,21 +16,33 @@ export default function GuidePage() {
               src="./../../../public/images/guide/esc%20button.svg"
               alt="button"
             />
-            <span className="explain">ACCESS GAME MENU</span>
+            <span className="explain">
+              ACCESS GAME
+              <br />
+              MENU
+            </span>
           </div>
           <div className={style["move-with-touch"]}>
             <img
               src="./../../../public/images/guide/TOUCH%20SCREEN%20CONTROLL.svg"
               alt="touch"
             />
-            <span className="explain">MOVE WITH TOUCH</span>
+            <span className="explain">
+              MOVE WITH
+              <br />
+              TOUCH
+            </span>
           </div>
           <div className={style["pause-game"]}>
             <img
               src="./../../../public/images/guide/pause%20btn.svg"
               alt="pause"
             />
-            <span className="explain">PAUSE THE GAME</span>
+            <span className="explain">
+              PAUSE THE
+              <br />
+              GAME
+            </span>
           </div>
         </div>
       </PaneComponent>
