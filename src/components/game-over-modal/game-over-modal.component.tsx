@@ -60,30 +60,22 @@ export default function GameOverModalComponent({
   return (
     <ModalComponent
       ref={modalRef}
-      title="Game Over"
       className={styles["game-over-modal"]}
+      contentClassName={styles.content}
+      title="Game Over"
     >
-      <RibbonComponent>
-        <div className={styles["ribbon-content"]}>
-          <div>97</div>
-          <div>Hamid</div>
-          <div>44</div>
-          <div>105</div>
-        </div>
+      <RibbonComponent contentClassName={styles.ribbon}>
+        <div>97</div>
+        <div>Hamid</div>
+        <div>44</div>
+        <div>105</div>
       </RibbonComponent>
       <TableComponent items={data} />
-      <div className={styles["actions"]}>
-        <ButtonComponent
-          color="secondary"
-          className={styles.button}
-          onClick={onExit}
-        >
+      <div className={styles.actions}>
+        <ButtonComponent color="secondary" onClick={onExit}>
           Exit
         </ButtonComponent>
-        <ButtonComponent
-          className={styles.button}
-          onClick={restartButtonClickHandler}
-        >
+        <ButtonComponent onClick={restartButtonClickHandler}>
           Restart
         </ButtonComponent>
       </div>

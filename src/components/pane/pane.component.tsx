@@ -15,12 +15,14 @@ type Props = PropsWithChildren<{
   title: string;
   shade?: boolean;
   className?: string;
+  contentClassName?: string;
 }>;
 
 export default function PaneComponent({
   title,
   shade = false,
   className,
+  contentClassName,
   children,
 }: Props): ReactNode {
   const { ref: titleRef, width: titleWidth } =
@@ -51,7 +53,7 @@ export default function PaneComponent({
       <div ref={titleRef} className={styles.title}>
         {title}
       </div>
-      <div className={styles.content}>{children}</div>
+      <div className={clsx(styles.content, contentClassName)}>{children}</div>
     </div>
   );
 }
