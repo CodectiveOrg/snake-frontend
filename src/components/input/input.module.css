@@ -30,20 +30,19 @@
 
   .frame {
     position: absolute;
+    top: 50%;
     z-index: 1;
 
-    &.left {
-      top: 0;
-      left: 0;
+    translate: 0 -50%;
 
-      translate: -0.25rem -1rem;
+    &.left {
+      left: 0;
     }
 
     &.right {
-      top: 0;
       right: 0;
 
-      translate: 0.25rem -1rem;
+      scale: -1;
     }
   }
 }

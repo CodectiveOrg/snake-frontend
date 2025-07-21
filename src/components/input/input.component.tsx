@@ -12,57 +12,63 @@ export default function InputComponent({
 }: Props): ReactNode {
   return (
     <div className={styles.input}>
-      <FrameLeft className={clsx(styles.frame, styles.left)} />
+      <InputFrameComponent
+        width={12}
+        height={44}
+        largeOffset={36}
+        smallOffset={24}
+        className={clsx(styles.frame, styles.left)}
+      />
       <input ref={ref} {...otherProps} />
-      <FrameRight className={clsx(styles.frame, styles.right)} />
+      <InputFrameComponent
+        width={12}
+        height={44}
+        largeOffset={36}
+        smallOffset={24}
+        className={clsx(styles.frame, styles.right)}
+      />
     </div>
   );
 }
 
-function FrameRight({ ...otherProps }: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      width="72"
-      height="74"
-      viewBox="0 0 72 74"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...otherProps}
-    >
-      <path
-        d="M15.9527 15.8114L51.7713 15.8117L63.0547 37.812L51.7713 60.0621L18.4043 60.0621"
-        stroke="#2E6DFF"
-        stroke-width="2"
-      />
-      <path
-        d="M30.0005 14.7474L52.6671 14.7483L64.7324 38.2893L52.6671 61L31.5 61"
-        stroke="#2E6DFF"
-        stroke-width="4"
-      />
-    </svg>
-  );
-}
+type P = Omit<SVGProps<SVGSVGElement>, "width" | "height"> & {
+  width: number;
+  height: number;
+  largeOffset: number;
+  smallOffset: number;
+};
 
-function FrameLeft({ ...otherProps }: SVGProps<SVGSVGElement>) {
+function InputFrameComponent({
+  width,
+  height,
+  largeOffset,
+  smallOffset,
+  ...otherProps
+}: P) {
   return (
     <svg
-      width="71"
-      height="74"
-      viewBox="0 0 71 74"
+      width={width + largeOffset}
+      height={height + 12}
+      viewBox={`-2 -8 ${width + largeOffset} ${height + 16}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}
     >
       <path
-        d="M55.3168 15.1176L19.4983 15.118L8.21479 37.4349L19.4983 60.0051L52.8653 60.0051"
+        d={`M${width + largeOffset} -2H${width}L0 ${height / 2}L${width} ${height + 2}H${width + largeOffset}`}
         stroke="#2E6DFF"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
-        d="M41.269 14.038L18.6024 14.0388L6.53718 37.9186L18.6024 60.9561L39.7695 60.9561"
+        d={`M${width + smallOffset} -4H${width}L0 ${height / 2}L${width} ${height + 4}H${width + smallOffset}`}
         stroke="#2E6DFF"
-        stroke-width="4"
+        strokeWidth="4"
       />
+      {/*<path*/}
+      {/*  d="M30.0005 14.7474L52.6671 14.7483L64.7324 38.2893L52.6671 61L31.5 61"*/}
+      {/*  stroke="#2E6DFF"*/}
+      {/*  strokeWidth="4"*/}
+      {/*/>*/}
     </svg>
   );
 }
