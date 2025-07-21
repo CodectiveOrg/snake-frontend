@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { useNavigate } from "react-router";
-
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import ModalComponent from "@/components/modal/modal.component";
 
@@ -9,8 +7,6 @@ import styles from "./home.module.css";
 
 const user = "DEAR USER";
 export default function HomePage(): ReactNode {
-  useNavigate();
-
   return (
     <div className={styles.home}>
       <ModalComponent title="MENU" className={styles.modalComponent}>
