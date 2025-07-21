@@ -1,6 +1,8 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import { useQuery } from "@tanstack/react-query";
+
+import { toast } from "react-toastify";
 
 import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
 
@@ -19,7 +21,7 @@ export default function GameOverModalComponent({
   restartGame,
   exitGame,
 }: Props): ReactNode {
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: getLeaderboardApi,
   });
@@ -29,7 +31,12 @@ export default function GameOverModalComponent({
   }
 
   if (isError) {
-    return <p className={styles.message}>Error...</p>;
+    toast.error(error.message, {
+      containerId: "modal",
+      toastId: "leaderboard",
+    });
+
+    return <p className={styles.message}>Error: {error.message}</p>;
   }
 
   return (
