@@ -10,14 +10,16 @@ import IntroPage from "@/pages/intro/intro.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import QueryPage from "@/pages/query/query.page.tsx";
+import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
+import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
 
 export default function RouterComponent(): ReactNode {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<GuestOnlyGuard />}>
-          <Route path="/sign-in" element={<h1>Sign In</h1>} />
-          <Route path="/sign-up" element={<h1>Sign Up</h1>} />
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
           <Route path="/" element={<IntroPage />} />

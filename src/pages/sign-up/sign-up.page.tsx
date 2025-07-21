@@ -5,11 +5,12 @@ import LinkButtonComponent from "@/components/link-button/link-button.component"
 import PaneComponent from "@/components/pane/pane.component";
 import TextInputComponent from "@/components/text-input/text-input.component";
 
-import styles from "./signin.module.css";
+import styles from "./sign-up.module.css";
 
-export default function SigninPage(): ReactNode {
+export default function SignUpPage(): ReactNode {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [checked, setChecked] = useState(false);
 
   return (
@@ -44,6 +45,17 @@ export default function SigninPage(): ReactNode {
                 className={styles["input-style"]}
               />
             </div>
+            <div className={styles["input-box"]}>
+              <label htmlFor="email">EMAIL</label>
+              <TextInputComponent
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className={styles["input-style"]}
+              />
+            </div>
           </div>
           <div className={styles.buttons}>
             <div className={styles["checkbox-field"]}>
@@ -55,17 +67,16 @@ export default function SigninPage(): ReactNode {
                 onChange={(e) => setChecked(e.target.checked)}
               />
             </div>
-
             <LinkButtonComponent
-              to={"/signup"}
-              className={styles["signup-link"]}
+              to={"/signin"}
+              className={styles["signin-link"]}
             >
-              SIGN UP
+              LOGIN
             </LinkButtonComponent>
           </div>
           <div className={styles["signup-button-parent"]}>
-            <ButtonComponent className={styles["signin-button"]}>
-              LOGIN
+            <ButtonComponent className={styles["signup-button"]}>
+              SIGN UP
             </ButtonComponent>
           </div>
         </div>
