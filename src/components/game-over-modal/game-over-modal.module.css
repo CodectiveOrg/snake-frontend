@@ -7,19 +7,26 @@
   flex-direction: column;
   gap: 3.5rem;
 
-  padding: 6rem 7rem 2rem;
+  padding: 3rem 6.5rem 2.25rem;
 }
 
-.user-board {
-  background-color: var(--color-primary);
+.ribbon-content {
+  background-color: transparent;
 
-  width: 75rem;
-  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  height: 2.5rem;
+
+  margin: 2rem 0;
+
+  font-size: 3rem;
 }
 
 .button-group {
   display: flex;
-  gap: 3.25rem;
+  gap: 3rem;
 
   width: fit-content;
 
@@ -27,5 +34,5 @@
 }
 
 .button {
-  width: 10.75rem;
+  width: 10.5rem;
 }

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
 
 import ButtonComponent from "../button/button.component";
+import RibbonComponent from "../ribbon/ribbon.component";
 import TableComponent from "../table/table.component";
 
 import styles from "./game-over-modal.module.css";
@@ -33,7 +34,14 @@ export default function GameOverModalComponent({
 
   return (
     <div className={styles["game-over-modal"]}>
-      <div className={styles["user-board"]}></div>
+      <RibbonComponent>
+        <div className={styles["ribbon-content"]}>
+          <p className={styles["ribbon-column"]}>97</p>
+          <p className={styles["ribbon-column"]}>Hamid</p>
+          <p className={styles["ribbon-column"]}>44</p>
+          <p className={styles["ribbon-column"]}>105</p>
+        </div>
+      </RibbonComponent>
       <TableComponent items={data} />
       <div className={styles["button-group"]}>
         <ButtonComponent
