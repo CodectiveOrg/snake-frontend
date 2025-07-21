@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component";
-import ModalComponent from "@/components/modal/modal.component";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
 
@@ -18,26 +17,16 @@ export default function GamePage(): ReactNode {
   const username = localStorage.getItem("username");
 
   const score = useGameStore((state) => state.score);
-  const gameState = useGameStore((state) => state.gameState);
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const modalRef = useRef<HTMLDialogElement>(null);
-
-  const openButtonClickHandler = (): void => {
-    modalRef.current?.showModal();
-  };
-
-  const closeButtonClickHandler = (): void => {
-    modalRef.current?.close();
-  };
 
   const resetGameStates = (): void => {
-    useGameStore.getState().run();
     useGameStore.getState().resetScore();
+    useGameStore.getState().run();
   };
 
-  const restartGame = (): void => {
+  const restartHandler = (): void => {
     if (!masterRef.current || !canvasRef.current) {
       return;
     }
@@ -46,13 +35,11 @@ export default function GamePage(): ReactNode {
 
     masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
-
-    closeButtonClickHandler();
   };
 
-  const exitGame = (): void => {
+  const exitHandler = (): void => {
     resetGameStates();
-    navigate("/", { replace: true });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -60,19 +47,11 @@ export default function GamePage(): ReactNode {
       return;
     }
 
+    resetGameStates();
+
     masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
   }, []);
-
-  useEffect(() => {
-    resetGameStates();
-  }, []);
-
-  useEffect(() => {
-    if (gameState === "over") {
-      openButtonClickHandler();
-    }
-  }, [gameState]);
 
   return (
     <div className={styles.game}>
@@ -82,13 +61,7 @@ export default function GamePage(): ReactNode {
         <br />
         Score: {score}
       </div>
-      <ModalComponent
-        title="GAME OVER"
-        ref={modalRef}
-        className={styles["modal"]}
-      >
-        <GameOverModalComponent restartGame={restartGame} exitGame={exitGame} />
-      </ModalComponent>
+      <GameOverModalComponent onRestart={restartHandler} onExit={exitHandler} />
     </div>
   );
 }
