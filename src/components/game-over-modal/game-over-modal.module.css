@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: space-around;
 
-  height: 2.5rem;
+  block-size: 2.5rem;
 
   margin: 2rem 0;
 
@@ -28,11 +28,11 @@
   display: flex;
   gap: 3rem;
 
-  width: fit-content;
+  inline-size: auto;
 
   margin: 0 auto;
 }
 
 .button {
-  width: 10.5rem;
+  inline-size: 10.5rem;
 }
