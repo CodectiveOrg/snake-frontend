@@ -7,16 +7,58 @@ import IntroPage from "@/pages/intro/intro.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import QueryPage from "@/pages/query/query.page.tsx";
+import SigninPage from "@/pages/signin/signin.page";
+import SignupPage from "@/pages/signup/signup.page";
+
+import ProtectedRouteComponent from "./protectedRoute.component";
 
 export default function RouterComponent(): ReactNode {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<IntroPage />} />
-        <Route path="/game" element={<GamePage />} />
-        <Route path="/query" element={<QueryPage />} />
-        <Route path="/modal" element={<ModalPage />} />
-        <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="/signin" element={<SigninPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRouteComponent>
+              <IntroPage />
+            </ProtectedRouteComponent>
+          }
+        />
+        <Route
+          path="/game"
+          element={
+            <ProtectedRouteComponent>
+              <GamePage />
+            </ProtectedRouteComponent>
+          }
+        />
+        <Route
+          path="/query"
+          element={
+            <ProtectedRouteComponent>
+              <QueryPage />
+            </ProtectedRouteComponent>
+          }
+        />
+        <Route
+          path="/modal"
+          element={
+            <ProtectedRouteComponent>
+              <ModalPage />
+            </ProtectedRouteComponent>
+          }
+        />
+        <Route
+          path="/playground"
+          element={
+            <ProtectedRouteComponent>
+              <PlaygroundPage />
+            </ProtectedRouteComponent>
+          }
+        />
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
   );
