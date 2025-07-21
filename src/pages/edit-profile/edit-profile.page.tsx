@@ -1,67 +1,70 @@
-import { type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useState } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
-import InputComponent from "@/components/input/input.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 import ProfilePickerComponent from "@/components/profile-picker/profile-picker.component.tsx";
 import RadioComponent from "@/components/radio/radio.component.tsx";
+import TextInputComponent from "@/components/text-input/text-input.component.tsx";
 
-import type { UserType } from "@/types/user.type.ts";
+import type { User } from "@/entities/user.ts";
 
 import styles from "./edit-profile.module.css";
 
 export default function EditProfilePage(): ReactNode {
-  const [user, setUser] = useState<UserType>(() => generateUser());
+  const [user, setUser] = useState<User>(() => generateUser());
 
   console.log(user);
+  console.log();
+
+  const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log(e);
+    console.log("-----");
+  };
 
   return (
     <div className={styles["edit-profile"]}>
       <PaneComponent shade={true} title="profile">
-        <form>
+        <form onSubmit={formSubmitHandler}>
           <ProfilePickerComponent />
           <div className={styles["user-data"]}>
             <div className={styles.username}>
               <label htmlFor="username">username</label>
-              <InputComponent
+              <TextInputComponent
                 type="text"
                 id="username"
                 name="username"
                 value={user.username}
                 onChange={(e): void =>
-                  setUser(
-                    (old): UserType => ({ ...old, username: e.target.value }),
-                  )
+                  setUser((old): User => ({ ...old, username: e.target.value }))
                 }
               />
             </div>
 
             <div className={styles.password}>
               <label htmlFor="password">password</label>
-              <InputComponent
+              <TextInputComponent
                 type="password"
                 id="password"
                 name="password"
                 value={user.password}
                 onChange={(e): void =>
-                  setUser(
-                    (old): UserType => ({ ...old, password: e.target.value }),
-                  )
+                  setUser((old): User => ({ ...old, password: e.target.value }))
                 }
               />
             </div>
 
             <div className={styles.email}>
               <label htmlFor="email">email</label>
-              <InputComponent
+              <TextInputComponent
+                className={styles["email-input"]}
                 type="email"
                 id="email"
                 name="email"
                 value={user.email}
                 onChange={(e): void =>
-                  setUser(
-                    (old): UserType => ({ ...old, email: e.target.value }),
-                  )
+                  setUser((old): User => ({ ...old, email: e.target.value }))
                 }
               />
             </div>
@@ -75,9 +78,11 @@ export default function EditProfilePage(): ReactNode {
                 defaultChecked={true}
                 value="male"
                 onChange={(e): void => {
-                  setUser(
-                    (old): UserType => ({ ...old, gender: e.target.value }),
-                  );
+                  const gender = e.target.value;
+
+                  if (gender === "male" || gender === "female") {
+                    setUser((old): User => ({ ...old, gender: gender }));
+                  }
                 }}
               />
               <RadioComponent
@@ -86,9 +91,11 @@ export default function EditProfilePage(): ReactNode {
                 name="gender"
                 value="female"
                 onChange={(e): void => {
-                  setUser(
-                    (old): UserType => ({ ...old, gender: e.target.value }),
-                  );
+                  const gender = e.target.value;
+
+                  if (gender === "male" || gender === "female") {
+                    setUser((old): User => ({ ...old, gender: gender }));
+                  }
                 }}
                 checked={user.gender === "female"}
               />
@@ -105,18 +112,13 @@ export default function EditProfilePage(): ReactNode {
   );
 }
 
-function generateUser(): UserType {
+function generateUser(): User {
+  const id = 12345;
   const username = "Alireza";
   const password = "12345";
   const email = "alireza@gmail.com";
   const gender = "male";
-  const image = "";
+  const picture = null;
 
-  return {
-    username,
-    password,
-    email,
-    gender,
-    image,
-  };
+  return { id, username, password, email, gender, picture };
 }
