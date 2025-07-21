@@ -12,7 +12,10 @@ export default function GuidePage() {
             <span className="explain">Navigation keys</span>
           </div>
           <div className={style["esc-key"]}>
-            <img src="./../../../public/images/guide/button.svg" alt="button" />
+            <img
+              src="./../../../public/images/guide/esc%20button.svg"
+              alt="button"
+            />
             <span className="explain">Access Game menu</span>
           </div>
           <div className={style["move-with-touch"]}>
