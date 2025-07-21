@@ -3,8 +3,12 @@ import type { ReactNode } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 
 import GamePage from "@/pages/game/game.page.tsx";
+ implement-homepage
 import HomePage from "@/pages/home/home.page";
+import ModalPage from "@/pages/modal/modal.page.tsx";
+ main
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
+import QueryPage from "@/pages/query/query.page.tsx";
 
 export default function RouterComponent(): ReactNode {
   return (
@@ -12,6 +16,8 @@ export default function RouterComponent(): ReactNode {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/game" element={<GamePage />} />
+        <Route path="/query" element={<QueryPage />} />
+        <Route path="/modal" element={<ModalPage />} />
         <Route path="/playground" element={<PlaygroundPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,12 @@
+.query {
+  table {
+    margin-inline: auto;
+
+    th,
+    td {
+      padding-inline: 2rem;
+
+      text-align: start;
+    }
+  }
+}
