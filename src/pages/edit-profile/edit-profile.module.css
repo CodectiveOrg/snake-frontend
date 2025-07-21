@@ -38,6 +38,12 @@
         }
 
         &.email {
+          > div {
+            > div {
+              inline-size: 100%;
+            }
+          }
+
           .email-input {
             font-size: 1rem;
           }
