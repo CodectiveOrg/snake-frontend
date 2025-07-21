@@ -18,15 +18,13 @@ export default function EditProfilePage(): ReactNode {
 
     const formData = new FormData(e.currentTarget);
 
-    const user = {
+    return {
       username: formData.get("username"),
       password: formData.get("password"),
       email: formData.get("email"),
       gender: formData.get("gender"),
       picture: formData.get("picture"),
     };
-
-    return user;
   };
 
   return (
