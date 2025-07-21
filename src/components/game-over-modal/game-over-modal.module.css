@@ -19,20 +19,18 @@
 
   block-size: 2.5rem;
 
-  margin: 2rem 0;
+  margin-block: 2rem;
 
   font-size: 3rem;
 }
 
-.button-group {
+.actions {
   display: flex;
   gap: 3rem;
 
-  inline-size: auto;
-
-  margin: 0 auto;
+  margin-inline: auto;
 }
 
 .button {
-  inline-size: 10.5rem;
+  min-inline-size: 10.5rem;
 }

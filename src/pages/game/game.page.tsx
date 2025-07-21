@@ -24,31 +24,33 @@ export default function GamePage(): ReactNode {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const modalRef = useRef<HTMLDialogElement>(null);
 
-  const openButtonClickHandler = () => {
+  const openButtonClickHandler = (): void => {
     modalRef.current?.showModal();
   };
 
-  const closeButtonClickHandler = () => {
+  const closeButtonClickHandler = (): void => {
     modalRef.current?.close();
   };
 
-  const resetGameStates = () => {
+  const resetGameStates = (): void => {
     useGameStore.getState().run();
     useGameStore.getState().resetScore();
   };
 
-  const restartGame = () => {
-    if (masterRef.current && canvasRef.current) {
-      resetGameStates();
-
-      masterRef.current = new GameMasterService(canvasRef.current);
-      masterRef.current.run();
-
-      closeButtonClickHandler();
+  const restartGame = (): void => {
+    if (!masterRef.current || !canvasRef.current) {
+      return;
     }
+
+    resetGameStates();
+
+    masterRef.current = new GameMasterService(canvasRef.current);
+    masterRef.current.run();
+
+    closeButtonClickHandler();
   };
 
-  const exitGame = () => {
+  const exitGame = (): void => {
     resetGameStates();
     navigate("/", { replace: true });
   };
@@ -60,6 +62,10 @@ export default function GamePage(): ReactNode {
 
     masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
+  }, []);
+
+  useEffect(() => {
+    resetGameStates();
   }, []);
 
   useEffect(() => {
