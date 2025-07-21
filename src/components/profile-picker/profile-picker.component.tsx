@@ -10,7 +10,7 @@ export default function ProfilePickerComponent(): ReactNode {
       <label htmlFor="profile">
         <MingcuteAddFill />
       </label>
-      <input type="file" id="profile" />
+      <input type="file" id="profile" name="picture" />
       <img
         src="../../../public/images/profile.webp"
         alt="user profile picture"

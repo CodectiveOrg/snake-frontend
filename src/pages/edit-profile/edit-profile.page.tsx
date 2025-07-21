@@ -11,16 +11,22 @@ import type { User } from "@/entities/user.ts";
 import styles from "./edit-profile.module.css";
 
 export default function EditProfilePage(): ReactNode {
-  const [user, setUser] = useState<User>(() => generateUser());
-
-  console.log(user);
-  console.log();
+  const [user, setUser] = useState<User>(generateUser);
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(e);
-    console.log("-----");
+    const formData = new FormData(e.currentTarget);
+
+    const user = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      email: formData.get("email"),
+      gender: formData.get("gender"),
+      picture: formData.get("picture"),
+    };
+
+    return user;
   };
 
   return (
