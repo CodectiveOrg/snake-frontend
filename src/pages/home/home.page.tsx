@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import LinkButtonComponent from "@/components/link-button/link-button.component";
-import ModalComponent from "@/components/modal/modal.component";
+import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import styles from "./home.module.css";
 
@@ -9,17 +9,19 @@ const user = "DEAR USER";
 export default function HomePage(): ReactNode {
   return (
     <div className={styles.home}>
-      <ModalComponent title="MENU" className={styles.modalComponent}>
-        <h3 className={styles.username}>HELLO {user}</h3>
-
-        <div className={styles["button-container"]}>
-          <LinkButtonComponent to="/game">START </LinkButtonComponent>
-          <LinkButtonComponent to="/profile">PROFILE </LinkButtonComponent>
-          <LinkButtonComponent to="/board">BOARD </LinkButtonComponent>
-          <LinkButtonComponent to="/settings">SETTINGS </LinkButtonComponent>
-          <LinkButtonComponent to="/exit">EXIT </LinkButtonComponent>
+      <PaneComponent title="Menu" className={styles.pane}>
+        <div className={styles.username}>
+          <span className={styles.prefix}>Hello, </span>
+          {user}!
         </div>
-      </ModalComponent>
+        <div className={styles.menu}>
+          <LinkButtonComponent to="/game">Start</LinkButtonComponent>
+          <LinkButtonComponent to="/profile">Profile</LinkButtonComponent>
+          <LinkButtonComponent to="/board">Board</LinkButtonComponent>
+          <LinkButtonComponent to="/settings">Settings</LinkButtonComponent>
+          <LinkButtonComponent to="/exit">Exit</LinkButtonComponent>
+        </div>
+      </PaneComponent>
     </div>
   );
 }
