@@ -33,37 +33,32 @@ export default function EditProfilePage(): ReactNode {
         <form onSubmit={formSubmitHandler}>
           <ProfilePickerComponent user={user} />
           <div className={styles["user-data"]}>
-            <div className={styles.username}>
-              <label htmlFor="username">username</label>
+            <label>
+              username
               <TextInputComponent
-                type="text"
-                id="username"
                 name="username"
                 defaultValue={user.username}
               />
-            </div>
-            <div className={styles.password}>
-              <label htmlFor="password">password</label>
+            </label>
+            <label>
+              password
               <TextInputComponent
                 type="password"
-                id="password"
                 name="password"
                 defaultValue={user.password}
                 autoComplete="new-password"
               />
-            </div>
-            <div className={styles.email}>
-              <label htmlFor="email">email</label>
+            </label>
+            <label>
+              email
               <TextInputComponent
-                className={styles["email-input"]}
                 type="email"
-                id="email"
                 name="email"
                 defaultValue={user.email}
               />
-            </div>
-            <div className={styles.gender}>
-              <label>gender</label>
+            </label>
+            <div className={styles.label}>
+              gender
               <RadioComponent
                 key="male"
                 label="male"
