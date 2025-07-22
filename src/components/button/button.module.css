@@ -15,6 +15,7 @@
   font-weight: 700;
 
   text-align: center;
+  text-decoration: none;
   text-transform: uppercase;
 
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);

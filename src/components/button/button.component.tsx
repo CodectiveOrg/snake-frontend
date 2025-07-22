@@ -1,5 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 
+import { NavLink, type NavLinkProps } from "react-router";
+
 import clsx from "clsx";
 
 import ButtonFrameComponent, {
@@ -8,20 +10,36 @@ import ButtonFrameComponent, {
 
 import styles from "./button.module.css";
 
-type Props = ComponentProps<"button"> & {
+type ButtonProps = { asType?: "button" } & ComponentProps<"button">;
+type LinkProps = { asType: "link" } & NavLinkProps;
+
+type Props = {
   color?: ButtonFrameColor;
-};
+  children?: ReactNode;
+} & (ButtonProps | LinkProps);
 
 export default function ButtonComponent({
+  asType = "button",
   color,
   className,
   children,
   ...otherProps
 }: Props): ReactNode {
-  return (
-    <button className={clsx(styles["button"], className)} {...otherProps}>
+  return asType === "button" ? (
+    <button
+      className={clsx(styles.button, className)}
+      {...(otherProps as ButtonProps)}
+    >
       <ButtonFrameComponent className={styles.frame} color={color} />
       {children}
     </button>
+  ) : (
+    <NavLink
+      className={clsx(styles.button, className)}
+      {...(otherProps as LinkProps)}
+    >
+      <ButtonFrameComponent className={styles.frame} color={color} />
+      {children}
+    </NavLink>
   );
 }
