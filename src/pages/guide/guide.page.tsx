@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
+
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import style from "./guide.module.css";
 
-export default function GuidePage() {
+export default function GuidePage(): ReactNode {
   return (
     <div className={style["guide-page"]}>
       <PaneComponent title={"guide"} shade={true}>
