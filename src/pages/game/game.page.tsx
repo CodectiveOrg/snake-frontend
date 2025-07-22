@@ -76,7 +76,7 @@ export default function GamePage(): ReactNode {
             </button>
           </div>
         </div>
-        <SeparatorComponent dentWidth={1}></SeparatorComponent>
+        <SeparatorComponent className={styles.separator} dentWidth={1} />
         <CanvasComponent ref={canvasRef} />
         <div className="info">
           Name: {username}

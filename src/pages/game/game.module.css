@@ -12,6 +12,11 @@
     max-inline-size: 106.5rem;
   }
 
+  .separator {
+    min-inline-size: 100%;
+    inline-size: 0;
+  }
+
   .wrapper {
     display: flex;
     align-items: center;
