@@ -1,4 +1,6 @@
 export type LeaderboardItemDto = {
   username: string;
-  highScore: number;
+  rank: number;
+  todayHighScore: number;
+  totalHighScore: number;
 };
