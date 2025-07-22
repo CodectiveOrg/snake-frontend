@@ -1,0 +1,8 @@
+.separator {
+  inline-size: 100%;
+
+  .perimeter {
+    stroke: var(--color-primary);
+    stroke-width: 1px;
+  }
+}
