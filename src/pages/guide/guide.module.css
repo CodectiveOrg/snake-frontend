@@ -35,6 +35,14 @@
       }
     }
 
+    .button {
+      grid-column: 1 / -1;
+      align-self: center;
+      justify-self: center;
+
+      inline-size: min-content;
+    }
+
     .move-with-touch,
     .esc-key {
       grid-template-columns: 1fr 1fr;

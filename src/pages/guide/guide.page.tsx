@@ -1,3 +1,4 @@
+import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 
 import style from "./guide.module.css";
@@ -44,6 +45,7 @@ export default function GuidePage() {
               GAME
             </span>
           </div>
+          <ButtonComponent className={style.button}>confirm</ButtonComponent>
         </div>
       </PaneComponent>
     </div>
