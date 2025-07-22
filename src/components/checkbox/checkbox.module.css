@@ -1,4 +1,6 @@
 .checkbox {
+  color-scheme: light;
+
   display: flex;
   gap: 0.5rem;
 

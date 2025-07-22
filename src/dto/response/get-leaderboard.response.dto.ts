@@ -1,5 +1,4 @@
-export type UserRankDto = {
+export type GetLeaderboardResponseDto = {
   username: string;
-  rank: number;
   highScore: number;
 };

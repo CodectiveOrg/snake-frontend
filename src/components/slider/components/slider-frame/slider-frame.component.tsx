@@ -4,10 +4,12 @@ import clsx from "clsx";
 
 import styles from "./slider-frame.module.css";
 
+type Props = SVGProps<SVGSVGElement>;
+
 export default function SliderFrameComponent({
   className,
   ...otherProps
-}: SVGProps<SVGSVGElement>): ReactNode {
+}: Props): ReactNode {
   return (
     <svg
       className={clsx(styles["slider-frame"], className)}
