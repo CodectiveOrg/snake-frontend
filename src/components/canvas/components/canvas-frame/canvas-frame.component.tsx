@@ -8,10 +8,12 @@ import { useResizeObserverHook } from "@/hooks/use-resize-observer.hook.ts";
 
 import styles from "./canvas-frame.module.css";
 
+type Props = SVGProps<SVGSVGElement>;
+
 export default function CanvasFrameComponent({
   className,
   ...otherProps
-}: SVGProps<SVGSVGElement>): ReactNode {
+}: Props): ReactNode {
   const { ref, width, height } = useResizeObserverHook<SVGSVGElement>();
 
   const offset = Size.CANVAS_CORNER_OFFSET;
