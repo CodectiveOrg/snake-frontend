@@ -1,56 +1,68 @@
 import type { ReactNode } from "react";
 
+import clsx from "clsx";
+
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 
-import style from "./guide.module.css";
+import styles from "./guide.module.css";
+
+type Item = {
+  image: string;
+  title: string;
+  orientation: "horizontal" | "vertical";
+  alt: string;
+};
+
+const items: Item[] = [
+  {
+    image: "/illustrations/wasd.svg",
+    title: "Navigation Keys",
+    orientation: "vertical",
+    alt: "W, A, S and D Buttons",
+  },
+  {
+    image: "/illustrations/escape-button.svg",
+    title: "Access Game Menu",
+    orientation: "horizontal",
+    alt: "Escape Button",
+  },
+  {
+    image: "/illustrations/gesture.svg",
+    title: "Move With Touch",
+    orientation: "horizontal",
+    alt: "Gesture",
+  },
+  {
+    image: "/illustrations/pause-button.svg",
+    title: "Pause the Game",
+    orientation: "vertical",
+    alt: "Space, Enter and P Buttons",
+  },
+];
 
 export default function GuidePage(): ReactNode {
   return (
-    <div className={style["guide-page"]}>
-      <PaneComponent title={"guide"} shade={true}>
-        <div className={style.guide}>
-          <div className={style["navigation-keys"]}>
-            <img src="./../../../public/images/guide/wads.svg" alt="wasd" />
-            <span className="explain">NAVIGATION KEYS</span>
+    <div className={styles.guide}>
+      <PaneComponent
+        shade
+        title="guide"
+        className={styles.pane}
+        contentClassName={styles.content}
+      >
+        {items.map((item) => (
+          <div
+            key={item.title}
+            className={clsx(styles.group, styles[item.orientation])}
+          >
+            <img src={item.image} alt={item.alt} />
+            <div className={styles.writings}>
+              <div className={styles.title}>{item.title}</div>
+            </div>
           </div>
-          <div className={style["esc-key"]}>
-            <img
-              src="./../../../public/images/guide/esc%20button.svg"
-              alt="button"
-            />
-            <span className="explain">
-              ACCESS GAME
-              <br />
-              MENU
-            </span>
-          </div>
-          <div className={style["move-with-touch"]}>
-            <img
-              src="./../../../public/images/guide/TOUCH%20SCREEN%20CONTROLL.svg"
-              alt="touch"
-            />
-            <span className="explain">
-              MOVE WITH
-              <br />
-              TOUCH
-            </span>
-          </div>
-          <div className={style["pause-game"]}>
-            <img
-              src="./../../../public/images/guide/pause%20btn.svg"
-              alt="pause"
-            />
-            <span className="explain">
-              PAUSE THE
-              <br />
-              GAME
-            </span>
-          </div>
-          <ButtonComponent className={style.button}>confirm</ButtonComponent>
-        </div>
+        ))}
+        <ButtonComponent>Confirm</ButtonComponent>
       </PaneComponent>
-      <footer>created by piplyze</footer>
     </div>
   );
 }

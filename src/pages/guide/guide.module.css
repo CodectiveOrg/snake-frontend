@@ -1,61 +1,65 @@
-.guide-page {
+.guide {
   display: grid;
   place-content: center;
 
   min-block-size: 100vh;
 
-  .guide {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  .pane {
+    max-inline-size: 97rem;
 
-    .navigation-keys,
-    .pause-game,
-    .move-with-touch,
-    .esc-key {
-      justify-self: center;
-
+    .content {
       display: grid;
-      gap: 1rem;
-
-      max-block-size: 21rem;
-
-      img {
-        align-self: center;
-        justify-self: center;
-      }
-
-      span {
-        align-self: center;
-        justify-self: center;
-
-        background-color: hsl(0deg 0% 85% / 100%);
-        color: hsl(0deg 0% 0% / 100%);
-
-        font-size: 2rem;
-        font-weight: 700;
-
-        text-align: center;
-      }
-    }
-
-    .button {
-      grid-column: 1 / -1;
-      align-self: center;
-      justify-self: center;
-
-      inline-size: min-content;
-
-      font-family: Orbitron, sans-serif;
-    }
-
-    .move-with-touch,
-    .esc-key {
       grid-template-columns: 1fr 1fr;
-    }
-  }
+      column-gap: 8rem;
+      row-gap: 2rem;
 
-  footer {
-    justify-self: center;
+      .group {
+        justify-self: center;
+
+        display: grid;
+        row-gap: 2rem;
+
+        max-block-size: 21rem;
+
+        img {
+          align-self: center;
+          justify-self: center;
+        }
+
+        .writings {
+          align-self: center;
+          justify-self: center;
+
+          text-align: center;
+
+          .title {
+            background-color: hsl(0deg 0% 85% / 100%);
+            color: hsl(0deg 0% 0% / 100%);
+
+            display: inline;
+
+            font-size: 2rem;
+            font-weight: 700;
+
+            text-transform: uppercase;
+          }
+        }
+
+        &.horizontal {
+          grid-template-columns: auto 1fr;
+
+          .writings {
+            max-inline-size: 20rem;
+          }
+        }
+      }
+
+      button {
+        grid-column: 1 / -1;
+        place-self: center;
+
+        inline-size: fit-content;
+      }
+    }
   }
 }
