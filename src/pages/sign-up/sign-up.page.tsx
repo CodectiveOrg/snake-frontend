@@ -1,10 +1,10 @@
 import { type FormEvent, type ReactNode, useState } from "react";
 
-import { useNavigate } from "react-router";
-
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { toast } from "sonner";
+
+import { signUpApi } from "@/api/public/sign-up.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
 import CheckboxComponent from "@/components/checkbox/checkbox.component";
@@ -12,55 +12,32 @@ import LinkButtonComponent from "@/components/link-button/link-button.component"
 import PaneComponent from "@/components/pane/pane.component";
 import TextInputComponent from "@/components/text-input/text-input.component";
 
-import type { SignupDto } from "@/dto/sign-up.dto";
-
-import { richFetch } from "@/utils/fetch.utils";
-
 import styles from "./sign-up.module.css";
 
-type SignupType = {
-  username: string;
-  email: string;
-  password: string;
-};
-
-async function postSignupApi(signupData: SignupType): Promise<SignupDto> {
-  const data = await richFetch<SignupDto>("/auth/sign-up", {
-    method: "POST",
-    body: JSON.stringify(signupData),
-  });
-
-  if ("error" in data) {
-    throw new Error(data.error);
-  }
-
-  return data.result;
-}
 export default function SignUpPage(): ReactNode {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [checked, setChecked] = useState(false);
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationKey: ["sign-up"],
-    mutationFn: postSignupApi,
-    onError: (error: Error) => {
-      const message =
-        error?.message ??
-        (typeof error === "string" ? error : "An unknown error occurred");
-      toast.error(message);
+    mutationFn: signUpApi,
+    onError: (error) => {
+      toast.error(error.message);
     },
-    onSuccess: () => {
-      toast.success("You created account successfully!");
-      navigate("/sign-in");
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({ queryKey: ["verify"] });
+      toast.success(result.message);
     },
   });
 
-  const navigate = useNavigate();
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const formSubmitHandler = async (
+    e: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    e.preventDefault();
     await mutation.mutateAsync({ username, email, password });
   };
 
@@ -72,9 +49,7 @@ export default function SignUpPage(): ReactNode {
         title="Welcome"
       >
         <div className={styles.logo}>Game Name</div>
-        <form
-          onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
-        >
+        <form onSubmit={formSubmitHandler}>
           <div className={styles.fields}>
             <label>
               Your Name
