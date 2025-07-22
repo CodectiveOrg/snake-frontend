@@ -17,6 +17,7 @@ export default function GamePage(): ReactNode {
   const username = localStorage.getItem("username");
 
   const score = useGameStore((state) => state.score);
+  const gameState = useGameStore((state) => state.gameState);
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -61,7 +62,12 @@ export default function GamePage(): ReactNode {
         <br />
         Score: {score}
       </div>
-      <GameOverModalComponent onRestart={restartHandler} onExit={exitHandler} />
+      {gameState === "over" && (
+        <GameOverModalComponent
+          onRestart={restartHandler}
+          onExit={exitHandler}
+        />
+      )}
     </div>
   );
 }

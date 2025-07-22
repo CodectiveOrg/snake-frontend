@@ -1,5 +1,6 @@
 export type UserRankDto = {
   username: string;
   rank: number;
-  highScore: number;
+  todayHighScore: number;
+  totalHighScore: number;
 };

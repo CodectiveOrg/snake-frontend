@@ -1,9 +1,10 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import React, { type ReactNode, useEffect, useRef } from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
 
+import { getUserRankApi } from "@/api/history/get-user-rank.api";
 import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
@@ -24,14 +25,36 @@ export default function GameOverModalComponent({
   onRestart,
   onExit,
 }: Props): ReactNode {
-  const { data, isPending, isError, error } = useQuery({
-    queryKey: ["leaderboard"],
-    queryFn: getLeaderboardApi,
-  });
-
   const gameState = useGameStore((state) => state.gameState);
 
   const modalRef = useRef<HTMLDialogElement>(null);
+
+  const [userRankQuery, leaderboardQuery] = useQueries({
+    queries: [
+      {
+        queryKey: ["user-rank"],
+        queryFn: getUserRankApi,
+      },
+      {
+        queryKey: ["leaderboard"],
+        queryFn: getLeaderboardApi,
+      },
+    ],
+  });
+
+  const {
+    data: userRankData,
+    isPending: userRankPending,
+    isError: userRankError,
+    error: userRankErrorMessage,
+  } = userRankQuery;
+
+  const {
+    data: leaderboardData,
+    isPending: leaderboardPending,
+    isError: leaderboardError,
+    error: leaderboardErrorMessage,
+  } = leaderboardQuery;
 
   useEffect(() => {
     if (gameState === "over") {
@@ -44,18 +67,35 @@ export default function GameOverModalComponent({
     onRestart();
   };
 
-  if (isPending) {
+  const pendingMessage = (): React.JSX.Element | undefined => {
     return <p className={styles.message}>Loading...</p>;
-  }
+  };
 
-  if (isError) {
-    toast.error(error.message, {
-      containerId: "modal",
-      toastId: "leaderboard",
-    });
+  const errorMessage = (): React.JSX.Element | undefined => {
+    if (userRankError) {
+      toast.error(userRankErrorMessage.message, {
+        containerId: "modal",
+        toastId: "user-rank",
+      });
 
-    return <p className={styles.message}>Error: {error.message}</p>;
-  }
+      return (
+        <p className={styles.message}>Error: {userRankErrorMessage.message}</p>
+      );
+    }
+
+    if (leaderboardError) {
+      toast.error(leaderboardErrorMessage.message, {
+        containerId: "modal",
+        toastId: "leaderboard",
+      });
+
+      return (
+        <p className={styles.message}>
+          Error: {leaderboardErrorMessage.message}
+        </p>
+      );
+    }
+  };
 
   return (
     <ModalComponent
@@ -64,21 +104,29 @@ export default function GameOverModalComponent({
       contentClassName={styles.content}
       title="Game Over"
     >
-      <RibbonComponent contentClassName={styles.ribbon}>
-        <div>97</div>
-        <div>Hamid</div>
-        <div>44</div>
-        <div>105</div>
-      </RibbonComponent>
-      <TableComponent items={data} />
-      <div className={styles.actions}>
-        <ButtonComponent color="secondary" onClick={onExit}>
-          Exit
-        </ButtonComponent>
-        <ButtonComponent onClick={restartButtonClickHandler}>
-          Restart
-        </ButtonComponent>
-      </div>
+      {leaderboardPending || userRankPending ? (
+        pendingMessage()
+      ) : userRankError || leaderboardError ? (
+        errorMessage()
+      ) : (
+        <React.Fragment>
+          <RibbonComponent contentClassName={styles.ribbon}>
+            <div>{userRankData.rank}</div>
+            <div>{userRankData.username}</div>
+            <div>{userRankData.todayHighScore}</div>
+            <div>{userRankData.totalHighScore}</div>
+          </RibbonComponent>
+          <TableComponent items={leaderboardData} />
+          <div className={styles.actions}>
+            <ButtonComponent color="secondary" onClick={onExit}>
+              Exit
+            </ButtonComponent>
+            <ButtonComponent onClick={restartButtonClickHandler}>
+              Restart
+            </ButtonComponent>
+          </div>
+        </React.Fragment>
+      )}
     </ModalComponent>
   );
 }
