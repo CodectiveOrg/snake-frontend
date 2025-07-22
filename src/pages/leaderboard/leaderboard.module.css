@@ -3,6 +3,10 @@
 
   margin-inline: auto;
 
+  .message {
+    text-align: center;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
