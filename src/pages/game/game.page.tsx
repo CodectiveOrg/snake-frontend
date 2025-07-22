@@ -9,6 +9,8 @@ import { GameMasterService } from "@/services/game-master.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
+import PauseSVG from "./components/SVGS/pause.svg";
+import PlaySVG from "./components/SVGS/play.svg";
 import HighScoreComponent from "./components/high-score/high-score.component";
 import ScoreComponent from "./components/score/score.component";
 import SeparatorComponent from "./components/separator/separator.component";
@@ -70,11 +72,7 @@ export default function GamePage(): ReactNode {
               onClick={playPauseButtonClickHandler}
               className={styles.button}
             >
-              {isPlaying ? (
-                <img src="./images/play.svg" alt="Play" />
-              ) : (
-                <img src="./images/pause.svg" alt="Pause" />
-              )}
+              {isPlaying ? <PlaySVG /> : <PauseSVG />}
             </button>
           </div>
         </div>
