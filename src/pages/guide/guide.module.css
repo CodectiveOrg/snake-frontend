@@ -2,7 +2,7 @@
   display: grid;
   place-content: center;
 
-  min-block-size: 100dvh;
+  min-block-size: 100vh;
 
   .guide {
     display: grid;
@@ -13,8 +13,12 @@
     .pause-game,
     .move-with-touch,
     .esc-key {
+      justify-self: center;
+
       display: grid;
       gap: 1rem;
+
+      max-block-size: 21rem;
 
       img {
         align-self: center;
@@ -41,6 +45,8 @@
       justify-self: center;
 
       inline-size: min-content;
+
+      font-family: Orbitron, sans-serif;
     }
 
     .move-with-touch,
