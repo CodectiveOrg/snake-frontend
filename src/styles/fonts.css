@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Digital Numbers";
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local("Digital Numbers"),
+    url("@/assets/fonts/DigitalNumbers-Regular.woff") format("woff");
+}

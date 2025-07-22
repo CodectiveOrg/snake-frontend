@@ -1,6 +1,10 @@
 .game-over-modal {
   inline-size: 98rem;
 
+  .message {
+    text-align: center;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -29,8 +33,4 @@
       min-inline-size: 10rem;
     }
   }
-}
-
-.message {
-  text-align: center;
 }
