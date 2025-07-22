@@ -48,6 +48,7 @@ export default function GuidePage() {
           <ButtonComponent className={style.button}>confirm</ButtonComponent>
         </div>
       </PaneComponent>
+      <footer>created by piplyze</footer>
     </div>
   );
 }
