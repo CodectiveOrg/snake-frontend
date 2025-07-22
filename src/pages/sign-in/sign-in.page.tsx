@@ -4,13 +4,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { toast } from "sonner";
 
+import clsx from "clsx";
+
 import { signInApi } from "@/api/public/sign-in.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
-import CheckboxComponent from "@/components/checkbox/checkbox.component.tsx";
+import CheckboxComponent from "@/components/checkbox/checkbox.component";
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component";
 import TextInputComponent from "@/components/text-input/text-input.component";
+
+import authStyles from "@/styles/auth.module.css";
 
 import styles from "./sign-in.module.css";
 
@@ -41,19 +45,19 @@ export default function SignInPage(): ReactNode {
   };
 
   return (
-    <div className={styles["sign-in"]}>
+    <div className={clsx(styles["sign-in"], authStyles.auth)}>
       <PaneComponent
-        className={styles.pane}
-        contentClassName={styles.container}
+        className={authStyles.pane}
+        contentClassName={authStyles.container}
         title="Welcome"
       >
-        <div className={styles.logo}>Game Name</div>
+        <div className={authStyles.logo}>Game Name</div>
         <form onSubmit={formSubmitHandler}>
-          <div className={styles.fields}>
+          <div className={authStyles.fields}>
             <label>
               Your Name
               <TextInputComponent
-                className={styles.input}
+                className={authStyles.input}
                 name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -62,7 +66,7 @@ export default function SignInPage(): ReactNode {
             <label>
               Password
               <TextInputComponent
-                className={styles.input}
+                className={authStyles.input}
                 type="password"
                 name="password"
                 value={password}
@@ -71,7 +75,7 @@ export default function SignInPage(): ReactNode {
             </label>
           </div>
           <CheckboxComponent
-            className={styles.checkbox}
+            className={authStyles.checkbox}
             label="Remember Me"
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
@@ -79,7 +83,7 @@ export default function SignInPage(): ReactNode {
           <LinkButtonComponent to="/sign-up" color="light" size="small">
             Sign Up
           </LinkButtonComponent>
-          <ButtonComponent>Login</ButtonComponent>
+          <ButtonComponent>Sign In</ButtonComponent>
         </form>
       </PaneComponent>
     </div>
