@@ -8,12 +8,13 @@
 .info-board {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  width: 75rem;
+  width: 106.5rem;
 
   margin-bottom: 2.5rem;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 
   border-bottom: 1px solid hsl(224deg 100% 70% / 100%);
 }
@@ -32,7 +33,7 @@
   border-radius: 50%;
 }
 
-.username-wrapper {
+.player-name-wrapper {
   background-color: hsl(222deg 70% 40% / 30%);
 
   display: flex;
@@ -43,18 +44,18 @@
   height: 3.5rem;
 
   border: 1px solid var(--color-on-surface);
-  border-radius: 1rem;
 }
 
-.username {
-  color: hsl(0deg 0% 87.45%);
+.player-name {
+  color: var(--color-on-surface);
 
+  font-family: Orbitron, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
 .middle-section {
-  background-color: hsl(222deg 70% 40% / 30%);
+  background-color: hsl(222deg 100% 60% / 30%);
 
   display: flex;
   align-items: center;
@@ -63,17 +64,15 @@
   width: 8rem;
   height: 10rem;
 
-  border: 3px solid hsl(0deg 0% 21% / 100%);
+  border: 3px solid hsl(0deg 0% 45%);
 }
 
 .score {
   color: var(--color-on-surface);
 
-  padding: 1rem;
+  padding: 1rem 0.5rem;
 
-  font-family:
-    "Digital Number",
-    sans-serif;
+  font-family: "Digital Numbers", sans-serif;
   font-size: 4rem;
   font-weight: 400;
 }
@@ -101,14 +100,12 @@
 .rank {
   color: var(--color-on-surface);
 
-  font-family:
-    "Digital Number",
-    sans-serif;
+  font-family: "Digital Numbers", sans-serif;
   font-size: 2rem;
   font-weight: 400;
 }
 
-.play-btn {
+.btn {
   background-color: hsl(0deg 0% 85% / 20%);
 
   width: 4.5rem;
@@ -120,18 +117,6 @@
   cursor: pointer;
 }
 
-.play-btn img {
+.btn img {
   width: 2.5rem;
-}
-
-.pause-btn {
-  display: flex;
-  justify-content: space-around;
-
-  width: 2rem;
-  height: 2.5rem;
-}
-
-.pause-btn img {
-  width: 0.75rem;
 }

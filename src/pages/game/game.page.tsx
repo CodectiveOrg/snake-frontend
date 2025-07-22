@@ -55,8 +55,8 @@ export default function GamePage(): ReactNode {
         <div className={styles["info-board"]}>
           <div className={styles["left-section"]}>
             <img className={styles.img} src="" alt="Profile" />
-            <div className={styles["username-wrapper"]}>
-              <p className={styles.username}>Player Name</p>
+            <div className={styles["player-name-wrapper"]}>
+              <p className={styles["player-name"]}>Player Name</p>
             </div>
           </div>
 
@@ -71,7 +71,7 @@ export default function GamePage(): ReactNode {
 
             <button
               onClick={playPauseButtonClickHandler}
-              className={styles["play-btn"]}
+              className={styles.btn}
             >
               {isPlaying ? (
                 <img src="./images/play.svg" alt="Play" />
