@@ -3,10 +3,15 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 import ButtonComponent from "@/components/button/button.component";
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import ModalComponent from "@/components/modal/modal.component";
+import UserBadgeComponent from "@/components/user-badge/user-badge.component";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
+
+import HighScoreComponent from "./components/high-score/high-score.component";
+import ScoreComponent from "./components/score/score.component";
+import SeparatorComponent from "./components/separator/separator.component";
 
 import styles from "./game.module.css";
 
@@ -51,27 +56,19 @@ export default function GamePage(): ReactNode {
           Close
         </ButtonComponent>
       </ModalComponent>
+
       <div className={styles.game}>
         <div className={styles["info-board"]}>
-          <div className={styles["left-section"]}>
-            <img className={styles.img} src="" alt="Profile" />
-            <div className={styles["player-name-wrapper"]}>
-              <p className={styles["player-name"]}>Player Name</p>
-            </div>
-          </div>
-
-          <div className={styles["middle-section"]}>
-            <p className={styles.score}>12</p>
-          </div>
-
-          <div className={styles["right-section"]}>
-            <div className={styles["rank-section"]}>
-              <p className={styles.rank}>232</p>
-            </div>
-
+          <UserBadgeComponent
+            username="Player Name"
+            picture="/images/user-picture-placeholder.webp"
+          />
+          <ScoreComponent score={12}></ScoreComponent>
+          <div className={styles.wrapper}>
+            <HighScoreComponent highScore={232}></HighScoreComponent>
             <button
               onClick={playPauseButtonClickHandler}
-              className={styles.btn}
+              className={styles.button}
             >
               {isPlaying ? (
                 <img src="./images/play.svg" alt="Play" />
@@ -81,6 +78,7 @@ export default function GamePage(): ReactNode {
             </button>
           </div>
         </div>
+        <SeparatorComponent dentWidth={1}></SeparatorComponent>
         <CanvasComponent ref={canvasRef} />
         <div className="info">
           Name: {username}
