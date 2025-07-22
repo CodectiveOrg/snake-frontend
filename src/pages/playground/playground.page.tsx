@@ -7,6 +7,7 @@ import UserBadgeComponent from "@/components/user-badge/user-badge.component.tsx
 
 import HighScoreComponent from "@/pages/game/components/high-score/high-score.component.tsx";
 import ScoreComponent from "@/pages/game/components/score/score.component.tsx";
+import SeparatorComponent from "@/pages/game/components/separator/separator.component.tsx";
 
 import styles from "./playground.module.css";
 
@@ -20,6 +21,7 @@ export default function PlaygroundPage(): ReactNode {
       />
       <ScoreComponent score={12} />
       <HighScoreComponent highScore={232} />
+      <SeparatorComponent dentWidth={100} />
       <main
         style={{
           display: "grid",
