@@ -10,7 +10,7 @@
     max-inline-size: 37.5rem;
 
     .logo {
-      color: var(--color-on-disabled);
+      color: var(--color-text-disabled);
 
       margin-block: 0.25rem 2.25rem;
 
@@ -33,11 +33,7 @@
       .fields {
         grid-area: fields;
 
-        background-color: color-mix(
-          in hsl,
-          var(--color-primary) 20%,
-          transparent
-        );
+        background-color: var(--color-surface-400);
 
         display: flex;
         flex-direction: column;
@@ -47,9 +43,7 @@
 
         padding: 1.25rem 2.25rem;
 
-        border: 3px solid
-          color-mix(in hsl, var(--color-primary) 30%, transparent);
-        border-radius: 3px;
+        border: 3px solid var(--color-primary);
 
         label {
           display: flex;

@@ -13,11 +13,7 @@
 
   .head {
     .row {
-      background-color: color-mix(
-        in hsl,
-        var(--color-primary) 50%,
-        transparent
-      );
+      background-color: var(--color-surface-300);
 
       font-weight: 700;
     }
@@ -32,11 +28,7 @@
     max-block-size: 20rem;
 
     .row {
-      background-color: color-mix(
-        in hsl,
-        var(--color-on-surface) 4%,
-        transparent
-      );
+      background-color: var(--color-surface-100);
 
       font-weight: 500;
     }
