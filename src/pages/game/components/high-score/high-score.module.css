@@ -1,22 +1,30 @@
 .high-score {
-  position: relative;
-  isolation: isolate;
-
   display: grid;
-  place-content: center;
+  place-items: center;
 
-  block-size: 9rem;
-  aspect-ratio: 1;
+  inline-size: fit-content;
 
   font-family: "Digital Numbers", sans-serif;
-  font-size: 4rem;
+
+  .frame,
+  .value {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+  }
 
   .frame {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
+    block-size: 3.5rem;
+    min-inline-size: 100%;
+    inline-size: 0;
+  }
 
-    block-size: 100%;
-    inline-size: 100%;
+  .value {
+    overflow: hidden;
+
+    max-inline-size: 5ch;
+
+    font-size: 2rem;
+
+    text-overflow: ellipsis;
   }
 }

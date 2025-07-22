@@ -4,23 +4,32 @@ import clsx from "clsx";
 
 import styles from "./high-score-frame.module.css";
 
-type Props = SVGProps<SVGSVGElement>;
+type Props = SVGProps<SVGSVGElement> & {
+  highScoreWidth: number;
+};
 
 export default function HighScoreFrameComponent({
+  highScoreWidth,
   className,
   ...otherProps
 }: Props): ReactNode {
+  const extraWidth = highScoreWidth - 30;
+
   return (
     <svg
       className={clsx(styles["high-score-frame"], className)}
-      viewBox="0 0 272 59"
+      style={{
+        width: `${120 + extraWidth}px`,
+        height: "59px",
+      }}
+      viewBox={`0 0 ${120 + extraWidth} 59`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}
     >
       <path
         className={styles.pane}
-        d="M253.027 0.5L230.649 58.5H18.9736L41.3516 0.5H253.027Z"
+        d={`M${101.027 + extraWidth} 0.5L${78.649 + extraWidth} 58.5H18.9736L41.3516 0.5H${101.027 + extraWidth}Z`}
       />
       <path
         className={styles.perimeter}
@@ -32,11 +41,11 @@ export default function HighScoreFrameComponent({
       />
       <path
         className={styles.perimeter}
-        d="M265.459 0H272L249.516 59H242.976L265.459 0Z"
+        d={`M${113.459 + extraWidth} 0H${120 + extraWidth}L${97.516 + extraWidth} 59H${90.976 + extraWidth}L${113.459 + extraWidth} 0Z`}
       />
       <path
         className={styles.perimeter}
-        d="M256.337 0H262.878L240.394 59H233.854L256.337 0Z"
+        d={`M${104.337 + extraWidth} 0H${110.878 + extraWidth}L${88.394 + extraWidth} 59H${81.854 + extraWidth}L${104.337 + extraWidth} 0Z`}
       />
     </svg>
   );
