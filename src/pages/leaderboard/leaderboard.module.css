@@ -1,9 +1,31 @@
 .leaderboard {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-
   inline-size: 98rem;
 
   margin-inline: auto;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    inline-size: 98rem;
+
+    .user-image {
+      display: flex;
+      justify-content: center;
+
+      img {
+        block-size: 10rem;
+        inline-size: 10rem;
+
+        border-radius: 50%;
+      }
+    }
+
+    button {
+      inline-size: 11rem;
+
+      margin-inline: auto;
+    }
+  }
 }
