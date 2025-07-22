@@ -1,15 +1,18 @@
 :root {
   --color-primary: hsl(222deg 100% 59%);
 
+  --color-surface-50: hsl(0deg 0% 100% / 10%);
   --color-surface-100: hsl(0deg 0% 100% / 4%);
   --color-surface-200: hsl(0deg 0% 85% / 20%);
   --color-surface-300: hsl(222deg 100% 59% / 40%);
   --color-surface-400: hsl(222deg 100% 59% / 20%);
-  --color-surface-50: hsl(0deg 0% 100% / 10%);
   --color-surface-700: hsl(222deg 97% 26%);
 
-  --color-overlay: hsl(0deg 0% 0% / 80%);
+  --color-overlay-50: hsl(0deg 0% 100% / 30%);
+  --color-overlay-300: hsl(0deg 0% 0% / 30%);
+  --color-overlay-400: hsl(0deg 0% 0% / 80%);
 
   --color-text-400: hsl(0deg 0% 100%);
+  --color-text-900: hsl(0deg 0% 0%);
   --color-text-disabled: hsl(0deg 0% 44%);
 }

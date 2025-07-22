@@ -4,7 +4,7 @@
   position: relative;
 
   .content {
-    background-color: var(--color-overlay);
+    background-color: var(--color-overlay-400);
 
     padding-inline: 1.5rem;
 

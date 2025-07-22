@@ -15,7 +15,7 @@
   }
 
   canvas {
-    background-color: var(--color-overlay);
+    background-color: var(--color-overlay-400);
 
     block-size: 100%;
     inline-size: 100%;
