@@ -60,7 +60,8 @@
     font-size: 1.5rem;
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     background-color: hsl(222deg 100% 59% / 40%);
     color: var(--color-on-surface);
 

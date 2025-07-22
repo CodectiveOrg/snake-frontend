@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component.tsx";
@@ -6,7 +6,25 @@ import PaneComponent from "@/components/pane/pane.component.tsx";
 import styles from "./home.module.css";
 
 const user = "DEAR USER";
+
+type Item = {
+  to: string;
+  title: string;
+};
+
+const items: Item[] = [
+  { to: "/game", title: "Start" },
+  { to: "/profile", title: "Profile" },
+  { to: "/board", title: "Board" },
+  { to: "/settings", title: "Settings" },
+  { to: "/exit", title: "Exit" },
+];
+
 export default function HomePage(): ReactNode {
+  const [activeButtonIndex, setActiveButtonIndex] = useState<number | null>(
+    null,
+  );
+
   return (
     <div className={styles.home}>
       <PaneComponent title="Menu" className={styles.pane}>
@@ -14,12 +32,20 @@ export default function HomePage(): ReactNode {
           <span className={styles.prefix}>Hello, </span>
           {user}!
         </div>
-        <div className={styles.menu}>
-          <LinkButtonComponent to="/game">Start</LinkButtonComponent>
-          <LinkButtonComponent to="/profile">Profile</LinkButtonComponent>
-          <LinkButtonComponent to="/board">Board</LinkButtonComponent>
-          <LinkButtonComponent to="/settings">Settings</LinkButtonComponent>
-          <LinkButtonComponent to="/exit">Exit</LinkButtonComponent>
+        <div
+          className={styles.menu}
+          onMouseLeave={() => setActiveButtonIndex(null)}
+        >
+          {items.map((item, index) => (
+            <LinkButtonComponent
+              key={item.title}
+              to={item.to}
+              active={activeButtonIndex === null || index === activeButtonIndex}
+              onMouseEnter={() => setActiveButtonIndex(index)}
+            >
+              {item.title}
+            </LinkButtonComponent>
+          ))}
         </div>
       </PaneComponent>
     </div>
