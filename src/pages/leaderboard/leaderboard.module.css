@@ -14,15 +14,63 @@
 
     inline-size: 98rem;
 
-    .user-image {
+    padding: 3rem 6rem 2rem;
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+
       display: flex;
       justify-content: center;
 
-      img {
-        block-size: 10rem;
-        inline-size: 10rem;
+      block-size: 12rem;
+      inline-size: 12rem;
+
+      margin-inline: auto;
+
+      border-radius: 50%;
+
+      .image-box {
+        overflow: hidden;
+
+        block-size: 100%;
+        inline-size: 100%;
+
+        border: 1.25rem solid var(--color-on-image-border);
+        border-radius: inherit;
+
+        img {
+          block-size: 100%;
+          inline-size: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .image-overlay {
+        background-color: var(--color-canvas-background);
+
+        position: absolute;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        block-size: 100%;
+        inline-size: 100%;
 
         border-radius: 50%;
+
+        transform: scale(0);
+
+        font-size: 1.5rem;
+
+        transition: transform 0.1s;
+      }
+
+      &:hover .image-overlay {
+        transform: scale(1);
       }
     }
 

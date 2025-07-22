@@ -45,6 +45,7 @@ export default function LeaderboardPage(): ReactNode {
       title="Board"
       contentClassName={styles.content}
       className={styles.leaderboard}
+      shade={true}
     >
       {isPending ? (
         pendingMessage()
@@ -52,8 +53,14 @@ export default function LeaderboardPage(): ReactNode {
         errorMessage()
       ) : (
         <React.Fragment>
-          <div className={styles["user-image"]}>
-            <img src="/images/user-picture-placeholder.webp" />
+          <div className={styles["image-container"]}>
+            <div className={styles["image-box"]}>
+              <img src="/images/user-picture-placeholder.webp" />
+            </div>
+            <div className={styles["image-overlay"]}>
+              <span>Mohammad</span>
+              <span>754</span>
+            </div>
           </div>
           <TableComponent items={data} />
           <ButtonComponent onClick={backHandler}>Back</ButtonComponent>
