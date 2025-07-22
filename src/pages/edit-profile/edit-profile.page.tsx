@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode } from "react";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
@@ -10,9 +10,9 @@ import type { User } from "@/entities/user.ts";
 
 import styles from "./edit-profile.module.css";
 
-export default function EditProfilePage(): ReactNode {
-  const [user, setUser] = useState<User>(generateUser);
+const user = generateUser();
 
+export default function EditProfilePage(): ReactNode {
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -39,26 +39,19 @@ export default function EditProfilePage(): ReactNode {
                 type="text"
                 id="username"
                 name="username"
-                value={user.username}
-                onChange={(e): void =>
-                  setUser((old): User => ({ ...old, username: e.target.value }))
-                }
+                defaultValue={user.username}
               />
             </div>
-
             <div className={styles.password}>
               <label htmlFor="password">password</label>
               <TextInputComponent
                 type="password"
                 id="password"
                 name="password"
-                value={user.password}
-                onChange={(e): void =>
-                  setUser((old): User => ({ ...old, password: e.target.value }))
-                }
+                defaultValue={user.password}
+                autoComplete="new-password"
               />
             </div>
-
             <div className={styles.email}>
               <label htmlFor="email">email</label>
               <TextInputComponent
@@ -66,45 +59,26 @@ export default function EditProfilePage(): ReactNode {
                 type="email"
                 id="email"
                 name="email"
-                value={user.email}
-                onChange={(e): void =>
-                  setUser((old): User => ({ ...old, email: e.target.value }))
-                }
+                defaultValue={user.email}
               />
             </div>
-
             <div className={styles.gender}>
               <label>gender</label>
               <RadioComponent
                 key="male"
                 label="male"
                 name="gender"
-                defaultChecked={true}
                 value="male"
-                onChange={(e): void => {
-                  const gender = e.target.value;
-
-                  if (gender === "male" || gender === "female") {
-                    setUser((old): User => ({ ...old, gender: gender }));
-                  }
-                }}
+                defaultChecked={user.gender === "male"}
               />
               <RadioComponent
                 key="female"
                 label="female"
                 name="gender"
                 value="female"
-                onChange={(e): void => {
-                  const gender = e.target.value;
-
-                  if (gender === "male" || gender === "female") {
-                    setUser((old): User => ({ ...old, gender: gender }));
-                  }
-                }}
-                checked={user.gender === "female"}
+                defaultChecked={user.gender === "female"}
               />
             </div>
-
             <div className={styles["action-buttons"]}>
               <ButtonComponent color="secondary">CANCEL</ButtonComponent>
               <ButtonComponent>CONFIRM</ButtonComponent>
