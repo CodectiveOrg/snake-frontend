@@ -1,0 +1,20 @@
+.user {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100dvh;
+
+  .wrapper {
+    align-self: center;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .img {
+    width: 23.5rem;
+    height: 23.5rem;
+
+    border-radius: 50%;
+  }
+}

@@ -10,6 +10,7 @@ import IntroPage from "@/pages/intro/intro.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import QueryPage from "@/pages/query/query.page.tsx";
+import UserPage from "@/pages/user/user.page";
 
 export default function RouterComponent(): ReactNode {
   return (
@@ -26,6 +27,7 @@ export default function RouterComponent(): ReactNode {
         <Route path="/query" element={<QueryPage />} />
         <Route path="/modal" element={<ModalPage />} />
         <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="/user" element={<UserPage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
