@@ -10,7 +10,7 @@
     max-inline-size: 37.5rem;
 
     .logo {
-      color: var(--color-on-disabled);
+      color: var(--color-text-disabled);
 
       margin-block: 0.25rem 2.25rem;
 

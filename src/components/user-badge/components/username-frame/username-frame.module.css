@@ -9,6 +9,6 @@
   }
 
   .line {
-    stroke: var(--color-on-surface);
+    stroke: var(--color-text-400);
   }
 }

@@ -34,7 +34,7 @@
     .row {
       background-color: color-mix(
         in hsl,
-        var(--color-on-surface) 4%,
+        var(--color-text-400) 4%,
         transparent
       );
 

@@ -37,7 +37,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: var(--color-on-surface);
+  color: var(--color-text-400);
 
   position: relative;
   isolation: isolate;

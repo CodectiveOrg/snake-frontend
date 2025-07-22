@@ -25,7 +25,7 @@
       }
 
       &.active {
-        background-color: var(--color-on-surface);
+        background-color: var(--color-text-400);
       }
 
       &.hover ~ .active {
