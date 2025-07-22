@@ -1,0 +1,22 @@
+.score {
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  place-content: center;
+
+  block-size: 9rem;
+  aspect-ratio: 1;
+
+  font-family: "Digital Numbers", sans-serif;
+  font-size: 4rem;
+
+  .frame {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    block-size: 100%;
+    inline-size: 100%;
+  }
+}
