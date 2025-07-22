@@ -50,13 +50,13 @@
 
   &:not(:has(.shade)) {
     .content {
-      padding: 2rem;
+      padding-block: 2rem;
     }
   }
 
   &:has(.shade) {
     .content {
-      padding: 4rem;
+      padding-block: 4rem;
     }
   }
 }
