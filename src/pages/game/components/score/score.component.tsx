@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import ScoreFrameComponent from "@/pages/game/components/score/components/score-frame/score-frame.component.tsx";
+import ScoreFrameComponent from "./components/score-frame/score-frame.component.tsx";
 
 import styles from "./score.module.css";
 
