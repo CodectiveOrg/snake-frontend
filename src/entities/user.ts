@@ -4,5 +4,5 @@ export class User {
   public email!: string;
   public password!: string;
   public gender!: "male" | "female";
-  public picture!: Buffer | null;
+  public picture!: string | null;
 }

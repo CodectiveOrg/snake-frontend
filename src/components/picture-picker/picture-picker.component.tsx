@@ -1,24 +1,26 @@
-import { type Dispatch, type ReactNode, type SetStateAction } from "react";
+import { type ReactNode } from "react";
 
 import clsx from "clsx";
 
 import MingcuteAddFill from "@/icons/MingcuteAddFill.tsx";
 
-import type { User } from "@/entities/user.ts";
-
-import styles from "./profile-picker.module.css";
+import styles from "./picture-picker.module.css";
 
 type Props = {
-  user: User;
-  setUser?: Dispatch<SetStateAction<User>>;
+  picture: string | null;
+  className?: string;
 };
 
-export default function ProfilePickerComponent({ user }: Props): ReactNode {
+export default function PicturePickerComponent({
+  picture,
+  className,
+}: Props): ReactNode {
   return (
     <div
       className={clsx(
         styles["profile-picture"],
-        !user.picture && styles.active,
+        !picture && styles.active,
+        className,
       )}
     >
       <label htmlFor="profile">
