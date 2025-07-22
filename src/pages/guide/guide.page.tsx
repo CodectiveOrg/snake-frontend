@@ -61,7 +61,9 @@ export default function GuidePage(): ReactNode {
             </div>
           </div>
         ))}
-        <ButtonComponent>Confirm</ButtonComponent>
+        <ButtonComponent asType="link" to="/game">
+          Confirm
+        </ButtonComponent>
       </PaneComponent>
     </div>
   );
