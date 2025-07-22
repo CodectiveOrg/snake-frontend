@@ -1,9 +1,11 @@
-import type { LeaderboardItemDto } from "@/dto/leaderboard-item.dto.ts";
+import type { GetLeaderboardResponseDto } from "@/dto/response/get-leaderboard.response.dto.ts";
 
 import { richFetch } from "@/utils/fetch.utils.ts";
 
-export async function getLeaderboardApi(): Promise<LeaderboardItemDto[]> {
-  const data = await richFetch<LeaderboardItemDto[]>("/leaderboard");
+export async function getLeaderboardApi(): Promise<
+  GetLeaderboardResponseDto[]
+> {
+  const data = await richFetch<GetLeaderboardResponseDto[]>("/leaderboard");
 
   if ("error" in data) {
     throw new Error(data.error);
