@@ -17,17 +17,19 @@ export default function RouterComponent(): ReactNode {
     <BrowserRouter>
       <Routes>
         <Route element={<GuestOnlyGuard />}>
-          <Route path="/sign-in" element={<h1>Sign In</h1>} />
-          <Route path="/sign-up" element={<h1>Sign Up</h1>} />
+          <Route path="sign-in" element={<h1>Sign In</h1>} />
+          <Route path="sign-up" element={<h1>Sign Up</h1>} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/game" element={<GamePage />} />
-          <Route path="/guide" element={<GuidePage />} />
+          <Route path="" element={<IntroPage />} />
+          <Route path="game" element={<GamePage />} />
         </Route>
-        <Route path="/query" element={<QueryPage />} />
-        <Route path="/modal" element={<ModalPage />} />
-        <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="playground">
+          <Route index element={<PlaygroundPage />} />
+          <Route path="query" element={<QueryPage />} />
+          <Route path="modal" element={<ModalPage />} />
+        </Route>
+        <Route path="guide" element={<GuidePage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
