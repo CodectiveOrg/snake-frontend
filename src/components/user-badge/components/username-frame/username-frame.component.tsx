@@ -13,19 +13,23 @@ export default function UsernameFrameComponent({
   className,
   ...otherProps
 }: Props): ReactNode {
+  const extraWidth = usernameWidth - 160;
+
   return (
     <svg
       className={clsx(styles["username-frame"], className)}
-      width={269 + usernameWidth}
-      height="57"
-      viewBox={`0 0 ${269 + usernameWidth} 57`}
+      style={{
+        width: `${269 + extraWidth}px`,
+        height: "57px",
+      }}
+      viewBox={`0 0 ${269 + extraWidth} 57`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}
     >
       <path
         className={styles.pane}
-        d="M9.1775 6.49366C7.08845 3.87356 8.95409 0 12.3051 0H232.593C233.777 0 234.9 0.524587 235.66 1.43254L266.711 38.5291C268.016 40.0872 267.944 42.3756 266.546 43.8497L256.201 54.7532C255.445 55.5492 254.396 56 253.299 56H79.7805C78.8769 56 77.9999 55.694 77.2924 55.1319L51.0349 34.2716C50.3273 33.7095 49.4503 33.4035 48.5467 33.4035H32.5597C31.3423 33.4035 30.1911 32.8491 29.4321 31.8972L9.1775 6.49366Z"
+        d={`M9.1775 6.49366C7.08845 3.87356 8.95409 0 12.3051 0H${232.593 + extraWidth}C${233.777 + extraWidth} 0 ${234.9 + extraWidth} 0.524587 ${235.66 + extraWidth} 1.43254L${266.711 + extraWidth} 38.5291C${268.016 + extraWidth} 40.0872 ${267.944 + extraWidth} 42.3756 ${266.546 + extraWidth} 43.8497L${256.201 + extraWidth} 54.7532C${255.445 + extraWidth} 55.5492 ${254.396 + extraWidth} 56 ${253.299 + extraWidth} 56H79.7805C78.8769 56 77.9999 55.694 77.2924 55.1319L51.0349 34.2716C50.3273 33.7095 49.4503 33.4035 48.5467 33.4035H32.5597C31.3423 33.4035 30.1911 32.8491 29.4321 31.8972L9.1775 6.49366Z`}
       />
       <path
         className={styles.edge}
@@ -38,11 +42,11 @@ export default function UsernameFrameComponent({
       />
       <path
         className={styles.line}
-        d={`M65.9997 43.7607L152.499 43.7596L179.5 55.4993L${218.001 + usernameWidth} 55.4993`}
+        d={`M65.9997 43.7607L152.499 43.7596L179.5 55.4993L${218.001 + extraWidth} 55.4993`}
       />
       <path
         className={styles.edge}
-        d="M223.503 49.5512H244.05L254.324 41.2617H269.001L255.792 55.9986H211.762L223.503 49.5512Z"
+        d={`M223.503 49.5512H${244.05 + extraWidth}L${254.324 + extraWidth} 41.2617H${269.001 + extraWidth}L${255.792 + extraWidth} 55.9986H211.762L223.503 49.5512Z`}
       />
       <path className={styles.edge} d="M157 48H142L157 56H176L157 48Z" />
     </svg>
