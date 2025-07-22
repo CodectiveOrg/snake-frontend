@@ -5,6 +5,8 @@ import PaneComponent from "@/components/pane/pane.component.tsx";
 import TextInputComponent from "@/components/text-input/text-input.component.tsx";
 import UserBadgeComponent from "@/components/user-badge/user-badge.component.tsx";
 
+import ScoreComponent from "@/pages/game/components/score/score.component.tsx";
+
 import styles from "./playground.module.css";
 
 export default function PlaygroundPage(): ReactNode {
@@ -15,6 +17,7 @@ export default function PlaygroundPage(): ReactNode {
         username="BijanProgrammer"
         picture="/images/user-picture-placeholder.webp"
       />
+      <ScoreComponent score={12} />
       <main
         style={{
           display: "grid",
