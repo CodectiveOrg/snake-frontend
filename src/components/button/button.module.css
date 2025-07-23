@@ -1,6 +1,6 @@
 .button {
   background-color: transparent;
-  color: var(--color-on-surface);
+  color: var(--color-text-400);
 
   position: relative;
   overflow: auto;

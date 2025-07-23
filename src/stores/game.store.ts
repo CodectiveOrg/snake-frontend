@@ -8,6 +8,8 @@ type GameStore = {
   music: number;
   sfx: number;
   incrementScore: () => void;
+  reset: () => void;
+  run: () => void;
   pause: () => void;
   gameOver: () => void;
 };
@@ -19,6 +21,12 @@ export const useGameStore = create<GameStore>((set) => ({
   sfx: 1,
   incrementScore: () => {
     set((state) => ({ score: state.score + 1 }));
+  },
+  reset: () => {
+    set(() => ({ score: 0 }));
+  },
+  run: () => {
+    set(() => ({ gameState: "running" }));
   },
   pause: () => {
     set(() => ({ gameState: "paused" }));

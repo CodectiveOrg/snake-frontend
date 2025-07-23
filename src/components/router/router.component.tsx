@@ -10,8 +10,7 @@ import GuidePage from "@/pages/guide/guide.page.tsx";
 import IntroPage from "@/pages/intro/intro.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
-import QueryPage from "@/pages/query/query.page.tsx";
-import Settings from "@/pages/settings/settings.page";
+import SettingsPage from "@/pages/settings/settings.page";
 import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
 import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
 
@@ -29,12 +28,11 @@ export default function RouterComponent(): ReactNode {
         </Route>
 
         <Route path="settings" element={<LoggedInOnlyGuard />}>
-          <Route index element={<Settings />} />
+          <Route index element={<SettingsPage />} />
         </Route>
 
         <Route path="playground">
           <Route index element={<PlaygroundPage />} />
-          <Route path="query" element={<QueryPage />} />
           <Route path="modal" element={<ModalPage />} />
         </Route>
 

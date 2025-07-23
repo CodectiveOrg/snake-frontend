@@ -33,8 +33,8 @@
           text-align: center;
 
           .title {
-            background-color: hsl(0deg 0% 85% / 100%);
-            color: hsl(0deg 0% 0% / 100%);
+            background-color: var(--color-text-400);
+            color: var(--color-text-900);
 
             display: inline;
 
