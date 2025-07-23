@@ -1,5 +1,11 @@
 import { type ComponentProps, type ReactNode, useState } from "react";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { toast } from "sonner";
+
+import { signOutApi } from "@/api/auth/sign-out.api.ts";
+
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 
@@ -14,8 +20,22 @@ export default function HomePage(): ReactNode {
     null,
   );
 
-  const exitButtonClickHandler = (): void => {
-    console.log("Exit");
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationKey: ["sign-out"],
+    mutationFn: signOutApi,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({ queryKey: ["verify"] });
+      toast.success(result.message);
+    },
+  });
+
+  const exitButtonClickHandler = async (): Promise<void> => {
+    await mutation.mutateAsync();
   };
 
   const items: ComponentProps<typeof LinkButtonComponent>[] = [
