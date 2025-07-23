@@ -1,14 +1,18 @@
 :root {
-  --color-primary: hsl(222deg 100% 59%); /* #2E6DFF */
-  --color-background: var(--color-primary); /* #2E6DFF */
-  --color-border: var(--color-primary); /* #2E6DFF */
-  --color-on-surface: hsl(0deg 0% 100%); /* #FFFFFF */
-  --color-surface: hsl(222deg 100% 50%); /* #004CFF */
-  --color-on-disabled: hsl(0deg 0% 44%); /* #707070 */
-  --color-glass: hsl(0deg 0% 0% / 61%); /* #000000 61.18% */
-  --color-secondary: hsl(0deg 0% 21%) /* #363636 */;
-  --color-border-secondary: var(--color-secondary);
+  --color-primary: hsl(222deg 100% 59%);
 
-  --color-body-overlay: hsl(0deg 0% 0% / 60%);
-  --color-canvas-background: hsl(0deg 0% 0% / 80%);
+  --color-surface-50: hsl(0deg 0% 100% / 10%);
+  --color-surface-100: hsl(0deg 0% 100% / 4%);
+  --color-surface-200: hsl(0deg 0% 85% / 20%);
+  --color-surface-300: hsl(222deg 100% 59% / 40%);
+  --color-surface-400: hsl(222deg 100% 59% / 20%);
+  --color-surface-700: hsl(222deg 97% 26%);
+
+  --color-overlay-50: hsl(0deg 0% 100% / 30%);
+  --color-overlay-300: hsl(0deg 0% 0% / 30%);
+  --color-overlay-400: hsl(0deg 0% 0% / 80%);
+
+  --color-text-400: hsl(0deg 0% 100%);
+  --color-text-900: hsl(0deg 0% 0%);
+  --color-text-disabled: hsl(0deg 0% 44%);
 }
