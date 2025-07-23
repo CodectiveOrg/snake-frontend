@@ -13,6 +13,7 @@ import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
 import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
+import UserPage from "@/pages/user/user.page";
 
 export default function RouterComponent(): ReactNode {
   return (
@@ -26,6 +27,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
           <Route path="profile" element={<EditProfilePage />} />
+          <Route path="user" element={<UserPage />} />
         </Route>
         <Route path="playground">
           <Route index element={<PlaygroundPage />} />
