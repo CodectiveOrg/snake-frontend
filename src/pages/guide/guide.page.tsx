@@ -12,32 +12,44 @@ type Item = {
   title: string;
   orientation: "horizontal" | "vertical";
   alt: string;
+  displayOn: "only-phone" | "only-desktop" | "";
 };
 
 const items: Item[] = [
+  {
+    image: "/illustrations/pause.svg",
+    title: "Pause the\nGame",
+    orientation: "horizontal",
+    alt: "Pause Button",
+    displayOn: "only-phone",
+  },
   {
     image: "/illustrations/wasd.svg",
     title: "Navigation Keys",
     orientation: "vertical",
     alt: "W, A, S and D Buttons",
+    displayOn: "only-desktop",
   },
   {
     image: "/illustrations/escape-button.svg",
-    title: "Access Game Menu",
+    title: "Access Game\nMenu",
     orientation: "horizontal",
     alt: "Escape Button",
+    displayOn: "only-desktop",
   },
   {
     image: "/illustrations/gesture.svg",
-    title: "Move With Touch",
+    title: "Move With\nTouch",
     orientation: "horizontal",
     alt: "Gesture",
+    displayOn: "",
   },
   {
     image: "/illustrations/pause-button.svg",
-    title: "Pause the Game",
+    title: "Pause the\nGame",
     orientation: "vertical",
     alt: "Space, Enter and P Buttons",
+    displayOn: "only-desktop",
   },
 ];
 
@@ -53,7 +65,11 @@ export default function GuidePage(): ReactNode {
         {items.map((item) => (
           <div
             key={item.title}
-            className={clsx(styles.group, styles[item.orientation])}
+            className={clsx(
+              styles.group,
+              styles[item.displayOn],
+              styles[item.orientation],
+            )}
           >
             <img src={item.image} alt={item.alt} />
             <div className={styles.writings}>
