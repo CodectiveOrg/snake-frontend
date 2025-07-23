@@ -7,7 +7,7 @@ import LoggedInOnlyGuard from "@/guards/logged-in-only.guard.tsx";
 
 import GamePage from "@/pages/game/game.page.tsx";
 import GuidePage from "@/pages/guide/guide.page.tsx";
-import IntroPage from "@/pages/intro/intro.page.tsx";
+import HomePage from "@/pages/home/home.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import SettingsPage from "@/pages/settings/settings.page";
@@ -23,7 +23,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="/sign-up" element={<SignUpPage />} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
-          <Route path="" element={<IntroPage />} />
+          <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
