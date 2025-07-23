@@ -1,7 +1,28 @@
 import type { ReactNode } from "react";
 
-import { Toaster } from "sonner";
+import {
+  Slide,
+  ToastContainer,
+  type ToastContainerProps,
+} from "react-toastify";
 
-export default function ToasterComponent(): ReactNode {
-  return <Toaster />;
+type Props = ToastContainerProps;
+
+export default function ToasterComponent({ ...otherProps }: Props): ReactNode {
+  return (
+    <ToastContainer
+      position="bottom-right"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      transition={Slide}
+      {...otherProps}
+    />
+  );
 }

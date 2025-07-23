@@ -2,11 +2,11 @@ import { type FormEvent, type ReactNode, useState } from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { toast } from "sonner";
-
 import clsx from "clsx";
 
-import { signUpApi } from "@/api/public/sign-up.api.ts";
+import { toast } from "sonner";
+
+import { signUpApi } from "@/api/auth/sign-up.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
 import CheckboxComponent from "@/components/checkbox/checkbox.component";

@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
-import { Toaster } from "sonner";
-
 import RouterComponent from "@/components/router/router.component.tsx";
+import ToasterComponent from "@/components/toaster/toaster.component.tsx";
 
 import QueryProvider from "@/providers/query.provider.tsx";
 
@@ -12,7 +11,7 @@ function AppComponent(): ReactNode {
   return (
     <QueryProvider>
       <RouterComponent />
-      <Toaster />
+      <ToasterComponent />
     </QueryProvider>
   );
 }
