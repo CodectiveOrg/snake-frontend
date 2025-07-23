@@ -2,9 +2,9 @@ import { type FormEvent, type ReactNode, useState } from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import clsx from "clsx";
+import { toast } from "react-toastify";
 
-import { toast } from "sonner";
+import clsx from "clsx";
 
 import { signUpApi } from "@/api/auth/sign-up.api.ts";
 
