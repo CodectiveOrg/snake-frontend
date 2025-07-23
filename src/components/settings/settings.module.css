@@ -1,0 +1,33 @@
+.settings {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100vh;
+
+  .pane {
+    max-inline-size: 97rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .element {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+
+        label {
+          width: 100px;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+    }
+  }
+}
