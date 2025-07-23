@@ -2,7 +2,7 @@ import { type ComponentProps, type ReactNode, useState } from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 import { signOutApi } from "@/api/auth/sign-out.api.ts";
 
