@@ -50,6 +50,7 @@ export async function tryToFetch<TResult = void>(
     credentials: "include",
     ...init,
     headers: {
+      "Content-Type": "application/json",
       ...init.headers,
     },
   };
