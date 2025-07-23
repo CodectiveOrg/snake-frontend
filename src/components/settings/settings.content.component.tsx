@@ -3,6 +3,7 @@ import { type ReactNode, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { changeSettingsApi } from "@/api/public/change-settings.api";
 import { getuserSettingsApi } from "@/api/public/get-settings.api";
@@ -12,7 +13,6 @@ import PaneComponent from "@/components/pane/pane.component.tsx";
 import SliderComponent from "@/components/slider/slider.component";
 
 import styles from "./settings.module.css";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SettingsContent(): ReactNode {
   const {
