@@ -20,6 +20,15 @@
       min-block-size: 6rem;
 
       font-size: 3rem;
+
+      .username {
+        overflow: hidden;
+
+        max-inline-size: 10ch;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
 
     .actions {

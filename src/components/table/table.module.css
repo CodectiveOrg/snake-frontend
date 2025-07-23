@@ -8,6 +8,15 @@
 
     .cell {
       padding: 0.5rem;
+
+      &.username {
+        overflow: hidden;
+
+        max-inline-size: 10ch;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
   }
 

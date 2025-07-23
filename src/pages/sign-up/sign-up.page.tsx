@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import { toast } from "sonner";
 
-import { signUpApi } from "@/api/public/sign-up.api.ts";
+import { signUpApi } from "@/api/auth/sign-up.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
 import CheckboxComponent from "@/components/checkbox/checkbox.component";
