@@ -1,6 +1,10 @@
 .game-over-modal {
   inline-size: 98rem;
 
+  .message {
+    text-align: center;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -16,6 +20,15 @@
       min-block-size: 6rem;
 
       font-size: 3rem;
+
+      .username {
+        overflow: hidden;
+
+        max-inline-size: 10ch;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
 
     .actions {
@@ -29,8 +42,4 @@
       min-inline-size: 10rem;
     }
   }
-}
-
-.message {
-  text-align: center;
 }

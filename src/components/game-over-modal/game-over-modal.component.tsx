@@ -1,11 +1,8 @@
-import React, { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
-import { useQueries } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
-import { toast } from "react-toastify";
-
-import { getUserRankApi } from "@/api/history/get-user-rank.api";
-import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
+import { getLeaderboardApi } from "@/api/history/get-leaderboard.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
 import ModalComponent from "@/components/modal/modal.component.tsx";
@@ -29,32 +26,10 @@ export default function GameOverModalComponent({
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
-  const [userRankQuery, leaderboardQuery] = useQueries({
-    queries: [
-      {
-        queryKey: ["user-rank"],
-        queryFn: getUserRankApi,
-      },
-      {
-        queryKey: ["leaderboard"],
-        queryFn: getLeaderboardApi,
-      },
-    ],
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["leaderboard"],
+    queryFn: getLeaderboardApi,
   });
-
-  const {
-    data: userRankData,
-    isPending: userRankPending,
-    isError: userRankError,
-    error: userRankErrorMessage,
-  } = userRankQuery;
-
-  const {
-    data: leaderboardData,
-    isPending: leaderboardPending,
-    isError: leaderboardError,
-    error: leaderboardErrorMessage,
-  } = leaderboardQuery;
 
   useEffect(() => {
     if (gameState === "over") {
@@ -67,36 +42,6 @@ export default function GameOverModalComponent({
     onRestart();
   };
 
-  const pendingMessage = (): React.JSX.Element | undefined => {
-    return <p className={styles.message}>Loading...</p>;
-  };
-
-  const errorMessage = (): React.JSX.Element | undefined => {
-    if (userRankError) {
-      toast.error(userRankErrorMessage.message, {
-        containerId: "modal",
-        toastId: "user-rank",
-      });
-
-      return (
-        <p className={styles.message}>Error: {userRankErrorMessage.message}</p>
-      );
-    }
-
-    if (leaderboardError) {
-      toast.error(leaderboardErrorMessage.message, {
-        containerId: "modal",
-        toastId: "leaderboard",
-      });
-
-      return (
-        <p className={styles.message}>
-          Error: {leaderboardErrorMessage.message}
-        </p>
-      );
-    }
-  };
-
   return (
     <ModalComponent
       ref={modalRef}
@@ -104,19 +49,19 @@ export default function GameOverModalComponent({
       contentClassName={styles.content}
       title="Game Over"
     >
-      {leaderboardPending || userRankPending ? (
-        pendingMessage()
-      ) : userRankError || leaderboardError ? (
-        errorMessage()
+      {isPending ? (
+        <p className={styles.message}>Loading...</p>
+      ) : isError ? (
+        <p className={styles.message}>Error: {error.message}</p>
       ) : (
-        <React.Fragment>
+        <>
           <RibbonComponent contentClassName={styles.ribbon}>
-            <div>{userRankData.rank}</div>
-            <div>{userRankData.username}</div>
-            <div>{userRankData.todayHighScore}</div>
-            <div>{userRankData.totalHighScore}</div>
+            <div>{data[0].rank}</div>
+            <div className={styles.username}>{data[0].username}</div>
+            <div>{data[0].todayHighScore}</div>
+            <div>{data[0].totalHighScore}</div>
           </RibbonComponent>
-          <TableComponent items={leaderboardData} />
+          <TableComponent items={data.slice(1)} />
           <div className={styles.actions}>
             <ButtonComponent color="secondary" onClick={onExit}>
               Exit
@@ -125,7 +70,7 @@ export default function GameOverModalComponent({
               Restart
             </ButtonComponent>
           </div>
-        </React.Fragment>
+        </>
       )}
     </ModalComponent>
   );

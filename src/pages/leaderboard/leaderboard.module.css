@@ -47,7 +47,7 @@
       }
 
       .image-overlay {
-        background-color: var(--color-canvas-background);
+        background-color: var(--color-overlay-400);
 
         position: absolute;
 

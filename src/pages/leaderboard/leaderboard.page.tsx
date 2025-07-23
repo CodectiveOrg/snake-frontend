@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
 
-import { getLeaderboardApi } from "@/api/public/get-leaderboard.api.ts";
+import { getLeaderboardApi } from "@/api/history/get-leaderboard.api";
 
 import ButtonComponent from "@/components/button/button.component";
 import PaneComponent from "@/components/pane/pane.component";
