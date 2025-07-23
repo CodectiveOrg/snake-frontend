@@ -22,12 +22,12 @@ export default function RouterComponent(): ReactNode {
         <Route element={<GuestOnlyGuard />}>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="user/:username" element={<UserPage />} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
           <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
           <Route path="profile" element={<EditProfilePage />} />
-          <Route path="user" element={<UserPage />} />
         </Route>
         <Route path="playground">
           <Route index element={<PlaygroundPage />} />
