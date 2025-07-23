@@ -42,7 +42,10 @@ export default function LeaderboardPage(): ReactNode {
               {data.slice(1, 4).map((player, index) => (
                 <div
                   key={index}
-                  className={clsx(styles.player, styles[`player${index + 1}`])}
+                  className={clsx(
+                    styles.player,
+                    styles[`player-${["one", "two", "three"][index]}`],
+                  )}
                 >
                   <div className={styles["image-box"]}>
                     <img src="/images/user-picture-placeholder.webp" />

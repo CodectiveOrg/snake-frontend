@@ -87,7 +87,7 @@
           }
         }
 
-        .player1 {
+        .player-one {
           order: 1;
 
           block-size: 12rem;
@@ -98,7 +98,7 @@
           }
         }
 
-        .player2 {
+        .player-two {
           order: 2;
 
           .image-box {
@@ -106,14 +106,14 @@
           }
         }
 
-        .player3 {
+        .player-three {
           .image-box {
             border-color: var(--color-silver);
           }
         }
 
-        .player2,
-        .player3 {
+        .player-two,
+        .player-three {
           block-size: 10rem;
           inline-size: 10rem;
         }
