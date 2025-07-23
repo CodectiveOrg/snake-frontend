@@ -1,21 +1,26 @@
 .row {
-  color: hsl(0deg 0% 100% / 100%);
+  color: var(--color-text-400);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  block-size: 3rem;
+  inline-size: 29rem;
+
   margin-block-end: 1rem;
 
   font-family: Orbitron, sans-serif;
 
-  .key {
+  text-transform: uppercase;
+
+  .title {
     font-size: 1.5rem;
     font-weight: 400;
   }
 
   .value {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 }

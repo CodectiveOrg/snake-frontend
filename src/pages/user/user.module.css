@@ -1,27 +1,38 @@
 .user {
   display: grid;
-  place-content: center;
 
   min-block-size: 100dvh;
 
-  .wrapper {
-    display: flex;
-    justify-content: space-between;
+  .pane {
+    inline-size: min(80rem, 100%);
+
+    margin: auto;
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      padding-inline: 6rem;
+    }
   }
 
   .img {
-    block-size: 23.5rem;
-    inline-size: 23.5rem;
+    max-block-size: 23.5rem;
+    max-inline-size: 23.5rem;
 
+    border: 4px solid hsl(222deg 100% 60%);
     border-radius: 999rem;
   }
 
-  .row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .button {
+    display: block;
 
-    block-size: 3rem;
-    inline-size: 29rem;
+    margin-inline: auto;
+  }
+
+  .bold {
+    font-weight: 700;
   }
 }
