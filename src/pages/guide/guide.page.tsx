@@ -18,9 +18,9 @@ type Item = {
 const items: Item[] = [
   {
     image: "/illustrations/pause.svg",
-    title: "Pause the Game",
+    title: "Pause the\nGame",
     orientation: "horizontal",
-    alt: "Pause",
+    alt: "Pause Button",
     displayOn: "only-phone",
   },
   {
@@ -32,21 +32,21 @@ const items: Item[] = [
   },
   {
     image: "/illustrations/escape-button.svg",
-    title: "Access Game Menu",
+    title: "Access Game\nMenu",
     orientation: "horizontal",
     alt: "Escape Button",
     displayOn: "only-desktop",
   },
   {
     image: "/illustrations/gesture.svg",
-    title: "Move With Touch",
+    title: "Move With\nTouch",
     orientation: "horizontal",
     alt: "Gesture",
     displayOn: "",
   },
   {
     image: "/illustrations/pause-button.svg",
-    title: "Pause the Game",
+    title: "Pause the\nGame",
     orientation: "vertical",
     alt: "Space, Enter and P Buttons",
     displayOn: "only-desktop",

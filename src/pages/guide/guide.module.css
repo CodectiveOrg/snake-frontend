@@ -10,20 +10,24 @@
     .content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 8rem;
+      column-gap: clamp(2rem, -16rem + 24vw, 8rem);
       row-gap: 2rem;
+
+      padding-inline: 4rem;
 
       .group {
         justify-self: center;
 
         display: grid;
-        row-gap: 2rem;
+        row-gap: clamp(1rem, -2rem + 4vw, 2rem);
 
         max-block-size: 21rem;
 
         img {
           align-self: center;
           justify-self: center;
+
+          max-inline-size: clamp(16rem, -32rem + 64vw, 32rem);
         }
 
         .writings {
@@ -38,15 +42,21 @@
 
             display: inline;
 
-            font-size: 2rem;
+            font-size: clamp(1rem, -2rem + 4vw, 2rem);
             font-weight: 700;
 
             text-transform: uppercase;
+            white-space: pre-line;
           }
         }
 
         &.horizontal {
           grid-template-columns: auto 1fr;
+          gap: clamp(1rem, -2rem + 4vw, 2rem);
+
+          img {
+            max-inline-size: clamp(5rem, -16rem + 28vw, 12rem);
+          }
 
           .writings {
             max-inline-size: 20rem;
@@ -68,33 +78,13 @@
   }
 }
 
-@media only screen and (width <= 1295px) {
-  .guide {
-    .pane {
-      .content {
-        grid-template-columns: 1fr;
-      }
-    }
-  }
-}
-
-@media only screen and (width <= 767px) {
+@media (width <= 720px) {
   .guide {
     .pane {
       .content {
         grid-template-columns: 1fr;
 
         .group {
-          img {
-            inline-size: 10rem;
-          }
-
-          .writings {
-            .title {
-              font-size: 1rem;
-            }
-          }
-
           &.only-phone {
             display: grid;
           }
@@ -102,10 +92,6 @@
           &.only-desktop {
             display: none;
           }
-        }
-
-        a {
-          font-size: 1rem;
         }
       }
     }
