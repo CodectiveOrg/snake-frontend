@@ -7,7 +7,5 @@ export default function useVerifyQuery() {
     queryKey: ["verify"],
     queryFn: verifyTokenApi,
     retry: 0,
-    staleTime: 300_000,
-    refetchOnWindowFocus: false,
   });
 }

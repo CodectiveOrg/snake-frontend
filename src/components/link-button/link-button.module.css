@@ -30,14 +30,7 @@
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-property: background-color, color, border-color, scale;
 
-  &:hover {
-    background-color: var(--color-surface-300);
-    color: var(--color-text-400);
-
-    scale: 1.1;
-
-    transition-duration: 250ms;
-  }
+  cursor: pointer;
 
   &.default {
     background-color: var(--color-surface-200);
@@ -67,5 +60,15 @@
     padding-inline: 1rem;
 
     font-size: 1.5rem;
+  }
+
+  &:hover,
+  &.active {
+    background-color: var(--color-surface-300);
+    color: var(--color-text-400);
+
+    scale: 1.1;
+
+    transition-duration: 250ms;
   }
 }
