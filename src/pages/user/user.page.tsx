@@ -10,7 +10,11 @@ export default function UserPage(): ReactNode {
       <PaneComponent title="Player">
         <div className={styles.wrapper}>
           <div>
-            <img className={styles.img} src="" alt="Profile" />
+            <img
+              className={styles.img}
+              src="images/user-picture-placeholder.webp"
+              alt="Profile"
+            />
           </div>
           <div></div>
         </div>
