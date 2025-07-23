@@ -57,7 +57,7 @@ export default function PicturePickerComponent({
         <input
           type="file"
           name="picture"
-          accept="image/png, image/jpg"
+          accept="image/png, image/jpeg"
           onChange={inputChangeHandler}
         />
       </label>
