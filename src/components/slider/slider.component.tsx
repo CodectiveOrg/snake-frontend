@@ -8,27 +8,15 @@ import styles from "./slider.module.css";
 
 type Props = {
   className?: string;
-  value?: number;
-  onChange?: (value: number) => void;
 };
 
-export default function SliderComponent({
-  className,
-  value: controlledValue,
-  onChange,
-}: Props): ReactNode {
-  const [uncontrolledValue, setUncontrolledValue] = useState<number>(5);
-  const value =
-    controlledValue !== undefined ? controlledValue : uncontrolledValue;
+export default function SliderComponent({ className }: Props): ReactNode {
+  const [value, setValue] = useState<number>(5);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const clickHandler = (index: number | null): void => {
     if (index !== null) {
-      if (onChange) {
-        onChange(index);
-      } else {
-        setUncontrolledValue(index);
-      }
+      setValue(index);
     }
   };
 
