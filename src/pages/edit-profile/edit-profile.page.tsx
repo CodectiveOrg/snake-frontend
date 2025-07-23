@@ -1,9 +1,12 @@
 import { type FormEvent, type ReactNode } from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { toast } from "react-toastify";
 
 import clsx from "clsx";
 
+import { editProfileApi } from "@/api/profile/edit-profile.api.ts";
 import { getProfileApi } from "@/api/profile/get-profile.api.ts";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
@@ -11,6 +14,8 @@ import PaneComponent from "@/components/pane/pane.component.tsx";
 import PicturePickerComponent from "@/components/picture-picker/picture-picker.component.tsx";
 import RadioComponent from "@/components/radio/radio.component.tsx";
 import TextInputComponent from "@/components/text-input/text-input.component.tsx";
+
+import type { EditProfileRequestDto } from "@/dto/request/edit-profile.response.dto.ts";
 
 import styles from "./edit-profile.module.css";
 
@@ -25,20 +30,36 @@ export default function EditProfilePage(): ReactNode {
     queryFn: getProfileApi,
   });
 
-  const formSubmitHandler = (e: FormEvent<HTMLFormElement>): void => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationKey: ["edit-profile"],
+    mutationFn: editProfileApi,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({ queryKey: ["verify", "profile"] });
+      toast.success(result.message);
+    },
+  });
+
+  const formSubmitHandler = async (
+    e: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    const newUser = {
-      username: formData.get("username"),
-      password: formData.get("password"),
-      email: formData.get("email"),
-      gender: formData.get("gender"),
-      picture: formData.get("picture"),
+    const dto: EditProfileRequestDto = {
+      username: formData.get("username") as string,
+      password: formData.get("password") as string,
+      email: formData.get("email") as string,
+      gender: formData.get("gender") as "male" | "female",
+      picture: formData.get("picture") as string,
     };
 
-    console.log(newUser);
+    await mutation.mutateAsync(dto);
   };
 
   if (isPending) {
