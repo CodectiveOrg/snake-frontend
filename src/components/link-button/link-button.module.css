@@ -30,6 +30,8 @@
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-property: background-color, color, border-color, scale;
 
+  cursor: pointer;
+
   &.default {
     background-color: var(--color-surface-200);
     color: var(--color-text-disabled);
