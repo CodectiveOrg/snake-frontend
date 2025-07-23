@@ -1,6 +1,10 @@
 import { type FormEvent, type ReactNode } from "react";
 
+import { useQuery } from "@tanstack/react-query";
+
 import clsx from "clsx";
+
+import { getProfileApi } from "@/api/profile/get-profile.api.ts";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
@@ -8,13 +12,19 @@ import PicturePickerComponent from "@/components/picture-picker/picture-picker.c
 import RadioComponent from "@/components/radio/radio.component.tsx";
 import TextInputComponent from "@/components/text-input/text-input.component.tsx";
 
-import type { User } from "@/entities/user.ts";
-
 import styles from "./edit-profile.module.css";
 
-const user = generateUser();
-
 export default function EditProfilePage(): ReactNode {
+  const {
+    data: defaultData,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfileApi,
+  });
+
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
@@ -31,20 +41,28 @@ export default function EditProfilePage(): ReactNode {
     console.log(newUser);
   };
 
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className={styles["edit-profile"]}>
       <PaneComponent shade className={styles.pane} title="profile">
         <form onSubmit={formSubmitHandler}>
           <PicturePickerComponent
             className={styles["picture-picker"]}
-            picture={user.picture}
+            picture={defaultData.picture}
           />
           <div className={styles.fields}>
             <label>
               Username
               <TextInputComponent
                 name="username"
-                defaultValue={user.username}
+                defaultValue={defaultData.username}
               />
             </label>
             <label>
@@ -52,8 +70,8 @@ export default function EditProfilePage(): ReactNode {
               <TextInputComponent
                 type="password"
                 name="password"
-                defaultValue={user.password}
                 autoComplete="new-password"
+                placeholder="********"
               />
             </label>
             <label>
@@ -61,7 +79,7 @@ export default function EditProfilePage(): ReactNode {
               <TextInputComponent
                 type="email"
                 name="email"
-                defaultValue={user.email}
+                defaultValue={defaultData.email}
               />
             </label>
             <div className={clsx(styles.label, styles.gender)}>
@@ -71,13 +89,13 @@ export default function EditProfilePage(): ReactNode {
                 label="Male"
                 name="gender"
                 value="male"
-                defaultChecked={user.gender === "male"}
+                defaultChecked={defaultData.gender === "male"}
               />
               <RadioComponent
                 label="Female"
                 name="gender"
                 value="female"
-                defaultChecked={user.gender === "female"}
+                defaultChecked={defaultData.gender === "female"}
               />
             </div>
             <div className={styles.actions}>
@@ -89,15 +107,4 @@ export default function EditProfilePage(): ReactNode {
       </PaneComponent>
     </div>
   );
-}
-
-function generateUser(): User {
-  const id = 12345;
-  const username = "Alireza";
-  const password = "12345";
-  const email = "alireza@gmail.com";
-  const gender = "male";
-  const picture = null;
-
-  return { id, username, password, email, gender, picture };
 }
