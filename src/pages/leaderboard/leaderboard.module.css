@@ -20,70 +20,102 @@
 
       padding: 3rem 6rem 2rem;
 
-      .image-container {
-        position: relative;
-        overflow: hidden;
-
+      .top-players {
         display: flex;
+        align-items: flex-end;
         justify-content: center;
+        gap: 3.5rem;
 
-        block-size: 12rem;
-        inline-size: 12rem;
-
-        margin-inline: auto;
-
-        border-radius: 50%;
-
-        .image-box {
-          overflow: hidden;
-
-          block-size: 100%;
-          inline-size: 100%;
-
-          border: 1.25rem solid var(--color-on-image-border);
-          border-radius: inherit;
-
-          img {
-            block-size: 100%;
-            inline-size: 100%;
-            object-fit: cover;
-          }
-        }
-
-        .image-overlay {
-          background-color: var(--color-overlay-400);
-
-          position: absolute;
+        .player {
+          position: relative;
 
           display: flex;
-          flex-direction: column;
-          align-items: center;
           justify-content: center;
-          gap: 0.5rem;
-
-          block-size: 100%;
-          inline-size: 100%;
 
           border-radius: 50%;
 
-          transform: scale(0);
-
-          font-size: 1.5rem;
-
-          transition: transform 0.1s;
-
-          .username {
+          .image-box {
             overflow: hidden;
 
-            max-inline-size: 8ch;
+            block-size: 100%;
+            inline-size: 100%;
 
-            text-overflow: ellipsis;
-            text-wrap: nowrap;
+            border: 1.25rem solid;
+            border-radius: inherit;
+
+            img {
+              block-size: 100%;
+              inline-size: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .overlay {
+            background-color: var(--color-overlay-400);
+
+            position: absolute;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+
+            block-size: 100%;
+            inline-size: 100%;
+
+            border-radius: inherit;
+
+            transform: scale(0);
+
+            font-size: 1.25rem;
+
+            transition: transform 0.1s;
+
+            .username {
+              overflow: hidden;
+
+              max-inline-size: 8ch;
+
+              text-overflow: ellipsis;
+              text-wrap: nowrap;
+            }
+          }
+
+          &:hover .overlay {
+            transform: scale(1);
           }
         }
 
-        &:hover .image-overlay {
-          transform: scale(1);
+        .player1 {
+          order: 1;
+
+          block-size: 12rem;
+          inline-size: 12rem;
+
+          .image-box {
+            border-color: var(--color-golden);
+          }
+        }
+
+        .player2 {
+          order: 2;
+
+          .image-box {
+            border-color: var(--color-bronze);
+          }
+        }
+
+        .player3 {
+          .image-box {
+            border-color: var(--color-silver);
+          }
+        }
+
+        .player2,
+        .player3 {
+          block-size: 10rem;
+          inline-size: 10rem;
         }
       }
 

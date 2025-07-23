@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 
 import { useQuery } from "@tanstack/react-query";
 
+import clsx from "clsx";
+
 import { getLeaderboardApi } from "@/api/history/get-leaderboard.api";
 
 import ButtonComponent from "@/components/button/button.component";
@@ -36,17 +38,24 @@ export default function LeaderboardPage(): ReactNode {
           <p className={styles.message}>Error: {error.message}</p>
         ) : (
           <>
-            <div className={styles["image-container"]}>
-              <div className={styles["image-box"]}>
-                <img src="/images/user-picture-placeholder.webp" />
-              </div>
-              <div className={styles["image-overlay"]}>
-                <span className={styles.username}>{data[0].username}</span>
-                <span>{data[0].totalHighScore}</span>
-              </div>
+            <div className={styles["top-players"]}>
+              {data.slice(1, 4).map((player, index) => (
+                <div
+                  key={index}
+                  className={clsx(styles.player, styles[`player${index + 1}`])}
+                >
+                  <div className={styles["image-box"]}>
+                    <img src="/images/user-picture-placeholder.webp" />
+                  </div>
+                  <div className={styles.overlay}>
+                    <span className={styles.username}>{player.username}</span>
+                    <span>{player.totalHighScore}</span>
+                  </div>
+                </div>
+              ))}
             </div>
             <TableComponent items={data.slice(1)} />
-            <ButtonComponent onClick={backHandler}>Back</ButtonComponent>
+            <ButtonComponent onClick={backHandler}>{"<- "}Back</ButtonComponent>
           </>
         )}
       </PaneComponent>

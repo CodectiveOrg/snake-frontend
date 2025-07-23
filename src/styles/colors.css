@@ -12,7 +12,9 @@
   --color-overlay-300: hsl(0deg 0% 0% / 30%);
   --color-overlay-400: hsl(0deg 0% 0% / 80%);
 
-  --color-on-image-border: hsl(32deg 100% 59%); /* #FF9D2E */
+  --color-golden: hsl(53deg 100% 59%);
+  --color-bronze: hsl(32deg 100% 59%);
+  --color-silver: hsl(0deg 0% 81%);
 
   --color-text-400: hsl(0deg 0% 100%);
   --color-text-900: hsl(0deg 0% 0%);
