@@ -1,0 +1,11 @@
+.high-score-frame {
+  .perimeter {
+    fill: var(--color-text-400);
+  }
+
+  .pane {
+    fill: var(--color-primary);
+    fill-opacity: 0.3;
+    stroke: var(--color-text-400);
+  }
+}

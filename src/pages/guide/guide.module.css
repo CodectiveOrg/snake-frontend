@@ -1,0 +1,65 @@
+.guide {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100vh;
+
+  .pane {
+    max-inline-size: 97rem;
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 8rem;
+      row-gap: 2rem;
+
+      .group {
+        justify-self: center;
+
+        display: grid;
+        row-gap: 2rem;
+
+        max-block-size: 21rem;
+
+        img {
+          align-self: center;
+          justify-self: center;
+        }
+
+        .writings {
+          align-self: center;
+          justify-self: center;
+
+          text-align: center;
+
+          .title {
+            background-color: var(--color-text-400);
+            color: var(--color-text-900);
+
+            display: inline;
+
+            font-size: 2rem;
+            font-weight: 700;
+
+            text-transform: uppercase;
+          }
+        }
+
+        &.horizontal {
+          grid-template-columns: auto 1fr;
+
+          .writings {
+            max-inline-size: 20rem;
+          }
+        }
+      }
+
+      a {
+        grid-column: 1 / -1;
+        place-self: center;
+
+        inline-size: fit-content;
+      }
+    }
+  }
+}

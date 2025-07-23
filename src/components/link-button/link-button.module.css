@@ -1,16 +1,7 @@
 .link-button {
-  --border-width: 4px;
-  --horizontal-offset: 10px;
-  --vertical-offset: calc(var(--border-width) + 1px);
-
-  background-color: hsl(0deg 0% 44% / 24%);
-  color: hsl(0deg 0% 44%);
-
   display: inline-block;
 
-  padding: 1rem;
-
-  border: var(--border-width) solid hsl(0deg 0% 44%);
+  border: var(--border-width) solid currentcolor;
 
   scale: 1;
 
@@ -29,21 +20,52 @@
     0 100%
   );
 
-  font-size: 1.75rem;
   font-weight: 700;
 
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  line-height: 1.5;
 
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-property: background-color, color, border-color, scale;
 
-  &:hover {
-    background-color: hsl(222deg 100% 59% / 24%);
-    color: var(--color-on-surface);
+  cursor: pointer;
 
-    border-color: var(--color-on-surface);
+  &.default {
+    background-color: var(--color-surface-200);
+    color: var(--color-text-disabled);
+  }
+
+  &.light {
+    background-color: var(--color-surface-100);
+    color: var(--color-text-400);
+  }
+
+  &.large {
+    --border-width: 4px;
+    --horizontal-offset: 10px;
+    --vertical-offset: calc(var(--border-width) + 1px);
+
+    padding: 1rem;
+
+    font-size: 1.75rem;
+  }
+
+  &.small {
+    --border-width: 1px;
+    --horizontal-offset: 10px;
+    --vertical-offset: calc(var(--border-width) + 1px);
+
+    padding-inline: 1rem;
+
+    font-size: 1.5rem;
+  }
+
+  &:hover,
+  &.active {
+    background-color: var(--color-surface-300);
+    color: var(--color-text-400);
 
     scale: 1.1;
 

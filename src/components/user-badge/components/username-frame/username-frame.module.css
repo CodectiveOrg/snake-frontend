@@ -1,0 +1,14 @@
+.username-frame {
+  .pane {
+    fill: var(--color-primary);
+    fill-opacity: 0.23;
+  }
+
+  .edge {
+    fill: var(--color-text-400);
+  }
+
+  .line {
+    stroke: var(--color-text-400);
+  }
+}

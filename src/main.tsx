@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import AppComponent from "@/app.component.tsx";
 
 import "@/styles/colors.css";
+import "@/styles/fonts.css";
 
 import "./index.css";
 
