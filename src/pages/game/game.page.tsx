@@ -2,7 +2,7 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import ButtonComponent from "@/components/button/button.component";
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
-import ModalComponent from "@/components/modal/modal.component";
+import PauseModalComponent from "@/components/modal/modal.component";
 import UserBadgeComponent from "@/components/user-badge/user-badge.component";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
@@ -41,23 +41,26 @@ export default function GamePage(): ReactNode {
   const playPauseButtonClickHandler = () => {
     setIsPlaying((prev) => !prev);
 
-    if (!isPlaying) modalRef.current?.showModal();
+    if (!isPlaying) {
+      modalRef.current?.showModal();
+      useGameStore.getState().pause();
+    } else {
+      useGameStore.getState().run();
+    }
   };
 
   const closeButtonClickHandler = () => {
     modalRef.current?.close();
-
-    setIsPlaying((prev) => !prev);
   };
 
   return (
     <>
-      <ModalComponent ref={modalRef} title="Pause">
+      <PauseModalComponent ref={modalRef} title="Pause">
         <p>Pause</p>
         <ButtonComponent onClick={closeButtonClickHandler}>
           Close
         </ButtonComponent>
-      </ModalComponent>
+      </PauseModalComponent>
 
       <div className={styles.game}>
         <div className={styles["info-board"]}>
