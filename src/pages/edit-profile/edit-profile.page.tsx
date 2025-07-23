@@ -39,7 +39,11 @@ export default function EditProfilePage(): ReactNode {
       toast.error(error.message);
     },
     onSuccess: async (result) => {
-      await queryClient.invalidateQueries({ queryKey: ["verify", "profile"] });
+      await Promise.allSettled([
+        queryClient.invalidateQueries({ queryKey: ["verify"] }),
+        queryClient.invalidateQueries({ queryKey: ["profile"] }),
+      ]);
+
       toast.success(result.message);
     },
   });
