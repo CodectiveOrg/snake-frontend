@@ -4,7 +4,7 @@
   min-block-size: 100dvh;
 
   .pane {
-    inline-size: min(90rem, 100%);
+    inline-size: min(80rem, 100%);
 
     margin: auto;
 
@@ -14,7 +14,7 @@
       justify-content: space-between;
       gap: 1rem;
 
-      padding-inline: 1rem;
+      padding-inline: 6rem;
 
       .picture-picker {
         max-inline-size: 23rem;
@@ -23,6 +23,8 @@
       .fields {
         display: grid;
         gap: 1.75rem;
+
+        max-inline-size: 30rem;
 
         > label,
         .label {

@@ -2,8 +2,6 @@ import { type ReactNode } from "react";
 
 import clsx from "clsx";
 
-import MingcuteAddFill from "@/icons/MingcuteAddFill.tsx";
-
 import styles from "./picture-picker.module.css";
 
 type Props = {
@@ -16,26 +14,15 @@ export default function PicturePickerComponent({
   className,
 }: Props): ReactNode {
   return (
-    <div
-      className={clsx(
-        styles["profile-picture"],
-        !picture && styles.active,
-        className,
-      )}
-    >
-      <label htmlFor="profile">
-        <MingcuteAddFill />
-      </label>
-      <input
-        type="file"
-        id="profile"
-        name="picture"
-        accept="image/jpg , image/png"
-      />
+    <div className={clsx(styles["picture-picker"], className)}>
       <img
-        src="../../../public/images/profile.webp"
-        alt="user profile picture"
+        src={picture ?? "/images/user-picture-placeholder.webp"}
+        alt="User's Profile Picture"
       />
+      <label>
+        <span className={styles.icon}>+</span>
+        <input type="file" name="picture" accept="image/jpg , image/png" />
+      </label>
     </div>
   );
 }
