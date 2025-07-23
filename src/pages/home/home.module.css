@@ -1,0 +1,41 @@
+.home {
+  display: grid;
+
+  min-block-size: 100dvh;
+
+  .pane {
+    inline-size: min(45rem, 100%);
+
+    margin: auto;
+
+    .username {
+      background-clip: content-box;
+      background-color: hsl(0deg 0% 0% / 40%);
+      color: var(--color-primary);
+
+      margin-block-end: 2rem;
+
+      border-inline: 4px solid transparent;
+
+      font-family: Doto, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+
+      text-align: center;
+      line-height: 1.5;
+
+      .prefix {
+        text-transform: uppercase;
+      }
+    }
+
+    .menu {
+      display: grid;
+      gap: 1.5rem;
+
+      inline-size: min(20rem, 100%);
+
+      margin-inline: auto;
+    }
+  }
+}

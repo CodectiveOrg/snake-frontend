@@ -7,10 +7,9 @@ import LoggedInOnlyGuard from "@/guards/logged-in-only.guard.tsx";
 
 import GamePage from "@/pages/game/game.page.tsx";
 import GuidePage from "@/pages/guide/guide.page.tsx";
-import IntroPage from "@/pages/intro/intro.page.tsx";
+import HomePage from "@/pages/home/home.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
-import QueryPage from "@/pages/query/query.page.tsx";
 import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
 import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
 
@@ -23,12 +22,11 @@ export default function RouterComponent(): ReactNode {
           <Route path="/sign-up" element={<SignUpPage />} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
-          <Route path="" element={<IntroPage />} />
+          <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
         </Route>
         <Route path="playground">
           <Route index element={<PlaygroundPage />} />
-          <Route path="query" element={<QueryPage />} />
           <Route path="modal" element={<ModalPage />} />
         </Route>
         <Route path="guide" element={<GuidePage />} />

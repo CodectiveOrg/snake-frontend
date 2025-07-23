@@ -396,6 +396,7 @@ export default {
           "text-shadow",
           "text-transform",
           "text-underline-position",
+          "text-wrap",
           "letter-spacing",
           "line-break",
           "line-height",

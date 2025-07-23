@@ -26,5 +26,6 @@
     font-size: 2rem;
 
     text-overflow: ellipsis;
+    text-wrap: nowrap;
   }
 }

@@ -48,15 +48,15 @@
     text-transform: uppercase;
   }
 
-  &:not(:has(.shade)) {
+  &:where(:not(:has(.shade))) {
     .content {
-      padding: 2rem;
+      padding-block: 2rem;
     }
   }
 
-  &:has(.shade) {
+  &:where(:has(.shade)) {
     .content {
-      padding: 4rem;
+      padding-block: 4rem;
     }
   }
 }
