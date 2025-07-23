@@ -8,7 +8,7 @@
 
     margin: auto;
 
-    form {
+    .content {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -20,47 +20,49 @@
         max-inline-size: 23rem;
       }
 
-      .fields {
-        display: grid;
-        gap: 1.75rem;
-
-        max-inline-size: 30rem;
-
-        > label,
-        .label {
+      form {
+        .fields {
           display: grid;
-          grid-template-columns: auto 1fr;
-          align-items: center;
-          gap: 1.5rem;
+          gap: 1.75rem;
 
-          font-size: 1.5rem;
+          max-inline-size: 30rem;
 
-          text-transform: uppercase;
+          > label,
+          .label {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
 
-          input {
-            &::placeholder {
-              color: currentcolor;
+            font-size: 1.5rem;
+
+            text-transform: uppercase;
+
+            input {
+              &::placeholder {
+                color: currentcolor;
+              }
             }
           }
-        }
 
-        .label {
-          &.gender {
-            grid-template-columns: 1fr auto auto;
-            gap: 0;
+          .label {
+            &.gender {
+              grid-template-columns: 1fr auto auto;
+              gap: 0;
 
-            .male {
-              margin-inline: 5rem;
+              .male {
+                margin-inline: 5rem;
+              }
             }
           }
-        }
 
-        .actions {
-          display: flex;
-          justify-content: center;
-          gap: 2.5rem;
+          .actions {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
 
-          margin-block-start: 2rem;
+            margin-block-start: 2rem;
+          }
         }
       }
     }

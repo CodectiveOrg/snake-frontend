@@ -72,12 +72,17 @@ export default function EditProfilePage(): ReactNode {
 
   return (
     <div className={styles["edit-profile"]}>
-      <PaneComponent shade className={styles.pane} title="profile">
+      <PaneComponent
+        shade
+        className={styles.pane}
+        contentClassName={styles.content}
+        title="profile"
+      >
+        <PicturePickerComponent
+          className={styles["picture-picker"]}
+          picture={defaultData.picture}
+        />
         <form onSubmit={formSubmitHandler}>
-          <PicturePickerComponent
-            className={styles["picture-picker"]}
-            picture={defaultData.picture}
-          />
           <div className={styles.fields}>
             <label>
               Username
