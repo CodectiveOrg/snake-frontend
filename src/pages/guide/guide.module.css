@@ -71,7 +71,6 @@
 @media only screen and (width <= 1295px) {
   .guide {
     .pane {
-      /* max-inline-size: 97rem; */
       .content {
         grid-template-columns: 1fr;
       }
