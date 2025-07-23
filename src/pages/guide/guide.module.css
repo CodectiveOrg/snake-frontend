@@ -75,6 +75,10 @@
         grid-template-columns: 1fr;
 
         .group {
+          img {
+            inline-size: 10rem;
+          }
+
           .writings {
             .title {
               font-size: 1rem;
