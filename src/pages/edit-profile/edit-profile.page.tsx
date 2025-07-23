@@ -129,7 +129,9 @@ export default function EditProfilePage(): ReactNode {
               />
             </div>
             <div className={styles.actions}>
-              <ButtonComponent color="secondary">Cancel</ButtonComponent>
+              <ButtonComponent asType="link" to="/" color="secondary">
+                Cancel
+              </ButtonComponent>
               <ButtonComponent>Confirm</ButtonComponent>
             </div>
           </div>
