@@ -1,6 +1,6 @@
 .button {
   background-color: transparent;
-  color: var(--color-on-surface);
+  color: var(--color-text-400);
 
   position: relative;
   overflow: auto;
@@ -11,7 +11,7 @@
 
   scale: 1;
 
-  font-size: 1.5rem;
+  font-size: clamp(1rem, -0.5rem + 2vw, 1.5rem);
   font-weight: 700;
 
   text-align: center;

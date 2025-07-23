@@ -6,9 +6,14 @@ import RibbonFrameComponent from "@/components/ribbon/components/ribbon-frame/ri
 
 import styles from "./ribbon.module.css";
 
-type Props = PropsWithChildren;
+type Props = PropsWithChildren<{
+  contentClassName?: string;
+}>;
 
-export default function RibbonComponent({ children }: Props): ReactNode {
+export default function RibbonComponent({
+  contentClassName,
+  children,
+}: Props): ReactNode {
   const indentWidth = 12;
   const largeOffset = 36;
   const smallOffset = 24;
@@ -21,7 +26,7 @@ export default function RibbonComponent({ children }: Props): ReactNode {
         largeOffset={largeOffset}
         smallOffset={smallOffset}
       />
-      <div className={styles.content}>{children}</div>
+      <div className={clsx(styles.content, contentClassName)}>{children}</div>
       <RibbonFrameComponent
         className={clsx(styles.frame, styles.right)}
         indentWidth={indentWidth}
