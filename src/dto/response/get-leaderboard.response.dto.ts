@@ -1,4 +1,6 @@
 export type GetLeaderboardResponseDto = {
   username: string;
-  highScore: number;
+  todayHighScore: number;
+  totalHighScore: number;
+  rank: number;
 };

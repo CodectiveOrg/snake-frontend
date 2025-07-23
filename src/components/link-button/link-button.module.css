@@ -31,13 +31,13 @@
   transition-property: background-color, color, border-color, scale;
 
   &.default {
-    background-color: hsl(0deg 0% 44% / 24%);
-    color: hsl(0deg 0% 44%);
+    background-color: var(--color-surface-200);
+    color: var(--color-text-disabled);
   }
 
   &.light {
-    background-color: hsl(0deg 0% 100% / 4%);
-    color: var(--color-on-surface);
+    background-color: var(--color-surface-100);
+    color: var(--color-text-400);
   }
 
   &.large {
@@ -62,8 +62,8 @@
 
   &:hover,
   &.active {
-    background-color: hsl(222deg 100% 59% / 40%);
-    color: var(--color-on-surface);
+    background-color: var(--color-surface-300);
+    color: var(--color-text-400);
 
     scale: 1.1;
 

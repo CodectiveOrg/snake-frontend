@@ -38,6 +38,7 @@
       font-weight: 700;
 
       text-overflow: ellipsis;
+      text-wrap: nowrap;
     }
   }
 }

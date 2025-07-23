@@ -6,13 +6,13 @@
 
   &.primary {
     .perimeter {
-      fill: hsl(222deg 97% 26%);
+      fill: var(--color-surface-700);
     }
   }
 
   &.secondary {
     .perimeter {
-      fill: hsl(0deg 0% 85% / 11%);
+      fill: var(--color-surface-200);
     }
   }
 }

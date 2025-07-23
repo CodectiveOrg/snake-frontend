@@ -1,6 +1,6 @@
 .slider-frame {
   .perimeter {
-    fill: hsl(0deg 0% 44% / 4%);
+    fill: var(--color-surface-100);
     stroke: var(--color-primary);
     stroke-width: 1px;
   }

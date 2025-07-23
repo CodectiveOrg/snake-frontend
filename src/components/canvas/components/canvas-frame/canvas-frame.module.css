@@ -1,6 +1,6 @@
 .canvas-frame {
   .perimeter {
-    fill: color-mix(in hsl, var(--color-primary) 20%, transparent);
+    fill: var(--color-surface-400);
   }
 
   .corner {
