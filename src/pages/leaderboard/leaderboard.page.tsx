@@ -1,11 +1,8 @@
 import type { ReactNode } from "react";
-import React from "react";
 
 import { useNavigate } from "react-router";
 
 import { useQuery } from "@tanstack/react-query";
-
-import { toast } from "react-toastify";
 
 import { getLeaderboardApi } from "@/api/history/get-leaderboard.api";
 
@@ -25,47 +22,34 @@ export default function LeaderboardPage(): ReactNode {
 
   const backHandler = (): Promise<void> | void => navigate("/");
 
-  const pendingMessage = (): React.JSX.Element | undefined => {
-    return <p className={styles.message}>Loading...</p>;
-  };
-
-  const errorMessage = (): React.JSX.Element | undefined => {
-    if (isError) {
-      toast.error(error.message, {
-        containerId: "modal",
-        toastId: "user-rank",
-      });
-
-      return <p className={styles.message}>Error: {error.message}</p>;
-    }
-  };
-
   return (
-    <PaneComponent
-      title="Board"
-      contentClassName={styles.content}
-      className={styles.leaderboard}
-      shade={true}
-    >
-      {isPending ? (
-        pendingMessage()
-      ) : isError ? (
-        errorMessage()
-      ) : (
-        <React.Fragment>
-          <div className={styles["image-container"]}>
-            <div className={styles["image-box"]}>
-              <img src="/images/user-picture-placeholder.webp" />
+    <div className={styles.leaderboard}>
+      <PaneComponent
+        title="Board"
+        contentClassName={styles.content}
+        className={styles.pane}
+        shade={true}
+      >
+        {isPending ? (
+          <p className={styles.message}>Loading...</p>
+        ) : isError ? (
+          <p className={styles.message}>Error: {error.message}</p>
+        ) : (
+          <>
+            <div className={styles["image-container"]}>
+              <div className={styles["image-box"]}>
+                <img src="/images/user-picture-placeholder.webp" />
+              </div>
+              <div className={styles["image-overlay"]}>
+                <span className={styles.username}>{data[0].username}</span>
+                <span>{data[0].totalHighScore}</span>
+              </div>
             </div>
-            <div className={styles["image-overlay"]}>
-              <span>Mohammad</span>
-              <span>754</span>
-            </div>
-          </div>
-          <TableComponent items={data} />
-          <ButtonComponent onClick={backHandler}>Back</ButtonComponent>
-        </React.Fragment>
-      )}
-    </PaneComponent>
+            <TableComponent items={data.slice(1)} />
+            <ButtonComponent onClick={backHandler}>Back</ButtonComponent>
+          </>
+        )}
+      </PaneComponent>
+    </div>
   );
 }

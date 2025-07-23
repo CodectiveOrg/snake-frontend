@@ -1,83 +1,97 @@
 .leaderboard {
-  inline-size: 98rem;
+  display: grid;
+  place-content: center;
 
-  margin-inline: auto;
+  min-block-size: 100vh;
 
-  .message {
-    text-align: center;
-  }
+  .pane {
+    max-inline-size: 97rem;
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    .message {
+      text-align: center;
+    }
 
-    inline-size: 98rem;
-
-    padding: 3rem 6rem 2rem;
-
-    .image-container {
-      position: relative;
-      overflow: hidden;
-
+    .content {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      gap: 3.5rem;
 
-      block-size: 12rem;
-      inline-size: 12rem;
+      inline-size: 98rem;
 
-      margin-inline: auto;
+      padding: 3rem 6rem 2rem;
 
-      border-radius: 50%;
-
-      .image-box {
+      .image-container {
+        position: relative;
         overflow: hidden;
 
-        block-size: 100%;
-        inline-size: 100%;
-
-        border: 1.25rem solid var(--color-on-image-border);
-        border-radius: inherit;
-
-        img {
-          block-size: 100%;
-          inline-size: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .image-overlay {
-        background-color: var(--color-overlay-400);
-
-        position: absolute;
-
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-        gap: 0.5rem;
 
-        block-size: 100%;
-        inline-size: 100%;
+        block-size: 12rem;
+        inline-size: 12rem;
+
+        margin-inline: auto;
 
         border-radius: 50%;
 
-        transform: scale(0);
+        .image-box {
+          overflow: hidden;
 
-        font-size: 1.5rem;
+          block-size: 100%;
+          inline-size: 100%;
 
-        transition: transform 0.1s;
+          border: 1.25rem solid var(--color-on-image-border);
+          border-radius: inherit;
+
+          img {
+            block-size: 100%;
+            inline-size: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .image-overlay {
+          background-color: var(--color-overlay-400);
+
+          position: absolute;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+
+          block-size: 100%;
+          inline-size: 100%;
+
+          border-radius: 50%;
+
+          transform: scale(0);
+
+          font-size: 1.5rem;
+
+          transition: transform 0.1s;
+
+          .username {
+            overflow: hidden;
+
+            max-inline-size: 8ch;
+
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+          }
+        }
+
+        &:hover .image-overlay {
+          transform: scale(1);
+        }
       }
 
-      &:hover .image-overlay {
-        transform: scale(1);
+      button {
+        inline-size: 11rem;
+
+        margin-inline: auto;
       }
-    }
-
-    button {
-      inline-size: 11rem;
-
-      margin-inline: auto;
     }
   }
 }
