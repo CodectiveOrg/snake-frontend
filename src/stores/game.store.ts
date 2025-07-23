@@ -5,8 +5,6 @@ import type { GameStateType } from "@/types/game-state.type.ts";
 type GameStore = {
   score: number;
   gameState: GameStateType;
-  music: number;
-  sfx: number;
   incrementScore: () => void;
   reset: () => void;
   run: () => void;
@@ -33,17 +31,5 @@ export const useGameStore = create<GameStore>((set) => ({
   },
   gameOver: () => {
     set(() => ({ gameState: "over" }));
-  },
-  incrementMusic: () => {
-    set((state) => ({ music: state.music + 1 }));
-  },
-  decrementMusic: () => {
-    set((state) => ({ music: state.music + 1 }));
-  },
-  incrementSfx: () => {
-    set((state) => ({ sfx: state.sfx + 1 }));
-  },
-  decrementSfx: () => {
-    set((state) => ({ sfx: state.sfx + 1 }));
   },
 }));

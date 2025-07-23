@@ -1,99 +1,127 @@
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { changeSettingsApi } from "@/api/public/change-settings.api";
-import { getuserSettingsApi } from "@/api/public/get-settings.api";
+import { editSettingsApi } from "@/api/auth/edit-settings.api";
+import { getSettingsApi } from "@/api/auth/get-settings.api";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 import SliderComponent from "@/components/slider/slider.component";
 
+import type { ResponseDto } from "@/dto/response/response.dto";
+
 import styles from "./settings.module.css";
 
-export default function SettingsContent(): ReactNode {
-  const {
-    data: userSettingsData,
-    isPending: userSettingsPending,
-    isError: userSettingsError,
-    error: userSettingsErrorMessage,
-  } = useQuery({
-    queryKey: ["user-settings"],
-    queryFn: getuserSettingsApi,
+export default function SettingsContent({
+  onCancel,
+  onConfirm,
+}: { onCancel?: () => void; onConfirm?: () => void } = {}): ReactNode {
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["settings"],
+    queryFn: getSettingsApi,
   });
 
-  const [music, setMusic] = useState<number | null>(null);
-  const [sfx, setSfx] = useState<number | null>(null);
+  const musicRef = useRef<number>(5);
+  const sfxRef = useRef<number>(5);
 
   useEffect(() => {
-    if (userSettingsData) {
-      setMusic(userSettingsData.music);
-      setSfx(userSettingsData.sfx);
+    if (data) {
+      musicRef.current = data.music;
+      sfxRef.current = data.sfx;
     }
-  }, [userSettingsData]);
+  }, [data]);
 
-  const handleConfirm = async () => {
-    if (music == null || sfx == null) return;
-
-    try {
-      await changeSettingsApi({ music, sfx });
+  const mutation = useMutation<
+    ResponseDto,
+    Error,
+    { music: number; sfx: number }
+  >({
+    mutationFn: editSettingsApi,
+    onSuccess: () => {
       toast.success("Settings updated successfully");
-    } catch (error: unknown) {
+    },
+    onError: (error: unknown) => {
       const message =
         error instanceof Error ? error.message : "Failed to update settings";
       toast.error(message);
-    }
+    },
+  });
+
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (musicRef.current == null || sfxRef.current == null) return;
+
+    mutation.mutate({ music: musicRef.current, sfx: sfxRef.current });
+    if (onConfirm) onConfirm();
   };
 
   const renderPending = () => <p>Loading...</p>;
 
   const renderError = () => {
-    const message =
-      userSettingsErrorMessage instanceof Error
-        ? userSettingsErrorMessage.message
-        : "Unknown error";
+    const message = error instanceof Error ? error.message : "Unknown error";
 
     toast.error(message, {
       containerId: "modal",
-      toastId: "user-settings",
+      toastId: "settings",
     });
 
     return <p>Error: {message}</p>;
   };
+
   return (
     <div className={styles.settings}>
-      {userSettingsPending ? (
+      {isPending ? (
         renderPending()
-      ) : userSettingsError ? (
+      ) : isError ? (
         renderError()
       ) : (
         <PaneComponent shade title="Settings" className={styles.pane}>
-          <div className={styles.content}>
+          <form
+            className={styles.content}
+            onSubmit={(e) => formSubmitHandler(e)}
+          >
             <div className={styles.element}>
-              <label>Music:</label>
+              <label>Music</label>
               <SliderComponent
-                value={music ?? 0}
-                onChange={(val: number) => setMusic(val)}
+                value={data?.music}
+                onChange={(val: number) => {
+                  musicRef.current = val;
+                }}
               />
             </div>
+
             <div className={styles.element}>
-              <label>Sfx:</label>
+              <label>Sfx</label>
               <SliderComponent
-                value={sfx ?? 0}
-                onChange={(val: number) => setSfx(val)}
+                value={data?.sfx}
+                onChange={(val: number) => {
+                  sfxRef.current = val;
+                }}
               />
             </div>
 
             <div className={styles.buttons}>
-              <ButtonComponent asType="link" to="/game" color="secondary">
-                Cancel
-              </ButtonComponent>
-              <ButtonComponent onClick={handleConfirm}>Confirm</ButtonComponent>
+              {onCancel ? (
+                <ButtonComponent
+                  type="button"
+                  color="secondary"
+                  onClick={onCancel}
+                >
+                  Cancel
+                </ButtonComponent>
+              ) : (
+                <ButtonComponent asType="link" to="/game" color="secondary">
+                  Cancel
+                </ButtonComponent>
+              )}
+              <ButtonComponent type="submit">Confirm</ButtonComponent>
             </div>
-          </div>
+          </form>
         </PaneComponent>
       )}
     </div>

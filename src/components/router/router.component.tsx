@@ -25,10 +25,7 @@ export default function RouterComponent(): ReactNode {
         <Route element={<LoggedInOnlyGuard />}>
           <Route path="" element={<IntroPage />} />
           <Route path="game" element={<GamePage />} />
-        </Route>
-
-        <Route path="settings" element={<LoggedInOnlyGuard />}>
-          <Route index element={<SettingsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
 
         <Route path="playground">
