@@ -3,9 +3,9 @@ import { type ReactNode, useState } from "react";
 import LinkButtonComponent from "@/components/link-button/link-button.component";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 
-import styles from "./home.module.css";
+import useVerifyQuery from "@/queries/use-verify.query.ts";
 
-const user = "DEAR USER";
+import styles from "./home.module.css";
 
 type Item = {
   to: string;
@@ -21,6 +21,8 @@ const items: Item[] = [
 ];
 
 export default function HomePage(): ReactNode {
+  const { data } = useVerifyQuery();
+
   const [activeButtonIndex, setActiveButtonIndex] = useState<number | null>(
     null,
   );
@@ -30,7 +32,7 @@ export default function HomePage(): ReactNode {
       <PaneComponent title="Menu" className={styles.pane}>
         <div className={styles.username}>
           <span className={styles.prefix}>Hello, </span>
-          {user}!
+          {data?.username}!
         </div>
         <div
           className={styles.menu}
