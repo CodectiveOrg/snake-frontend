@@ -3,7 +3,6 @@
   place-content: center;
 
   min-block-size: 100vh;
-  inline-size: 98rem;
 
   .pane {
     max-inline-size: 97rem;
@@ -11,7 +10,7 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 3rem;
 
       padding: 3rem 6rem 2rem;
 

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import SettingsContent from "@/components/settings/settings.content.component";
+import SettingsContent from "@/components/settings-content/settings.content.component";
 
 export default function SettingsPage(): ReactNode {
   return (

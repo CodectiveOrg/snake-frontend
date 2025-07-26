@@ -9,5 +9,5 @@ export async function getSettingsApi(): Promise<GetSettingsResponseDto[]> {
     throw new Error(data.error);
   }
 
-  return data;
+  return data.result;
 }
