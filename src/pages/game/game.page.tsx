@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useCallback, useEffect, useRef } from "react";
 
 import { useNavigate } from "react-router";
 
@@ -10,6 +10,8 @@ import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component.tsx";
 import PauseModalComponent from "@/components/pause-modal/pause-modal.component.tsx";
 import UserBadgeComponent from "@/components/user-badge/user-badge.component";
+
+import { useResizeObserverHook } from "@/hooks/use-resize-observer.hook.ts";
 
 import PauseIcon from "@/icons/pause/pause.icon";
 import PlayIcon from "@/icons/play/play.icon";
@@ -36,14 +38,18 @@ export default function GamePage(): ReactNode {
   const gameState = useGameStore((state) => state.gameState);
   const play = useGameStore((state) => state.play);
   const pause = useGameStore((state) => state.pause);
+  const reset = useGameStore((state) => state.reset);
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const resetGameStates = (): void => {
-    useGameStore.getState().reset();
-    useGameStore.getState().play();
-  };
+  const { ref: scoreRef, width: scoreWidth } =
+    useResizeObserverHook<HTMLDivElement>();
+
+  const resetGameStates = useCallback((): void => {
+    reset();
+    play();
+  }, [play, reset]);
 
   const restartHandler = (): void => {
     if (!masterRef.current || !canvasRef.current) {
@@ -70,7 +76,7 @@ export default function GamePage(): ReactNode {
 
     masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
-  }, []);
+  }, [resetGameStates]);
 
   const togglePauseButtonClickHandler = () => {
     if (gameState === "playing") {
@@ -90,20 +96,15 @@ export default function GamePage(): ReactNode {
 
   return (
     <div className={styles.game}>
-      <div className={styles["info-board"]}>
+      <div className={styles.bar}>
         <UserBadgeComponent username={data.username} picture={data.picture} />
-        <ScoreComponent score={score}></ScoreComponent>
-        <div className={styles.wrapper}>
-          <HighScoreComponent highScore={data.highScore}></HighScoreComponent>
-          <button
-            onClick={togglePauseButtonClickHandler}
-            className={styles.button}
-          >
-            {gameState === "playing" ? <PauseIcon /> : <PlayIcon />}
-          </button>
-        </div>
+        <ScoreComponent ref={scoreRef} score={score}></ScoreComponent>
+        <HighScoreComponent highScore={data.highScore}></HighScoreComponent>
+        <button onClick={togglePauseButtonClickHandler}>
+          {gameState === "playing" ? <PauseIcon /> : <PlayIcon />}
+        </button>
       </div>
-      <SeparatorComponent className={styles.separator} dentWidth={1} />
+      <SeparatorComponent className={styles.separator} dentWidth={scoreWidth} />
       <CanvasComponent ref={canvasRef} />
       <PauseModalComponent />
       {gameState === "over" && (

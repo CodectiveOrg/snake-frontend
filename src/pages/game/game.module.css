@@ -4,7 +4,7 @@
 
   min-block-size: 100dvh;
 
-  .info-board {
+  .bar {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -23,7 +23,7 @@
     gap: 2.5rem;
   }
 
-  .button {
+  button {
     background-color: hsl(0deg 0% 85% / 20%);
 
     block-size: 4rem;
