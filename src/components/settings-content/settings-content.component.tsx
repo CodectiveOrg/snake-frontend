@@ -28,7 +28,7 @@ export default function SettingsContent({
     queryFn: getSettingsApi,
   });
 
-  const editSettingsMutation = useMutation({
+  const mutation = useMutation({
     mutationKey: ["settings"],
     mutationFn: editSettingsApi,
     onError: (error) => {
@@ -51,7 +51,7 @@ export default function SettingsContent({
   }, [data]);
 
   const confirmButtonClickHandler = async (): Promise<void> => {
-    await editSettingsMutation.mutateAsync({ music, sfx });
+    await mutation.mutateAsync({ music, sfx });
     onConfirm();
   };
 

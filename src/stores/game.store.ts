@@ -15,8 +15,6 @@ type GameStore = {
 export const useGameStore = create<GameStore>((set) => ({
   score: 0,
   gameState: "running",
-  music: 1,
-  sfx: 1,
   incrementScore: () => {
     set((state) => ({ score: state.score + 1 }));
   },
