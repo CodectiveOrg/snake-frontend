@@ -1,13 +1,19 @@
-import type { ReactNode } from "react";
+import type { ReactNode, SVGProps } from "react";
 
-export default function PlaySVG(): ReactNode {
+import styles from "./play.module.css";
+
+type Props = SVGProps<SVGSVGElement>;
+
+export default function PlayIcon({ ...otherProps }: Props): ReactNode {
   return (
     <svg
-      width="71"
-      height="62"
+      className={styles.play}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
       viewBox="0 0 71 62"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+      {...otherProps}
     >
       <rect width="71" height="62" rx="18" fill="#D9D9D9" fill-opacity="0.21" />
       <path

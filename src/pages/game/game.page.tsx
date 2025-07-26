@@ -5,12 +5,13 @@ import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import PauseModalComponent from "@/components/modal/modal.component";
 import UserBadgeComponent from "@/components/user-badge/user-badge.component";
 
+import PauseIcon from "@/icons/pause/pause.icon";
+import PlayIcon from "@/icons/play/play.icon";
+
 import { GameMasterService } from "@/services/game-master.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
-import PauseSVG from "./components/SVGS/pause.svg";
-import PlaySVG from "./components/SVGS/play.svg";
 import HighScoreComponent from "./components/high-score/high-score.component";
 import ScoreComponent from "./components/score/score.component";
 import SeparatorComponent from "./components/separator/separator.component";
@@ -75,7 +76,7 @@ export default function GamePage(): ReactNode {
               onClick={playPauseButtonClickHandler}
               className={styles.button}
             >
-              {isPlaying ? <PlaySVG /> : <PauseSVG />}
+              {isPlaying ? <PlayIcon /> : <PauseIcon />}
             </button>
           </div>
         </div>
