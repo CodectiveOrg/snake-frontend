@@ -50,9 +50,9 @@ export default function GameOverModalComponent({
       title="Game Over"
     >
       {isPending ? (
-        <p className={styles.message}>Loading...</p>
+        <div>Loading...</div>
       ) : isError ? (
-        <p className={styles.message}>Error: {error.message}</p>
+        <div>Error: {error.message}</div>
       ) : (
         <>
           <RibbonComponent contentClassName={styles.ribbon}>

@@ -7,16 +7,10 @@
   .pane {
     max-inline-size: 97rem;
 
-    .message {
-      text-align: center;
-    }
-
     .content {
       display: flex;
       flex-direction: column;
       gap: 3.5rem;
-
-      inline-size: 98rem;
 
       padding: 3rem 6rem 2rem;
 
@@ -75,7 +69,7 @@
             .username {
               overflow: hidden;
 
-              max-inline-size: 8ch;
+              max-inline-size: 10ch;
 
               text-overflow: ellipsis;
               text-wrap: nowrap;
@@ -119,10 +113,14 @@
         }
       }
 
-      button {
-        inline-size: 11rem;
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
 
-        margin-inline: auto;
+        button {
+          min-inline-size: 10rem;
+        }
       }
     }
   }

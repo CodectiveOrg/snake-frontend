@@ -22,20 +22,22 @@ export default function LeaderboardPage(): ReactNode {
     queryFn: getLeaderboardApi,
   });
 
-  const backHandler = (): Promise<void> | void => navigate("/");
+  const backButtonClickHandler = (): void => {
+    navigate("/");
+  };
 
   return (
     <div className={styles.leaderboard}>
       <PaneComponent
-        title="Board"
-        contentClassName={styles.content}
+        shade
         className={styles.pane}
-        shade={true}
+        contentClassName={styles.content}
+        title="Board"
       >
         {isPending ? (
-          <p className={styles.message}>Loading...</p>
+          <div>Loading...</div>
         ) : isError ? (
-          <p className={styles.message}>Error: {error.message}</p>
+          <div>Error: {error.message}</div>
         ) : (
           <>
             <div className={styles["top-players"]}>
@@ -58,7 +60,11 @@ export default function LeaderboardPage(): ReactNode {
               ))}
             </div>
             <TableComponent items={data.slice(1)} />
-            <ButtonComponent onClick={backHandler}>{"<- "}Back</ButtonComponent>
+            <div className={styles.actions}>
+              <ButtonComponent onClick={backButtonClickHandler}>
+                {"<-"} Back
+              </ButtonComponent>
+            </div>
           </>
         )}
       </PaneComponent>
