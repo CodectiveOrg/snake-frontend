@@ -1,0 +1,70 @@
+.edit-profile {
+  display: grid;
+
+  min-block-size: 100dvh;
+
+  .pane {
+    inline-size: min(80rem, 100%);
+
+    margin: auto;
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      padding-inline: 6rem;
+
+      .picture-picker {
+        max-inline-size: 23rem;
+      }
+
+      form {
+        .fields {
+          display: grid;
+          gap: 1.75rem;
+
+          max-inline-size: 30rem;
+
+          > label,
+          .label {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
+
+            font-size: 1.5rem;
+
+            text-transform: uppercase;
+
+            input {
+              &::placeholder {
+                color: currentcolor;
+              }
+            }
+          }
+
+          .label {
+            &.gender {
+              grid-template-columns: 1fr auto auto;
+              gap: 0;
+
+              .male {
+                margin-inline: 5rem;
+              }
+            }
+          }
+
+          .actions {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+
+            margin-block-start: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
