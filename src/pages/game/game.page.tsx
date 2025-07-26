@@ -1,7 +1,10 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
+import { useNavigate } from "react-router";
+
 import ButtonComponent from "@/components/button/button.component";
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
+import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component.tsx";
 import PauseModalComponent from "@/components/modal/modal.component";
 import UserBadgeComponent from "@/components/user-badge/user-badge.component";
 
@@ -19,19 +22,45 @@ import SeparatorComponent from "./components/separator/separator.component";
 import styles from "./game.module.css";
 
 export default function GamePage(): ReactNode {
+  const navigate = useNavigate();
+
   const username = localStorage.getItem("username");
 
   const score = useGameStore((state) => state.score);
+  const gameState = useGameStore((state) => state.gameState);
+
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const resetGameStates = (): void => {
+    useGameStore.getState().reset();
+    useGameStore.getState().run();
+  };
+
+  const restartHandler = (): void => {
+    if (!masterRef.current || !canvasRef.current) {
+      return;
+    }
+
+    resetGameStates();
+
+    masterRef.current = new GameMasterService(canvasRef.current);
+    masterRef.current.run();
+  };
+
+  const exitHandler = (): void => {
+    resetGameStates();
+    navigate("/");
+  };
 
   useEffect(() => {
     if (masterRef.current || !canvasRef.current) {
       return;
     }
+
+    resetGameStates();
 
     masterRef.current = new GameMasterService(canvasRef.current);
     masterRef.current.run();
@@ -87,6 +116,12 @@ export default function GamePage(): ReactNode {
           <br />
           Score: {score}
         </div>
+        {gameState === "over" && (
+          <GameOverModalComponent
+            onRestart={restartHandler}
+            onExit={exitHandler}
+          />
+        )}
       </div>
     </>
   );
