@@ -9,6 +9,7 @@ import EditProfilePage from "@/pages/edit-profile/edit-profile.page.tsx";
 import GamePage from "@/pages/game/game.page.tsx";
 import GuidePage from "@/pages/guide/guide.page.tsx";
 import HomePage from "@/pages/home/home.page.tsx";
+import LeaderboardPage from "@/pages/leaderboard/leaderboard.page";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import SettingsPage from "@/pages/settings/settings.page";
@@ -27,6 +28,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
           <Route path="profile" element={<EditProfilePage />} />
+          <Route path="board" element={<LeaderboardPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="playground">
