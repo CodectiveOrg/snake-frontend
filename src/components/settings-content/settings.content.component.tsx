@@ -3,10 +3,9 @@ import { type ReactNode, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-import { editSettingsApi } from "@/api/auth/edit-settings.api";
-import { getSettingsApi } from "@/api/auth/get-settings.api";
+import { editSettingsApi } from "@/api/settings/edit-settings.api";
+import { getSettingsApi } from "@/api/settings/get-settings.api";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
@@ -23,15 +22,14 @@ export default function SettingsContent(): ReactNode {
   });
 
   const editSettingsMutation = useMutation({
+    mutationKey: ["settings"],
     mutationFn: editSettingsApi,
-    onSuccess: () => {
-      toast.success("Settings updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["settings"] });
+    onError: (error) => {
+      toast.error(error.message);
     },
-    onError: (error: unknown) => {
-      const message =
-        error instanceof Error ? error.message : "Failed to update settings";
-      toast.error(message);
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({ queryKey: ["settings"] });
+      toast.success(result.message);
     },
   });
 
@@ -39,18 +37,16 @@ export default function SettingsContent(): ReactNode {
   const [sfx, setSfx] = useState<number | null>(null);
 
   useEffect(() => {
-    console.log(data, "data");
-
     if (data) {
       setMusic(data.music);
       setSfx(data.sfx);
     }
   }, [data]);
 
-  const handleConfirm = () => {
-    if (music == null || sfx == null) return;
+  const handleConfirm = async (): Promise<void> => {
+    if (music === null || sfx === null) return;
 
-    editSettingsMutation.mutate({ music, sfx });
+    await editSettingsMutation.mutateAsync({ music, sfx });
   };
 
   const renderPending = () => <p>Loading...</p>;
