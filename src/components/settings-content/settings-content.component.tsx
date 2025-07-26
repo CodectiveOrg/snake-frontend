@@ -11,7 +11,7 @@ import ButtonComponent from "@/components/button/button.component.tsx";
 import PaneComponent from "@/components/pane/pane.component.tsx";
 import SliderComponent from "@/components/slider/slider.component";
 
-import styles from "./settings.content.module.css";
+import styles from "./settings-content.module.css";
 
 export default function SettingsContent(): ReactNode {
   const queryClient = useQueryClient();
