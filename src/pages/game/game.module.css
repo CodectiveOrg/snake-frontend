@@ -4,38 +4,7 @@
 
   min-block-size: 100dvh;
 
-  .bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    max-inline-size: 106.5rem;
-  }
-
-  .separator {
-    min-inline-size: 100%;
-    inline-size: 0;
-  }
-
-  .wrapper {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-  }
-
-  button {
-    background-color: hsl(0deg 0% 85% / 20%);
-
-    block-size: 4rem;
-    inline-size: 4.5rem;
-
-    border: none;
-    border-radius: 1rem;
-
-    cursor: pointer;
-
-    img {
-      inline-size: 2.5rem;
-    }
+  .canvas {
+    inline-size: min(80rem, 100%);
   }
 }
