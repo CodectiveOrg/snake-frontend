@@ -8,12 +8,19 @@ import { editSettingsApi } from "@/api/settings/edit-settings.api";
 import { getSettingsApi } from "@/api/settings/get-settings.api";
 
 import ButtonComponent from "@/components/button/button.component.tsx";
-import PaneComponent from "@/components/pane/pane.component.tsx";
 import SliderComponent from "@/components/slider/slider.component";
 
 import styles from "./settings-content.module.css";
 
-export default function SettingsContent(): ReactNode {
+type Props = {
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+export default function SettingsContent({
+  onConfirm,
+  onCancel,
+}: Props): ReactNode {
   const queryClient = useQueryClient();
 
   const { data, isPending, isError, error } = useQuery({
@@ -45,21 +52,21 @@ export default function SettingsContent(): ReactNode {
 
   const confirmButtonClickHandler = async (): Promise<void> => {
     await editSettingsMutation.mutateAsync({ music, sfx });
+    onConfirm();
+  };
+
+  const cancelButtonClickHandler = (): void => {
+    onCancel();
   };
 
   return (
-    <div className={styles.settings}>
+    <div className={styles["settings-content"]}>
       {isPending ? (
         <div>Loading...</div>
       ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (
-        <PaneComponent
-          shade
-          title="Settings"
-          className={styles.pane}
-          contentClassName={styles.content}
-        >
+        <>
           <label>
             Music
             <SliderComponent value={music} onChange={setMusic} />
@@ -69,14 +76,17 @@ export default function SettingsContent(): ReactNode {
             <SliderComponent value={sfx} onChange={setSfx} />
           </label>
           <div className={styles.actions}>
-            <ButtonComponent asType="link" to="/game" color="secondary">
+            <ButtonComponent
+              color="secondary"
+              onClick={cancelButtonClickHandler}
+            >
               Cancel
             </ButtonComponent>
             <ButtonComponent onClick={confirmButtonClickHandler}>
               Confirm
             </ButtonComponent>
           </div>
-        </PaneComponent>
+        </>
       )}
     </div>
   );

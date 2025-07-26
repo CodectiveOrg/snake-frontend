@@ -1,31 +1,19 @@
-.settings {
+.settings-content {
   display: grid;
+  gap: 3rem;
 
-  min-block-size: 100dvh;
+  padding-inline: 6rem;
 
-  .pane {
-    inline-size: min(40rem, 100%);
+  label {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
 
-    margin: auto;
-
-    .content {
-      display: grid;
-      gap: 3rem;
-
-      padding-inline: 6rem;
-
-      label {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .actions {
-        display: flex;
-        justify-content: center;
-        gap: 2.5rem;
-      }
-    }
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
   }
 }
