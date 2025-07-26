@@ -20,7 +20,7 @@
         gap: 4rem;
 
         label {
-          width: 100px;
+          inline-size: 6.25rem;
         }
       }
 
