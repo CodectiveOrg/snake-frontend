@@ -11,6 +11,7 @@ import GuidePage from "@/pages/guide/guide.page.tsx";
 import HomePage from "@/pages/home/home.page.tsx";
 import ModalPage from "@/pages/modal/modal.page.tsx";
 import PlaygroundPage from "@/pages/playground/playground.page.tsx";
+import SettingsPage from "@/pages/settings/settings.page";
 import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
 import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
 
@@ -26,6 +27,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="" element={<HomePage />} />
           <Route path="game" element={<GamePage />} />
           <Route path="profile" element={<EditProfilePage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="playground">
           <Route index element={<PlaygroundPage />} />
