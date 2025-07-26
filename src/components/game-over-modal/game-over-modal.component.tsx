@@ -1,7 +1,10 @@
 import { type ReactNode, useEffect, useRef } from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { toast } from "react-toastify";
+
+import { createHistoryApi } from "@/api/history/create-history.api.ts";
 import { getLeaderboardApi } from "@/api/history/get-leaderboard.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
@@ -23,19 +26,41 @@ export default function GameOverModalComponent({
   onExit,
 }: Props): ReactNode {
   const gameState = useGameStore((state) => state.gameState);
+  const score = useGameStore((state) => state.score);
 
   const modalRef = useRef<HTMLDialogElement>(null);
+
+  const isSubmitted = useRef<boolean>(false);
+
+  const queryClient = useQueryClient();
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: getLeaderboardApi,
   });
 
+  const { mutate } = useMutation({
+    mutationKey: ["create-history"],
+    mutationFn: createHistoryApi,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({
+        queryKey: ["leaderboard", "stats"],
+      });
+      toast.success(result.message);
+    },
+  });
+
   useEffect(() => {
-    if (gameState === "over") {
+    if (gameState === "over" && !isSubmitted.current) {
+      isSubmitted.current = true;
+      mutate({ score });
+
       modalRef.current?.showModal();
     }
-  }, [gameState]);
+  }, [gameState, mutate, score]);
 
   const restartButtonClickHandler = (): void => {
     modalRef.current?.close();
