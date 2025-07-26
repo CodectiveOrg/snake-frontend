@@ -18,7 +18,7 @@ import { useGameStore } from "@/stores/game.store.ts";
 import styles from "./bar.module.css";
 
 export default function BarComponent(): ReactNode {
-  const { data, isPending, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["stats"],
     queryFn: getStatsApi,
   });
@@ -28,20 +28,15 @@ export default function BarComponent(): ReactNode {
   const { ref: scoreRef, width: scoreWidth } =
     useResizeObserverHook<HTMLDivElement>();
 
-  if (isPending) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className={styles.bar}>
-      <UserBadgeComponent username={data.username} picture={data.picture} />
+      <UserBadgeComponent
+        username={data?.username ?? ""}
+        picture={data?.picture ?? null}
+      />
       <ScoreComponent ref={scoreRef} className={styles.score} score={score} />
       <div className={styles.wrapper}>
-        <HighScoreComponent highScore={data.highScore} />
+        <HighScoreComponent highScore={data?.highScore ?? 0} />
         <PauseButtonComponent />
       </div>
       <SeparatorComponent className={styles.separator} dentWidth={scoreWidth} />
