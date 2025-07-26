@@ -3,4 +3,8 @@
   place-content: center;
 
   min-block-size: 100dvh;
+
+  .canvas {
+    inline-size: min(80rem, 100%);
+  }
 }

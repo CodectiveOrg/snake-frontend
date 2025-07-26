@@ -8,7 +8,7 @@ import styles from "./user-badge.module.css";
 
 type Props = {
   username: string;
-  picture: string;
+  picture: string | null;
 };
 
 export default function UserBadgeComponent({
@@ -22,7 +22,7 @@ export default function UserBadgeComponent({
     <div className={styles["user-badge"]}>
       <img
         className={styles.picture}
-        src={picture}
+        src={picture ?? "/images/user-picture-placeholder.webp"}
         alt="User's Profile Picture"
       />
       <div className={styles["username-box"]}>
