@@ -49,11 +49,14 @@ export async function tryToFetch<TResult = void>(
   init = {
     credentials: "include",
     ...init,
-    headers: {
+  };
+
+  if (typeof init.body === "string") {
+    init.headers = {
       "Content-Type": "application/json",
       ...init.headers,
-    },
-  };
+    };
+  }
 
   const response = await fetch(
     `${import.meta.env.VITE_API_BASE_URL}${input}`,
