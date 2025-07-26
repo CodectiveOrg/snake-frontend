@@ -32,7 +32,7 @@ export class GameMasterService {
 
       const now = Date.now();
 
-      if (useGameStore.getState().gameState === "running") {
+      if (useGameStore.getState().gameState === "playing") {
         const deltaTime = now - lastTime;
         const distance = (deltaTime * CanvasService.CELL_SIZE) / 1000;
 
