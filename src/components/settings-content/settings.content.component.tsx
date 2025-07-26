@@ -33,8 +33,8 @@ export default function SettingsContent(): ReactNode {
     },
   });
 
-  const [music, setMusic] = useState<number | null>(null);
-  const [sfx, setSfx] = useState<number | null>(null);
+  const [music, setMusic] = useState<number>(0);
+  const [sfx, setSfx] = useState<number>(0);
 
   useEffect(() => {
     if (data) {
@@ -43,60 +43,38 @@ export default function SettingsContent(): ReactNode {
     }
   }, [data]);
 
-  const handleConfirm = async (): Promise<void> => {
-    if (music === null || sfx === null) return;
-
+  const confirmButtonClickHandler = async (): Promise<void> => {
     await editSettingsMutation.mutateAsync({ music, sfx });
-  };
-
-  const renderPending = () => <p>Loading...</p>;
-
-  const renderError = () => {
-    const message = error instanceof Error ? error.message : "Unknown error";
-
-    toast.error(message, {
-      containerId: "modal",
-      toastId: "settings",
-    });
-
-    return <p>Error: {message}</p>;
   };
 
   return (
     <div className={styles.settings}>
       {isPending ? (
-        renderPending()
+        <div>Loading...</div>
       ) : isError ? (
-        renderError()
+        <div>Error: {error.message}</div>
       ) : (
-        <PaneComponent shade title="Settings" className={styles.pane}>
-          <div className={styles.content}>
-            <div className={styles.element}>
-              <label>Music:</label>
-              <SliderComponent
-                value={music ?? 0}
-                onChange={(val: number) => setMusic(val)}
-              />
-            </div>
-            <div className={styles.element}>
-              <label>Sfx:</label>
-              <SliderComponent
-                value={sfx ?? 0}
-                onChange={(val: number) => setSfx(val)}
-              />
-            </div>
-
-            <div className={styles.buttons}>
-              <ButtonComponent asType="link" to="/game" color="secondary">
-                Cancel
-              </ButtonComponent>
-              <ButtonComponent
-                onClick={handleConfirm}
-                disabled={editSettingsMutation.isPending}
-              >
-                {editSettingsMutation.isPending ? "Saving..." : "Confirm"}
-              </ButtonComponent>
-            </div>
+        <PaneComponent
+          shade
+          title="Settings"
+          className={styles.pane}
+          contentClassName={styles.content}
+        >
+          <label>
+            Music
+            <SliderComponent value={music} onChange={setMusic} />
+          </label>
+          <label>
+            SFX
+            <SliderComponent value={sfx} onChange={setSfx} />
+          </label>
+          <div className={styles.actions}>
+            <ButtonComponent asType="link" to="/game" color="secondary">
+              Cancel
+            </ButtonComponent>
+            <ButtonComponent onClick={confirmButtonClickHandler}>
+              Confirm
+            </ButtonComponent>
           </div>
         </PaneComponent>
       )}

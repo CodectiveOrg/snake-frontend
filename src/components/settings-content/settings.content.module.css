@@ -1,35 +1,30 @@
 .settings {
   display: grid;
-  place-content: center;
 
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
 
   .pane {
-    max-inline-size: 97rem;
+    inline-size: min(40rem, 100%);
+
+    margin: auto;
 
     .content {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 3rem;
 
-      padding: 3rem 6rem 2rem;
+      padding-inline: 6rem;
 
-      .element {
-        display: flex;
+      label {
+        display: grid;
+        grid-template-columns: 1fr auto;
         align-items: center;
-        gap: 4rem;
-
-        label {
-          inline-size: 6.25rem;
-        }
+        gap: 2rem;
       }
 
-      .buttons {
+      .actions {
         display: flex;
         justify-content: center;
-        gap: 3rem;
-
-        margin-inline: auto;
+        gap: 2.5rem;
       }
     }
   }
