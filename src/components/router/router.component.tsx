@@ -22,7 +22,6 @@ export default function RouterComponent(): ReactNode {
         <Route element={<GuestOnlyGuard />}>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="user/:username" element={<UserPage />} />
         </Route>
         <Route element={<LoggedInOnlyGuard />}>
           <Route path="" element={<HomePage />} />
@@ -34,6 +33,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="modal" element={<ModalPage />} />
         </Route>
         <Route path="guide" element={<GuidePage />} />
+        <Route path="user/:username" element={<UserPage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>

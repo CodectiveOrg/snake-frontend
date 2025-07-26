@@ -19,7 +19,7 @@ export default function UserPage(): ReactNode {
         <div>
           <img
             className={styles.img}
-            src="images/user-picture-placeholder.webp"
+            src="/images/user-picture-placeholder.webp"
             alt="Profile"
           />
         </div>
