@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component";
+import PauseModalComponent from "@/components/pause-modal/pause-modal.component.tsx";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
 
@@ -54,6 +55,14 @@ export default function GamePage(): ReactNode {
     masterRef.current.run();
   }, []);
 
+  // const continueHandler = (): void => {
+  //   useGameStore.getState().run();
+  // };
+
+  // useEffect(() => {
+  //   useGameStore.getState().pause();
+  // }, []);
+
   return (
     <div className={styles.game}>
       <CanvasComponent ref={canvasRef} />
@@ -66,6 +75,13 @@ export default function GamePage(): ReactNode {
         <GameOverModalComponent
           onRestart={restartHandler}
           onExit={exitHandler}
+        />
+      )}
+      {gameState === "paused" && (
+        <PauseModalComponent
+          username={username!}
+          // onContinue={continueHandler}
+          // onExit={exitHandler}
         />
       )}
     </div>
