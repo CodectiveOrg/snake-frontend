@@ -2,6 +2,10 @@ import { type ReactNode, useEffect, useRef } from "react";
 
 import { useNavigate } from "react-router";
 
+import { useQuery } from "@tanstack/react-query";
+
+import { getStatsApi } from "@/api/history/get-stats.api.ts";
+
 import CanvasComponent from "@/components/canvas/canvas.component.tsx";
 import GameOverModalComponent from "@/components/game-over-modal/game-over-modal.component.tsx";
 import PauseModalComponent from "@/components/pause-modal/pause-modal.component.tsx";
@@ -9,8 +13,6 @@ import UserBadgeComponent from "@/components/user-badge/user-badge.component";
 
 import PauseIcon from "@/icons/pause/pause.icon";
 import PlayIcon from "@/icons/play/play.icon";
-
-import useVerifyQuery from "@/queries/use-verify.query.ts";
 
 import { GameMasterService } from "@/services/game-master.service.ts";
 
@@ -25,7 +27,10 @@ import styles from "./game.module.css";
 export default function GamePage(): ReactNode {
   const navigate = useNavigate();
 
-  const { data, isPending, isError, error } = useVerifyQuery();
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["stats"],
+    queryFn: getStatsApi,
+  });
 
   const score = useGameStore((state) => state.score);
   const gameState = useGameStore((state) => state.gameState);
@@ -86,13 +91,10 @@ export default function GamePage(): ReactNode {
   return (
     <div className={styles.game}>
       <div className={styles["info-board"]}>
-        <UserBadgeComponent
-          username={data.username}
-          picture="/images/user-picture-placeholder.webp"
-        />
+        <UserBadgeComponent username={data.username} picture={data.picture} />
         <ScoreComponent score={score}></ScoreComponent>
         <div className={styles.wrapper}>
-          <HighScoreComponent highScore={232}></HighScoreComponent>
+          <HighScoreComponent highScore={data.highScore}></HighScoreComponent>
           <button
             onClick={togglePauseButtonClickHandler}
             className={styles.button}
