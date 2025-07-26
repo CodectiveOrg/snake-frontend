@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { useNavigate } from "react-router";
-
 import { useQuery } from "@tanstack/react-query";
 
 import { getLeaderboardApi } from "@/api/history/get-leaderboard.api";
@@ -15,16 +13,10 @@ import TopPlayersComponent from "@/pages/leaderboard/components/top-players/top-
 import styles from "./leaderboard.module.css";
 
 export default function LeaderboardPage(): ReactNode {
-  const navigate = useNavigate();
-
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: getLeaderboardApi,
   });
-
-  const backButtonClickHandler = (): void => {
-    navigate("/");
-  };
 
   return (
     <div className={styles.leaderboard}>
@@ -43,7 +35,7 @@ export default function LeaderboardPage(): ReactNode {
             <TopPlayersComponent players={data?.slice(1, 4)} />
             <TableComponent items={data.slice(1)} />
             <div className={styles.actions}>
-              <ButtonComponent onClick={backButtonClickHandler}>
+              <ButtonComponent asType="link" to="/">
                 {"<-"} Back
               </ButtonComponent>
             </div>
