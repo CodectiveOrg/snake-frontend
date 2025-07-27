@@ -56,7 +56,7 @@ export default function SignUpPage(): ReactNode {
         <form onSubmit={formSubmitHandler}>
           <div className={authStyles.fields}>
             <label>
-              Your Name
+              <div className={authStyles.title}>Your Name</div>
               <TextInputComponent
                 className={authStyles.input}
                 name="username"
@@ -65,7 +65,7 @@ export default function SignUpPage(): ReactNode {
               />
             </label>
             <label>
-              Password
+              <div className={authStyles.title}>Password</div>
               <TextInputComponent
                 className={authStyles.input}
                 type="password"
@@ -75,7 +75,7 @@ export default function SignUpPage(): ReactNode {
               />
             </label>
             <label>
-              Email
+              <div className={authStyles.title}>Email</div>
               <TextInputComponent
                 className={authStyles.input}
                 type="email"

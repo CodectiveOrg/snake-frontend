@@ -4,7 +4,7 @@
   min-block-size: 100dvh;
 
   .pane {
-    inline-size: fit-content;
+    inline-size: min(40rem, 100%);
 
     margin: auto;
 
@@ -47,6 +47,7 @@
         label {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           gap: 1rem;
 
           inline-size: 100%;
@@ -61,7 +62,7 @@
           }
 
           .input {
-            flex: 0 1 15rem;
+            flex: 1 1 15rem;
           }
         }
       }
