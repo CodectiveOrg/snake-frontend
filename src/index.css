@@ -42,8 +42,6 @@ body {
   position: relative;
   isolation: isolate;
 
-  min-block-size: 100dvh;
-
   &::before {
     content: "";
 

@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 3rem;
+  gap: clamp(1.5rem, -3rem + 6vw, 3rem);
 
   .player {
     position: relative;
@@ -13,7 +13,7 @@
     block-size: var(--size);
     inline-size: var(--size);
 
-    border: 20px solid var(--ring-color);
+    border: clamp(5px, -40px + 3.75vw, 20px) solid var(--ring-color);
     border-radius: 999rem;
 
     img {
@@ -37,6 +37,8 @@
       inline-size: 100%;
 
       border-radius: inherit;
+
+      font-size: clamp(0.75rem, 0rem + 1vw, 1rem);
 
       text-align: center;
 
@@ -62,21 +64,21 @@
 
     &:nth-child(1) {
       --ring-color: var(--color-gold);
-      --size: 12rem;
+      --size: clamp(6rem, -12rem + 24vw, 12rem);
 
       order: 2;
     }
 
     &:nth-child(2) {
       --ring-color: var(--color-silver);
-      --size: 10rem;
+      --size: clamp(5rem, -10rem + 20vw, 10rem);
 
       order: 1;
     }
 
     &:nth-child(3) {
       --ring-color: var(--color-bronze);
-      --size: 10rem;
+      --size: clamp(5rem, -10rem + 20vw, 10rem);
 
       order: 3;
     }

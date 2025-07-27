@@ -8,7 +8,7 @@ import ButtonComponent from "@/components/button/button.component";
 import PaneComponent from "@/components/pane/pane.component";
 import TableComponent from "@/components/table/table.component";
 
-import TopPlayersComponent from "@/pages/leaderboard/components/top-players/top-players.component.tsx";
+import TopPlayersComponent from "./components/top-players/top-players.component.tsx";
 
 import styles from "./leaderboard.module.css";
 
