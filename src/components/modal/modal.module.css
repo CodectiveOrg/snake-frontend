@@ -1,12 +1,16 @@
 .modal {
   background-color: transparent;
 
+  inline-size: 100%;
+
   margin: auto;
 
   border: none;
 
+  outline: none;
+
   &::backdrop {
-    background-color: hsl(0deg 0% 0% / 50%);
+    background-color: var(--color-overlay-300);
 
     backdrop-filter: blur(5px);
   }

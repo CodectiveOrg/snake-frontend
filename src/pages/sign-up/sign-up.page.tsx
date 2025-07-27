@@ -2,11 +2,11 @@ import { type FormEvent, type ReactNode, useState } from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 import clsx from "clsx";
 
-import { signUpApi } from "@/api/public/sign-up.api.ts";
+import { signUpApi } from "@/api/auth/sign-up.api.ts";
 
 import ButtonComponent from "@/components/button/button.component";
 import CheckboxComponent from "@/components/checkbox/checkbox.component";
@@ -56,7 +56,7 @@ export default function SignUpPage(): ReactNode {
         <form onSubmit={formSubmitHandler}>
           <div className={authStyles.fields}>
             <label>
-              Your Name
+              <div className={authStyles.title}>Your Name</div>
               <TextInputComponent
                 className={authStyles.input}
                 name="username"
@@ -65,7 +65,7 @@ export default function SignUpPage(): ReactNode {
               />
             </label>
             <label>
-              Password
+              <div className={authStyles.title}>Password</div>
               <TextInputComponent
                 className={authStyles.input}
                 type="password"
@@ -75,7 +75,7 @@ export default function SignUpPage(): ReactNode {
               />
             </label>
             <label>
-              Email
+              <div className={authStyles.title}>Email</div>
               <TextInputComponent
                 className={authStyles.input}
                 type="email"

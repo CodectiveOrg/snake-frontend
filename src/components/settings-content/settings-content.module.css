@@ -1,0 +1,17 @@
+.settings-content {
+  display: grid;
+  gap: 3rem;
+
+  label {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+}

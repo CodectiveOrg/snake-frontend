@@ -8,10 +8,12 @@ import styles from "./pane-frame.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
   titleWidth: number;
+  hasDent: boolean;
 };
 
 export default function PaneFrameComponent({
   titleWidth,
+  hasDent,
   className,
   ...otherProps
 }: Props): ReactNode {
@@ -24,7 +26,7 @@ export default function PaneFrameComponent({
     bottomLeftCornerPath,
     bottomRightCornerPath,
     topRightCornerPath,
-  } = usePaneCalculationHook(titleWidth);
+  } = usePaneCalculationHook(titleWidth, hasDent);
 
   return (
     <svg

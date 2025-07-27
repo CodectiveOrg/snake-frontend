@@ -1,16 +1,15 @@
 .auth {
   display: grid;
-  place-content: center;
 
   min-block-size: 100dvh;
 
-  padding-block-start: 2rem;
-
   .pane {
-    max-inline-size: 37.5rem;
+    inline-size: min(40rem, 100%);
+
+    margin: auto;
 
     .logo {
-      color: var(--color-on-disabled);
+      color: var(--color-text-disabled);
 
       margin-block: 0.25rem 2.25rem;
 
@@ -33,11 +32,7 @@
       .fields {
         grid-area: fields;
 
-        background-color: color-mix(
-          in hsl,
-          var(--color-primary) 20%,
-          transparent
-        );
+        background-color: var(--color-surface-400);
 
         display: flex;
         flex-direction: column;
@@ -47,22 +42,27 @@
 
         padding: 1.25rem 2.25rem;
 
-        border: 3px solid
-          color-mix(in hsl, var(--color-primary) 30%, transparent);
-        border-radius: 3px;
+        border: 3px solid var(--color-primary);
 
         label {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           gap: 1rem;
 
-          font-size: 1.5rem;
+          inline-size: 100%;
 
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
+          .title {
+            flex-shrink: 0;
+
+            font-size: clamp(1rem, -0.5rem + 2vw, 1.5rem);
+
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+          }
 
           .input {
-            flex: 1 1 0;
+            flex: 1 1 15rem;
           }
         }
       }
@@ -86,6 +86,30 @@
         inline-size: 12rem;
 
         margin-block-start: 1rem;
+      }
+    }
+  }
+}
+
+@media (width < 600px) {
+  .auth {
+    .pane {
+      form {
+        .fields {
+          background: none;
+
+          padding: 0;
+
+          border: none;
+        }
+
+        .checkbox {
+          margin-inline-start: 0;
+        }
+
+        a {
+          margin-inline-end: 0;
+        }
       }
     }
   }

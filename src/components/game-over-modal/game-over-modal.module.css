@@ -1,0 +1,38 @@
+.game-over-modal {
+  inline-size: min(75rem, 100%);
+
+  .content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1rem, -5rem + 8vw, 3rem);
+
+    .ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      min-block-size: clamp(3rem, -6rem + 12vw, 6rem);
+
+      font-size: clamp(1rem, -5rem + 8vw, 3rem);
+
+      .username {
+        overflow: hidden;
+
+        max-inline-size: 10ch;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1rem, -5rem + 8vw, 3rem);
+
+      button {
+        min-inline-size: clamp(7.5rem, 0rem + 10vw, 10rem);
+      }
+    }
+  }
+}

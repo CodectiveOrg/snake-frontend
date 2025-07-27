@@ -1,9 +1,7 @@
 .canvas {
-  --padding: 4rem;
-
   position: relative;
 
-  padding: var(--padding);
+  padding: clamp(3rem, 0rem + 4vw, 4rem);
 
   .frame {
     position: absolute;
@@ -15,7 +13,7 @@
   }
 
   canvas {
-    background-color: var(--color-canvas-background);
+    background-color: var(--color-overlay-400);
 
     block-size: 100%;
     inline-size: 100%;

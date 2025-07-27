@@ -30,14 +30,16 @@
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-property: background-color, color, border-color, scale;
 
+  cursor: pointer;
+
   &.default {
-    background-color: hsl(0deg 0% 44% / 24%);
-    color: hsl(0deg 0% 44%);
+    background-color: var(--color-surface-200);
+    color: var(--color-text-disabled);
   }
 
   &.light {
-    background-color: hsl(0deg 0% 100% / 4%);
-    color: var(--color-on-surface);
+    background-color: var(--color-surface-100);
+    color: var(--color-text-400);
   }
 
   &.large {
@@ -45,9 +47,9 @@
     --horizontal-offset: 10px;
     --vertical-offset: calc(var(--border-width) + 1px);
 
-    padding: 1rem;
+    padding: 0.5rem clamp(2rem, -1rem + 4vw, 3rem);
 
-    font-size: 1.75rem;
+    font-size: clamp(2rem, -1rem + 4vw, 3rem);
   }
 
   &.small {
@@ -57,16 +59,18 @@
 
     padding-inline: 1rem;
 
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, -1.5rem + 3vw, 1.5rem);
   }
 
   &:hover,
   &.active {
-    background-color: hsl(222deg 100% 59% / 40%);
-    color: var(--color-on-surface);
-
-    scale: 1.1;
+    background-color: var(--color-surface-300);
+    color: var(--color-text-400);
 
     transition-duration: 250ms;
+  }
+
+  &:hover {
+    scale: 1.1;
   }
 }

@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
 
-  scrollbar-color: var(--color-primary) hsl(0deg 0% 0% / 30%);
+  scrollbar-color: var(--color-primary) var(--color-overlay-400);
   scrollbar-width: thin;
 }
 
@@ -37,7 +37,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: var(--color-on-surface);
+  color: var(--color-text-400);
 
   position: relative;
   isolation: isolate;
