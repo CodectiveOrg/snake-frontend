@@ -2,8 +2,6 @@
   display: grid;
   gap: 3rem;
 
-  padding-inline: 6rem;
-
   label {
     display: grid;
     grid-template-columns: 1fr auto;
