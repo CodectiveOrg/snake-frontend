@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { getUserPublicInfoApi } from "@/api/user/get-user-public-info";
+import { getUserPublicInfoApi } from "@/api/public/get-user-public-info";
 
 import ButtonComponent from "@/components/button/button.component";
 import PaneComponent from "@/components/pane/pane.component";
