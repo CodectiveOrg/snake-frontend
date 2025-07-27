@@ -44,7 +44,9 @@ export default function UserPage(): ReactNode {
         />
         <div className={styles.writings}>
           <StatsComponent stats={data} />
-          <ButtonComponent>{"<-"} Back</ButtonComponent>
+          <ButtonComponent asType="link" to="/">
+            {"<-"} Back
+          </ButtonComponent>
         </div>
       </PaneComponent>
     </div>
