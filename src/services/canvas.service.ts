@@ -1,6 +1,9 @@
+import { ControllerService } from "@/services/controller.service.ts";
 import type { SnakeService } from "@/services/snake.service.ts";
 
 import type { PointType } from "@/types/point.type.ts";
+
+import { calculateRotationByDirection } from "@/utils/geometry.utils.ts";
 
 export class CanvasService {
   public static readonly BOARD_WIDTH = 30;
@@ -8,17 +11,21 @@ export class CanvasService {
   public static readonly CELL_SIZE = 16;
 
   private readonly SNAKE_COLOR = "white";
-
   private readonly FOOD_COLOR = "red";
 
   private ctx: CanvasRenderingContext2D;
+  private readonly snakeHead: HTMLImageElement;
 
   public constructor(
     private canvas: HTMLCanvasElement,
+    private controller: ControllerService,
     private snake: SnakeService,
   ) {
     this.init();
     this.ctx = this.canvas.getContext("2d")!;
+
+    this.snakeHead = new Image();
+    this.snakeHead.src = "/vite.svg";
   }
 
   private init(): void {
@@ -53,6 +60,33 @@ export class CanvasService {
         height * CanvasService.CELL_SIZE,
       );
     }
+
+    this.drawSnakeHead();
+  }
+
+  public drawSnakeHead(): void {
+    const x =
+      this.snake.head.x * CanvasService.CELL_SIZE + CanvasService.CELL_SIZE / 2;
+    const y =
+      this.snake.head.y * CanvasService.CELL_SIZE + CanvasService.CELL_SIZE / 2;
+
+    const width = CanvasService.CELL_SIZE;
+    const height = CanvasService.CELL_SIZE;
+
+    const rotation = calculateRotationByDirection(this.controller.direction);
+
+    this.ctx.clearRect(
+      this.snake.head.x * CanvasService.CELL_SIZE,
+      this.snake.head.y * CanvasService.CELL_SIZE,
+      CanvasService.CELL_SIZE,
+      CanvasService.CELL_SIZE,
+    );
+
+    this.ctx.save();
+    this.ctx.translate(x, y);
+    this.ctx.rotate(rotation);
+    this.ctx.drawImage(this.snakeHead, -width / 2, -height / 2, width, height);
+    this.ctx.restore();
   }
 
   public clear(): void {

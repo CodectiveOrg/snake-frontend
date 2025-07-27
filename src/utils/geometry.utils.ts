@@ -1,6 +1,32 @@
 import type { DirectionType } from "@/types/direction.type.ts";
 import type { PointType } from "@/types/point.type.ts";
 
+export function oppositeDirection(direction: DirectionType): DirectionType {
+  switch (direction) {
+    case "KeyW":
+      return "KeyS";
+    case "KeyA":
+      return "KeyD";
+    case "KeyS":
+      return "KeyW";
+    case "KeyD":
+      return "KeyA";
+  }
+}
+
+export function calculateRotationByDirection(direction: DirectionType): number {
+  switch (direction) {
+    case "KeyW":
+      return -Math.PI / 2;
+    case "KeyA":
+      return -2 * Math.PI;
+    case "KeyS":
+      return Math.PI / 2;
+    case "KeyD":
+      return 0;
+  }
+}
+
 export function movePoint(
   point: PointType,
   direction: DirectionType,

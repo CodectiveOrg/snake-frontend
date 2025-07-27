@@ -14,7 +14,7 @@ export class GameMasterService {
   public constructor(canvas: HTMLCanvasElement) {
     this.controller = new ControllerService();
     this.snake = new SnakeService(this.controller);
-    this.canvas = new CanvasService(canvas, this.snake);
+    this.canvas = new CanvasService(canvas, this.controller, this.snake);
     this.food = new FoodService(this.snake);
   }
 
@@ -36,7 +36,7 @@ export class GameMasterService {
 
       if (gameState === "playing") {
         const deltaTime = now - lastTime;
-        const distance = (deltaTime * CanvasService.CELL_SIZE) / 1000;
+        const distance = (deltaTime * CanvasService.CELL_SIZE) / 1000 / 10;
 
         this.update(distance);
       }
