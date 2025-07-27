@@ -30,7 +30,7 @@ export default function GamePage(): ReactNode {
     play();
 
     masterRef.current = new GameMasterService(canvasRef.current!);
-    masterRef.current.run();
+    //masterRef.current.run();
   }, [play, reset]);
 
   const restartHandler = (): void => {

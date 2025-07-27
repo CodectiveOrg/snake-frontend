@@ -34,6 +34,11 @@ export default function BarComponent(): ReactNode {
         username={data?.username ?? ""}
         picture={data?.picture ?? null}
       />
+      <img
+        className={styles.profile}
+        src={data?.picture ?? "/images/user-picture-placeholder.webp"}
+        alt="User's Profile"
+      />
       <ScoreComponent ref={scoreRef} className={styles.score} score={score} />
       <div className={styles.wrapper}>
         <HighScoreComponent highScore={data?.highScore ?? 0} />
