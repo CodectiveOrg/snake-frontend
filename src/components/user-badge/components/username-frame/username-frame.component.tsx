@@ -13,7 +13,7 @@ export default function UsernameFrameComponent({
   className,
   ...otherProps
 }: Props): ReactNode {
-  const extraWidth = usernameWidth - 160;
+  const extraWidth = Math.max(0, usernameWidth - 160);
 
   return (
     <svg

@@ -1,6 +1,10 @@
 :root {
   --color-primary: hsl(222deg 100% 59%);
 
+  --color-gold: hsl(53deg 100% 59%);
+  --color-silver: hsl(0deg 0% 81%);
+  --color-bronze: hsl(32deg 100% 59%);
+
   --color-surface-50: hsl(0deg 0% 100% / 10%);
   --color-surface-100: hsl(0deg 0% 100% / 4%);
   --color-surface-200: hsl(0deg 0% 85% / 20%);
@@ -9,7 +13,7 @@
   --color-surface-700: hsl(222deg 97% 26%);
 
   --color-overlay-50: hsl(0deg 0% 100% / 30%);
-  --color-overlay-300: hsl(0deg 0% 0% / 30%);
+  --color-overlay-300: hsl(0deg 0% 0% / 60%);
   --color-overlay-400: hsl(0deg 0% 0% / 80%);
 
   --color-text-400: hsl(0deg 0% 100%);

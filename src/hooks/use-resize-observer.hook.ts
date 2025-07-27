@@ -6,14 +6,16 @@ type Result<T extends Element> = {
   height: number;
 };
 
-export function useResizeObserverHook<T extends Element>(): Result<T> {
+export function useResizeObserverHook<T extends Element>(
+  refElement?: HTMLElement,
+): Result<T> {
   const [width, setWidth] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
 
   const ref = useRef<T | null>(null);
 
   useEffect(() => {
-    const element = ref.current;
+    const element = ref.current ?? refElement;
     if (!element) {
       return;
     }
@@ -29,7 +31,7 @@ export function useResizeObserverHook<T extends Element>(): Result<T> {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [refElement]);
 
   return { ref, width, height };
 }

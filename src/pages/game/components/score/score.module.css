@@ -5,11 +5,11 @@
   display: grid;
   place-content: center;
 
-  block-size: 9rem;
+  block-size: clamp(4rem, -11rem + 20vw, 9rem);
   aspect-ratio: 1;
 
   font-family: "Digital Numbers", sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2rem, -4rem + 8vw, 4rem);
 
   .frame {
     position: absolute;
