@@ -15,6 +15,7 @@ import PlaygroundPage from "@/pages/playground/playground.page.tsx";
 import SettingsPage from "@/pages/settings/settings.page";
 import SignInPage from "@/pages/sign-in/sign-in.page.tsx";
 import SignUpPage from "@/pages/sign-up/sign-up.page.tsx";
+import UserPage from "@/pages/user/user.page";
 
 export default function RouterComponent(): ReactNode {
   return (
@@ -36,6 +37,7 @@ export default function RouterComponent(): ReactNode {
           <Route path="modal" element={<ModalPage />} />
         </Route>
         <Route path="guide" element={<GuidePage />} />
+        <Route path="user/:username" element={<UserPage />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
