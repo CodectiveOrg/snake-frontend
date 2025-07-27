@@ -1,7 +1,8 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
-import ButtonComponent from "@/components/button/button.component.tsx";
+import MenuComponent from "@/components/menu/menu.component.tsx";
 import ModalComponent from "@/components/modal/modal.component.tsx";
+import SettingsModalComponent from "@/components/settings-modal/settings-modal.component.tsx";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
@@ -10,6 +11,9 @@ import styles from "./pause-modal.module.css";
 export default function PauseModalComponent(): ReactNode {
   const gameState = useGameStore((state) => state.gameState);
   const play = useGameStore((state) => state.play);
+
+  const [isSettingsModalOpen, setIsSettingsModalOpen] =
+    useState<boolean>(false);
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -21,6 +25,14 @@ export default function PauseModalComponent(): ReactNode {
     }
   }, [gameState]);
 
+  const settingsButtonClickHandler = (): void => {
+    setIsSettingsModalOpen(true);
+  };
+
+  const settingsModalActionHandler = (): void => {
+    setIsSettingsModalOpen(false);
+  };
+
   return (
     <ModalComponent
       ref={modalRef}
@@ -28,8 +40,27 @@ export default function PauseModalComponent(): ReactNode {
       contentClassName={styles.content}
       title="Pause"
     >
-      <p>Pause</p>
-      <ButtonComponent onClick={play}>Close</ButtonComponent>
+      <MenuComponent
+        items={[
+          {
+            asType: "button",
+            onClick: play,
+            children: "Continue",
+          },
+          {
+            asType: "button",
+            onClick: settingsButtonClickHandler,
+            children: "Settings",
+          },
+          { to: "/", children: "Exit" },
+        ]}
+      />
+      {isSettingsModalOpen && (
+        <SettingsModalComponent
+          onConfirm={settingsModalActionHandler}
+          onCancel={settingsModalActionHandler}
+        />
+      )}
     </ModalComponent>
   );
 }
