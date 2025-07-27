@@ -15,7 +15,11 @@ type Result = {
   topRightCornerPath: string;
 };
 
-export function usePaneCalculationHook(titleWidth: number): Result {
+export function usePaneCalculationHook(
+  titleWidth: number,
+  hasDent: boolean,
+  dentExtraWidth: number = 0,
+): Result {
   const { ref, width, height } = useResizeObserverHook<SVGSVGElement>();
 
   const titleOffset = Size.PANE_TITLE_OFFSET;
@@ -25,14 +29,16 @@ export function usePaneCalculationHook(titleWidth: number): Result {
   const strokeWidth = Size.PANE_CORNER_WIDTH;
   const titlePadding = Size.PANE_TITLE_PADDING;
 
-  titleWidth = Math.max(Size.PANE_MIN_TITLE_WIDTH, titleWidth);
+  titleWidth = Math.max(Size.PANE_MIN_TITLE_WIDTH, titleWidth) + dentExtraWidth;
   const remainWidth = (width - titleWidth) / 2 - titlePadding;
 
-  const footerRemainWidth = (width - footerWidth) / 2;
+  const footerRemainWidth = (width - footerWidth - dentExtraWidth) / 2;
 
   const viewBox = `${-strokeWidth / 2} ${-strokeWidth / 2} ${width + strokeWidth} ${height + strokeWidth}`;
 
-  const perimeterPath = `M${cornerOffset} 0L0 ${cornerOffset}V${height - cornerOffset}L${cornerOffset} ${height}H${footerRemainWidth}L${footerRemainWidth + cornerOffset} ${height - footerOffset}H${width - footerRemainWidth - cornerOffset}L${width - footerRemainWidth} ${height}H${width - cornerOffset}L${width} ${height - cornerOffset}V${cornerOffset}L${width - cornerOffset} 0H${width - remainWidth}L${width - remainWidth - cornerOffset} ${titleOffset}H${remainWidth + cornerOffset}L${remainWidth} 0H${cornerOffset}Z`;
+  const titleDent = `H${width - remainWidth}L${width - remainWidth - cornerOffset} ${titleOffset}H${remainWidth + cornerOffset}L${remainWidth} 0`;
+  const footerDent = `H${footerRemainWidth}L${footerRemainWidth + cornerOffset} ${height - footerOffset}H${width - footerRemainWidth - cornerOffset}L${width - footerRemainWidth} ${height}`;
+  const perimeterPath = `M${cornerOffset} 0L0 ${cornerOffset}V${height - cornerOffset}L${cornerOffset} ${height}${hasDent ? footerDent : ""}H${width - cornerOffset}L${width} ${height - cornerOffset}V${cornerOffset}L${width - cornerOffset} 0${hasDent ? titleDent : ""}H${cornerOffset}Z`;
 
   const topLeftCornerPath = `M${2 * cornerOffset} 0H${cornerOffset}L0 ${cornerOffset}V${2 * cornerOffset}`;
   const bottomLeftCornerPath = `M0 ${height - 2 * cornerOffset}V${height - cornerOffset}L${cornerOffset} ${height}H${2 * cornerOffset}`;

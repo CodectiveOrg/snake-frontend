@@ -1,0 +1,5 @@
+.pause {
+  rect {
+    fill: var(--color-text-400);
+  }
+}

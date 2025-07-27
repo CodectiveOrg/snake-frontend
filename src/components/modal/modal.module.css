@@ -1,9 +1,13 @@
 .modal {
   background-color: transparent;
 
+  inline-size: 100%;
+
   margin: auto;
 
   border: none;
+
+  outline: none;
 
   &::backdrop {
     background-color: var(--color-overlay-300);

@@ -1,0 +1,28 @@
+.leaderboard {
+  display: grid;
+  place-content: center;
+
+  min-block-size: 100vh;
+
+  .pane {
+    max-inline-size: 97rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+
+      padding: 3rem 6rem 2rem;
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+
+        button {
+          min-inline-size: 10rem;
+        }
+      }
+    }
+  }
+}
