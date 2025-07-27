@@ -2,17 +2,12 @@ import type { ReactNode } from "react";
 
 import clsx from "clsx";
 
+import type { GetLeaderboardResponseDto } from "@/dto/response/get-leaderboard.response.dto.ts";
+
 import styles from "./table.module.css";
 
-export type TableItem = {
-  rank: number;
-  username: string;
-  todayHighScore: number;
-  totalHighScore: number;
-};
-
 type Props = {
-  items: TableItem[];
+  items: GetLeaderboardResponseDto[];
   className?: string;
 };
 
@@ -28,10 +23,12 @@ export default function TableComponent({ items, className }: Props): ReactNode {
         </div>
       </div>
       <div className={styles.body}>
-        {items.map((item) => (
-          <div className={styles.row}>
+        {items.map((item, index) => (
+          <div key={index} className={styles.row}>
             <div className={styles.cell}>{item.rank}</div>
-            <div className={styles.cell}>{item.username}</div>
+            <div className={clsx(styles.cell, styles.username)}>
+              {item.username}
+            </div>
             <div className={styles.cell}>{item.todayHighScore}</div>
             <div className={styles.cell}>{item.totalHighScore}</div>
           </div>

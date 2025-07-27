@@ -1,0 +1,10 @@
+.play {
+  rect,
+  path {
+    fill: var(--color-text-400);
+  }
+
+  rect {
+    fill-opacity: 0.21;
+  }
+}

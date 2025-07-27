@@ -8,14 +8,14 @@
   isolation: isolate;
 
   display: grid;
-  grid-template-rows: var(--row-height) 1fr var(--row-height);
+  grid-template-rows: auto 1fr var(--row-height);
 
-  padding-block-start: 2rem;
+  margin-inline: auto;
 
   .frame,
   .shade {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
 
     position: absolute;
     inset: 0;
@@ -38,25 +38,50 @@
     align-self: end;
     justify-self: center;
 
+    text-shadow: 0 0 38px var(--color-primary);
+
     inline-size: fit-content;
 
-    translate: 0 -0.5rem;
+    translate: 0 calc(var(--row-height) - 0.5rem);
 
-    font-size: 2.5rem;
+    font-size: clamp(2rem, -1rem + 4vw, 3rem);
     font-weight: 900;
 
     text-transform: uppercase;
   }
 
-  &:not(:has(.shade)) {
+  .content {
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
+  }
+
+  &:where(:not(:has(.shade))) {
     .content {
-      padding: 2rem;
+      padding: 4rem 3rem;
     }
   }
 
-  &:has(.shade) {
+  &:where(:has(.shade)) {
     .content {
-      padding: 4rem;
+      padding: 6rem 5rem;
+    }
+  }
+}
+
+@media (width < 600px) {
+  .pane {
+    padding-block-start: 2rem;
+
+    .shade {
+      padding: 0;
+    }
+
+    .title {
+      translate: 0 -2rem;
+    }
+
+    .content {
+      padding: 2rem;
     }
   }
 }

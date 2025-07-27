@@ -1,0 +1,11 @@
+.settings {
+  display: grid;
+
+  min-block-size: 100dvh;
+
+  .pane {
+    inline-size: min(40rem, 100%);
+
+    margin: auto;
+  }
+}

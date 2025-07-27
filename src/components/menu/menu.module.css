@@ -1,0 +1,8 @@
+.menu {
+  display: grid;
+  gap: 1.5rem;
+
+  inline-size: fit-content;
+
+  margin-inline: auto;
+}

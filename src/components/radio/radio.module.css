@@ -2,5 +2,12 @@
   display: flex;
   gap: 0.5rem;
 
+  font-size: 1rem;
+
   cursor: pointer;
+
+  input {
+    block-size: 1.25rem;
+    aspect-ratio: 1 / 1;
+  }
 }

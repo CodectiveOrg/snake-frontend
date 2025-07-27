@@ -30,14 +30,7 @@
   transition: 500ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-property: background-color, color, border-color, scale;
 
-  &:hover {
-    background-color: var(--color-surface-300);
-    color: var(--color-text-400);
-
-    scale: 1.1;
-
-    transition-duration: 250ms;
-  }
+  cursor: pointer;
 
   &.default {
     background-color: var(--color-surface-200);
@@ -54,9 +47,9 @@
     --horizontal-offset: 10px;
     --vertical-offset: calc(var(--border-width) + 1px);
 
-    padding: 1rem;
+    padding: 0.5rem clamp(2rem, -1rem + 4vw, 3rem);
 
-    font-size: 1.75rem;
+    font-size: clamp(2rem, -1rem + 4vw, 3rem);
   }
 
   &.small {
@@ -66,6 +59,18 @@
 
     padding-inline: 1rem;
 
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, -1.5rem + 3vw, 1.5rem);
+  }
+
+  &:hover,
+  &.active {
+    background-color: var(--color-surface-300);
+    color: var(--color-text-400);
+
+    transition-duration: 250ms;
+  }
+
+  &:hover {
+    scale: 1.1;
   }
 }

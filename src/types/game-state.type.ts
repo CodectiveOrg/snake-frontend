@@ -1,1 +1,1 @@
-export type GameStateType = "running" | "paused" | "over";
+export type GameStateType = "playing" | "paused" | "over" | "end";

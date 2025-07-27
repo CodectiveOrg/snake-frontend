@@ -8,14 +8,20 @@ import styles from "./pane-shade.module.css";
 
 type Props = SVGProps<SVGSVGElement> & {
   titleWidth: number;
+  hasDent: boolean;
 };
 
 export default function PaneShadeComponent({
   titleWidth,
+  hasDent,
   className,
   ...otherProps
 }: Props): ReactNode {
-  const { ref, viewBox, perimeterPath } = usePaneCalculationHook(titleWidth);
+  const { ref, viewBox, perimeterPath } = usePaneCalculationHook(
+    titleWidth,
+    hasDent,
+    32,
+  );
 
   return (
     <svg

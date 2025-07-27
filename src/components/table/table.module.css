@@ -1,13 +1,26 @@
 .table {
+  overflow: auto;
+
+  inline-size: 100%;
+
   .row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
 
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, -1.5rem + 3vw, 1.5rem);
 
     .cell {
       padding: 0.5rem;
+
+      &.username {
+        overflow: hidden;
+
+        max-inline-size: 10ch;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
   }
 
@@ -25,7 +38,7 @@
     display: grid;
     gap: 0.5rem;
 
-    max-block-size: 20rem;
+    max-block-size: 10rem;
 
     .row {
       background-color: var(--color-surface-100);
