@@ -20,13 +20,17 @@ export default function GamePage(): ReactNode {
   const gameState = useGameStore((state) => state.gameState);
   const play = useGameStore((state) => state.play);
   const reset = useGameStore((state) => state.reset);
+  const end = useGameStore((state) => state.end);
 
   const masterRef = useRef<GameMasterService>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const resetGameStates = useCallback((): void => {
+  const restartGame = useCallback((): void => {
     reset();
     play();
+
+    masterRef.current = new GameMasterService(canvasRef.current!);
+    masterRef.current.run();
   }, [play, reset]);
 
   const restartHandler = (): void => {
@@ -34,14 +38,13 @@ export default function GamePage(): ReactNode {
       return;
     }
 
-    resetGameStates();
-
-    masterRef.current = new GameMasterService(canvasRef.current);
-    masterRef.current.run();
+    restartGame();
   };
 
   const exitHandler = (): void => {
-    resetGameStates();
+    reset();
+    end();
+
     navigate("/");
   };
 
@@ -50,17 +53,14 @@ export default function GamePage(): ReactNode {
       return;
     }
 
-    resetGameStates();
-
-    masterRef.current = new GameMasterService(canvasRef.current);
-    masterRef.current.run();
-  }, [resetGameStates]);
+    restartGame();
+  }, [restartGame]);
 
   return (
     <div className={styles.game}>
       <BarComponent />
       <CanvasComponent ref={canvasRef} className={styles.canvas} />
-      <PauseModalComponent />
+      <PauseModalComponent onExit={exitHandler} />
       {gameState === "over" && (
         <GameOverModalComponent
           onRestart={restartHandler}

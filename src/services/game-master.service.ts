@@ -26,13 +26,15 @@ export class GameMasterService {
     let lastTime = Date.now();
 
     const frameCallback = (): void => {
-      if (useGameStore.getState().gameState === "over") {
+      const gameState = useGameStore.getState().gameState;
+
+      if (gameState === "over" || gameState === "end") {
         return;
       }
 
       const now = Date.now();
 
-      if (useGameStore.getState().gameState === "playing") {
+      if (gameState === "playing") {
         const deltaTime = now - lastTime;
         const distance = (deltaTime * CanvasService.CELL_SIZE) / 1000;
 

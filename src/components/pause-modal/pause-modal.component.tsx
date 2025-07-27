@@ -8,7 +8,11 @@ import { useGameStore } from "@/stores/game.store.ts";
 
 import styles from "./pause-modal.module.css";
 
-export default function PauseModalComponent(): ReactNode {
+type Props = {
+  onExit: () => void;
+};
+
+export default function PauseModalComponent({ onExit }: Props): ReactNode {
   const gameState = useGameStore((state) => state.gameState);
   const play = useGameStore((state) => state.play);
 
@@ -52,7 +56,11 @@ export default function PauseModalComponent(): ReactNode {
             onClick: settingsButtonClickHandler,
             children: "Settings",
           },
-          { to: "/", children: "Exit" },
+          {
+            asType: "button",
+            onClick: onExit,
+            children: "Exit",
+          },
         ]}
       />
       {isSettingsModalOpen && (
