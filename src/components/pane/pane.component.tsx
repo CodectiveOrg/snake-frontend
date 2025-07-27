@@ -25,8 +25,9 @@ export default function PaneComponent({
   contentClassName,
   children,
 }: Props): ReactNode {
-  const { ref: paneRef, width: paneWidth } =
-    useResizeObserverHook<HTMLDivElement>();
+  const { width: documentWidth } = useResizeObserverHook<HTMLDivElement>(
+    document.documentElement,
+  );
 
   const { ref: titleRef, width: titleWidth } =
     useResizeObserverHook<HTMLDivElement>();
@@ -38,11 +39,10 @@ export default function PaneComponent({
     2 * Size.PANE_CORNER_OFFSET;
 
   const minWidth = titleWidth + minBleed;
-  const hasDent = paneWidth >= 600;
+  const hasDent = documentWidth >= 600;
 
   return (
     <div
-      ref={paneRef}
       className={clsx(styles.pane, className)}
       style={
         {
