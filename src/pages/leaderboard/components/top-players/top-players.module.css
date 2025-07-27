@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 3rem;
+  gap: clamp(1.5rem, -5rem + 8vw, 3.5rem);
 
   .player {
     position: relative;
@@ -10,11 +10,20 @@
     display: grid;
     place-content: center;
 
-    block-size: var(--size);
-    inline-size: var(--size);
+    block-size: clamp(
+      var(--minimum-size),
+      var(--preferred-size),
+      var(--maximum-size)
+    );
+    inline-size: clamp(
+      var(--minimum-size),
+      var(--preferred-size),
+      var(--maximum-size)
+    );
 
-    border: 20px solid var(--ring-color);
+    border: solid var(--ring-color);
     border-radius: 999rem;
+    border-width: clamp(10px, 1.5vw, 20px);
 
     img {
       block-size: 100%;
@@ -62,21 +71,27 @@
 
     &:nth-child(1) {
       --ring-color: var(--color-gold);
-      --size: 12rem;
+      --maximum-size: 12rem;
+      --minimum-size: 5.25rem;
+      --preferred-size: 10vw + 1rem;
 
       order: 2;
     }
 
     &:nth-child(2) {
       --ring-color: var(--color-silver);
-      --size: 10rem;
+      --maximum-size: 10rem;
+      --minimum-size: 4.5rem;
+      --preferred-size: 10vw;
 
       order: 1;
     }
 
     &:nth-child(3) {
       --ring-color: var(--color-bronze);
-      --size: 10rem;
+      --maximum-size: 10rem;
+      --minimum-size: 4.5rem;
+      --preferred-size: 10vw;
 
       order: 3;
     }
