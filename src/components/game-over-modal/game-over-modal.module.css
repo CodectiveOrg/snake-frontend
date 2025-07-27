@@ -32,8 +32,6 @@
 
       button {
         min-inline-size: clamp(7.5rem, 0rem + 10vw, 10rem);
-
-        font-size: clamp(0.8rem, 1.25vw, 1.5rem);
       }
     }
   }
