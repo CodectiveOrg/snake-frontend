@@ -13,11 +13,13 @@ import SliderComponent from "@/components/slider/slider.component";
 import styles from "./settings-content.module.css";
 
 type Props = {
+  insideModal?: boolean;
   onConfirm: () => void;
   onCancel: () => void;
 };
 
 export default function SettingsContent({
+  insideModal = false,
   onConfirm,
   onCancel,
 }: Props): ReactNode {
@@ -36,7 +38,9 @@ export default function SettingsContent({
     },
     onSuccess: async (result) => {
       await queryClient.invalidateQueries({ queryKey: ["settings"] });
-      toast.success(result.message);
+      toast.success(result.message, {
+        containerId: insideModal ? "modal" : undefined,
+      });
     },
   });
 

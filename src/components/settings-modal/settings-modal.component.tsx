@@ -35,8 +35,13 @@ export default function SettingsModalComponent({
       ref={modalRef}
       className={styles["settings-modal"]}
       title="Settings"
+      toastContainerId="secondaryModal"
     >
-      <SettingsContent onConfirm={confirmHandler} onCancel={cancelHandler} />
+      <SettingsContent
+        insideModal
+        onConfirm={confirmHandler}
+        onCancel={cancelHandler}
+      />
     </ModalComponent>
   );
 }

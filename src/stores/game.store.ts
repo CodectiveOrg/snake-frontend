@@ -10,6 +10,7 @@ type GameStore = {
   play: () => void;
   pause: () => void;
   gameOver: () => void;
+  end: () => void;
 };
 
 export const useGameStore = create<GameStore>((set) => ({
@@ -29,5 +30,8 @@ export const useGameStore = create<GameStore>((set) => ({
   },
   gameOver: () => {
     set(() => ({ gameState: "over" }));
+  },
+  end: () => {
+    set(() => ({ gameState: "end" }));
   },
 }));
