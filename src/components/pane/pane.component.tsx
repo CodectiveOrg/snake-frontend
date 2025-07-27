@@ -47,7 +47,7 @@ export default function PaneComponent({
       style={
         {
           "--offset": Size.PANE_TITLE_OFFSET,
-          minWidth: `${minWidth}px`,
+          minWidth: hasDent ? `${minWidth}px` : undefined,
         } as CSSProperties
       }
     >

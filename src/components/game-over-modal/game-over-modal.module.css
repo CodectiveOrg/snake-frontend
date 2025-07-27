@@ -2,8 +2,8 @@
   inline-size: min(75rem, 100%);
 
   .content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(1rem, -5rem + 8vw, 3rem);
 
     .ribbon {
