@@ -1,11 +1,12 @@
 .guide {
   display: grid;
-  place-content: center;
 
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
 
   .pane {
-    max-inline-size: 97rem;
+    inline-size: min(90rem, 100%);
+
+    margin: auto;
 
     .content {
       display: grid;

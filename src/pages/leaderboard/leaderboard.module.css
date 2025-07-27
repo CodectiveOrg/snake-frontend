@@ -1,26 +1,24 @@
 .leaderboard {
   display: grid;
-  place-content: center;
 
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
 
   .pane {
-    inline-size: min(75rem, 95%);
+    inline-size: min(clamp(60rem, 0rem + 80vw, 80rem), 100%);
+
+    margin: auto;
 
     .content {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(1.5rem, 8vh, 3.5rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(1rem, -5rem + 8vw, 3rem);
 
       .actions {
         display: flex;
         justify-content: center;
-        gap: 3rem;
 
         button {
           min-inline-size: clamp(7.5rem, 0rem + 10vw, 10rem);
-
-          font-size: clamp(0.8rem, 1.25vw, 1.5rem);
         }
       }
     }
