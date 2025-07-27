@@ -9,30 +9,26 @@
     margin: auto;
 
     .content {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: space-between;
       gap: 1rem;
 
-      padding-inline: 6rem;
+      img {
+        --size: 20rem;
+
+        block-size: var(--size);
+        inline-size: var(--size);
+
+        border: 4px solid hsl(222deg 100% 60%);
+        border-radius: 999rem;
+      }
+
+      .writings {
+        display: grid;
+        justify-items: center;
+        gap: 2rem;
+      }
     }
-  }
-
-  .img {
-    max-block-size: 23.5rem;
-    max-inline-size: 23.5rem;
-
-    border: 4px solid hsl(222deg 100% 60%);
-    border-radius: 999rem;
-  }
-
-  .button {
-    display: block;
-
-    margin-inline: auto;
-  }
-
-  .bold {
-    font-weight: 700;
   }
 }

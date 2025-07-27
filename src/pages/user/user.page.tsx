@@ -9,7 +9,7 @@ import { getUserPublicInfoApi } from "@/api/public/get-user-public-info";
 import ButtonComponent from "@/components/button/button.component";
 import PaneComponent from "@/components/pane/pane.component";
 
-import RowComponent from "./components/row/row.component";
+import StatsComponent from "@/pages/user/components/stats/stats.component.tsx";
 
 import styles from "./user.module.css";
 
@@ -17,12 +17,7 @@ export default function UserPage(): ReactNode {
   const params = useParams();
   const username = params.username!;
 
-  const {
-    data: userData,
-    isPending,
-    isError,
-    error,
-  } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["user-public-info", username],
     queryFn: () => getUserPublicInfoApi(username),
   });
@@ -43,32 +38,13 @@ export default function UserPage(): ReactNode {
         contentClassName={styles.content}
         title="Player"
       >
-        <div>
-          <img
-            className={styles.img}
-            src="/images/user-picture-placeholder.webp"
-            alt="Profile"
-          />
-        </div>
-
-        <div>
-          <RowComponent
-            title="name"
-            value={userData.username}
-            className={styles.bold}
-          />
-          <RowComponent title="ranking" value="43" />
-          <RowComponent title="total score" value="808" />
-          <RowComponent
-            title="gender"
-            value={userData.gender}
-            className={styles.bold}
-          />
-
-          <ButtonComponent className={styles.button}>
-            {" "}
-            &lt;- Back
-          </ButtonComponent>
+        <img
+          src={data.picture ?? "/images/user-picture-placeholder.webp"}
+          alt="User's Profile Picture"
+        />
+        <div className={styles.writings}>
+          <StatsComponent stats={data} />
+          <ButtonComponent>{"<-"} Back</ButtonComponent>
         </div>
       </PaneComponent>
     </div>
