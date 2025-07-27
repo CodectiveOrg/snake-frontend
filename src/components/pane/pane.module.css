@@ -10,6 +10,8 @@
   display: grid;
   grid-template-rows: auto 1fr var(--row-height);
 
+  margin-inline: auto;
+
   .frame,
   .shade {
     grid-column: 2 / -1;
