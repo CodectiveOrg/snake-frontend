@@ -8,10 +8,12 @@
     gap: 0.25rem;
 
     .button {
+      --size: clamp(0.75rem, 0rem + 1vw, 1rem);
+
       background-color: var(--color-overlay-300);
 
-      block-size: 1rem;
-      inline-size: 1rem;
+      block-size: var(--size);
+      inline-size: var(--size);
 
       border: none;
 
@@ -41,8 +43,10 @@
     display: grid;
     place-content: center;
 
-    block-size: 3rem;
+    block-size: clamp(2rem, -1rem + 4vw, 3rem);
     aspect-ratio: 1;
+
+    font-size: clamp(0.75rem, 0rem + 1vw, 1rem);
 
     .frame {
       position: absolute;
