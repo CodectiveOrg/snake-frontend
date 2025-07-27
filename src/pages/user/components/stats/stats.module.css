@@ -1,0 +1,56 @@
+.stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+
+  inline-size: 100%;
+
+  .row {
+    background-color: var(--color-surface-50);
+    color: var(--color-text-400);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    block-size: 3rem;
+
+    padding-inline: 1rem;
+
+    .title {
+      flex-shrink: 0;
+
+      font-size: 1.5rem;
+
+      text-transform: uppercase;
+    }
+
+    .value {
+      flex: 1 1 0;
+
+      text-align: end;
+
+      &.text {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      &.number {
+        font-family: "Digital Numbers", sans-serif;
+        font-size: 2rem;
+      }
+
+      &.ellipsis {
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
+
+      &.uppercase {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
