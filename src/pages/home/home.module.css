@@ -27,3 +27,13 @@
     }
   }
 }
+
+@media (width < 600px) {
+  .home {
+    .pane {
+      .username {
+        display: none;
+      }
+    }
+  }
+}
