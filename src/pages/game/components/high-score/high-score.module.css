@@ -13,7 +13,7 @@
   }
 
   .frame {
-    block-size: 3.5rem;
+    block-size: clamp(2rem, -2.5rem + 6vw, 3.5rem);
     min-inline-size: 100%;
     inline-size: 0;
   }
@@ -23,7 +23,7 @@
 
     max-inline-size: 5ch;
 
-    font-size: 2rem;
+    font-size: clamp(0.75rem, -3rem + 5vw, 2rem);
 
     text-overflow: ellipsis;
     text-wrap: nowrap;

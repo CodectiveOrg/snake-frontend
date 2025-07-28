@@ -42,7 +42,7 @@ export class GameMasterService {
       }
 
       lastTime = now;
-      requestAnimationFrame(frameCallback);
+      // requestAnimationFrame(frameCallback);
     };
 
     requestAnimationFrame(frameCallback);
