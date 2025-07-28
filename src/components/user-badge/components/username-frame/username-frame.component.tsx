@@ -17,8 +17,9 @@ export default function UsernameFrameComponent({
 }: Props): ReactNode {
   const width = usernameWidth + 109;
   const extraWidth = width - 269;
-  const height = usernameHeight + 27;
-  const extraHeight = height - 57;
+  const minHeight = 57; // original base height
+  const height = Math.max(usernameHeight + 27, minHeight);
+  const extraHeight = height - minHeight;
 
   return (
     <svg
@@ -38,28 +39,22 @@ export default function UsernameFrameComponent({
       />
       <path
         className={styles.edge}
-        d={`M9.10619 ${48.4991 + extraHeight}C9.10619 ${50.3982 + extraHeight} 7.0677 ${51.9377 + extraHeight} 4.5531 ${51.9377 + extraHeight}C2.03849 ${51.9377 + extraHeight} 0 ${50.3982 + extraHeight} 0 ${48.4991 + extraHeight}C0 ${46.6001 + extraHeight} 2.03849 ${45.0605 + extraHeight} 4.5531 ${45.0605 + extraHeight}C7.0677 ${45.0605 + extraHeight} 9.10619 ${46.6001 + extraHeight} 9.10619 ${48.4991 + extraHeight}Z`}
+        d={`M9.10619 48.4991C9.10619 50.3982 7.0677 51.9377 4.5531 51.9377C2.03849 51.9377 0 50.3982 0 48.4991C0 46.6001 2.03849 45.0605 4.5531 45.0605C7.0677 45.0605 9.10619 46.6001 9.10619 48.4991Z`}
+      />
+      <path className={styles.line} d={`M6 46.5L20.5 34H49.5L74.5 53.5`} />
+      <path
+        className={styles.edge}
+        d={`M68.8755 49.7342C68.2075 49.1165 68.6445 48 69.5544 48H138.248C138.414 48 138.576 48.041 138.722 48.1192L149.622 53.9788C150.538 54.4709 150.188 55.8596 149.149 55.8596H75.8915C75.6398 55.8596 75.3974 55.7647 75.2126 55.5939L68.8755 49.7342Z`}
       />
       <path
         className={styles.line}
-        d={`M6 ${46.5}L20.5 ${34}H49.5L74.5 ${53.5}`}
+        d={`M65.9997 43.7607L152.499 43.7596L179.5 55.4993L218.001 55.4993`}
       />
       <path
         className={styles.edge}
-        d={`M68.8755 ${49.7342 + extraHeight}C68.2075 ${49.1165 + extraHeight} 68.6445 ${48 + extraHeight} 69.5544 ${48 + extraHeight}H138.248C138.414 ${48 + extraHeight} 138.576 ${48.041 + extraHeight} 138.722 ${48.1192 + extraHeight}L149.622 ${53.9788 + extraHeight}C150.538 ${54.4709 + extraHeight} 150.188 ${55.8596 + extraHeight} 149.149 ${55.8596 + extraHeight}H75.8915C75.6398 ${55.8596 + extraHeight} 75.3974 ${55.7647 + extraHeight} 75.2126 ${55.5939 + extraHeight}L68.8755 ${49.7342 + extraHeight}Z`}
+        d={`M${223.503 + extraWidth} ${49.5512 + extraHeight}H${244.05 + extraWidth}L${254.324 + extraWidth} ${41.2617 + extraHeight}H${269.001 + extraWidth}L${255.792 + extraWidth} ${55.9986 + extraHeight}H${211.762 + extraWidth}L${223.503 + extraWidth} ${49.5512 + extraHeight}Z`}
       />
-      <path
-        className={styles.line}
-        d={`M65.9997 ${43.7607 + extraHeight}L152.499 ${43.7596 + extraHeight}L179.5 ${55.4993 + extraHeight}L${218.001 + extraWidth} ${55.4993 + extraHeight}`}
-      />
-      <path
-        className={styles.edge}
-        d={`M223.503 ${49.5512 + extraHeight}H${244.05 + extraWidth}L${254.324 + extraWidth} ${41.2617 + extraHeight}H${269.001 + extraWidth}L${255.792 + extraWidth} ${55.9986 + extraHeight}H211.762L223.503 ${49.5512 + extraHeight}Z`}
-      />
-      <path
-        className={styles.edge}
-        d={`M157 ${48 + extraHeight}H142L157 ${56 + extraHeight}H176L157 ${48 + extraHeight}Z`}
-      />
+      <path className={styles.edge} d={`M157 48H142L157 56H176L157 48Z`} />
     </svg>
   );
 }
