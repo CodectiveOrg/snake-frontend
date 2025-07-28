@@ -4,18 +4,18 @@
   min-block-size: 100dvh;
 
   .pane {
-    inline-size: min(80rem, 100% - 2rem);
+    inline-size: min(clamp(60rem, 0rem + 80vw, 80rem), 100%);
 
     margin: auto;
 
     .content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 4fr 5fr;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
 
       img {
-        --size: clamp(16.5rem, -3.5rem + 6vw, 20rem);
+        --size: clamp(15rem, -15rem + 40vw, 25rem);
 
         max-block-size: var(--size);
         max-inline-size: var(--size);
@@ -28,21 +28,27 @@
         display: grid;
         justify-items: center;
         gap: 2rem;
+
+        inline-size: 100%;
       }
     }
   }
 }
 
-@media (width < 600px) {
+@media (width < 800px) {
   .user {
     .pane {
+      .title {
+        display: none;
+      }
+
       .content {
         grid-template-columns: 1fr;
         justify-items: center;
       }
 
       img {
-        translate: 0 -3rem;
+        margin-block-start: -9.5rem;
       }
     }
   }
