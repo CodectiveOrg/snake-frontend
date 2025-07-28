@@ -15,8 +15,11 @@ export default function UserBadgeComponent({
   username,
   picture,
 }: Props): ReactNode {
-  const { ref: usernameRef, width: usernameWidth } =
-    useResizeObserverHook<HTMLDivElement>();
+  const {
+    ref: usernameRef,
+    width: usernameWidth,
+    height: usernameHeight,
+  } = useResizeObserverHook<HTMLDivElement>();
 
   return (
     <div className={styles["user-badge"]}>
@@ -29,6 +32,7 @@ export default function UserBadgeComponent({
         <UsernameFrameComponent
           className={styles.frame}
           usernameWidth={usernameWidth}
+          usernameHeight={usernameHeight}
         />
         <div ref={usernameRef} className={styles.username}>
           {username}
