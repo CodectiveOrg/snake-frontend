@@ -32,11 +32,6 @@ export class ControllerService {
 
   private initEventListeners(): void {
     document.addEventListener("keydown", (e) => {
-      if (e.code === "Escape") {
-        this.buffer.clear();
-        return;
-      }
-
       if (!isDirection(e.code)) {
         return;
       }
