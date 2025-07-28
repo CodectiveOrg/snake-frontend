@@ -35,6 +35,7 @@ export default function UserPage(): ReactNode {
       <PaneComponent
         shade
         className={styles.pane}
+        titleClassName={styles.title}
         contentClassName={styles.content}
         title="Player"
       >
