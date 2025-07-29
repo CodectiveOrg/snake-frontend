@@ -8,12 +8,16 @@ export function movePoint(
 ): PointType {
   switch (direction) {
     case "KeyW":
+    case "ArrowUp":
       return { ...point, y: point.y - distance };
     case "KeyA":
+    case "ArrowLeft":
       return { ...point, x: point.x - distance };
     case "KeyS":
+    case "ArrowDown":
       return { ...point, y: point.y + distance };
     case "KeyD":
+    case "ArrowRight":
       return { ...point, x: point.x + distance };
   }
 }
@@ -24,12 +28,16 @@ export function findDistanceToTurn(
 ): number {
   switch (direction) {
     case "KeyW":
+    case "ArrowUp":
       return point.y - Math.floor(point.y);
     case "KeyA":
+    case "ArrowLeft":
       return point.x - Math.floor(point.x);
     case "KeyS":
+    case "ArrowDown":
       return Math.ceil(point.y) - point.y;
     case "KeyD":
+    case "ArrowRight":
       return Math.ceil(point.x) - point.x;
   }
 }
