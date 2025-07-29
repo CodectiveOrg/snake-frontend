@@ -9,7 +9,7 @@
     margin: auto;
 
     .username {
-      background-color: hsl(0deg 0% 0% / 40%);
+      background-color: var(--color-overlay-200);
       color: var(--color-primary);
 
       margin-block-end: 2rem;

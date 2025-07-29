@@ -15,6 +15,7 @@ type Props = PropsWithChildren<{
   title: string;
   shade?: boolean;
   className?: string;
+  titleClassName?: string;
   contentClassName?: string;
 }>;
 
@@ -22,6 +23,7 @@ export default function PaneComponent({
   title,
   shade = false,
   className,
+  titleClassName,
   contentClassName,
   children,
 }: Props): ReactNode {
@@ -63,7 +65,7 @@ export default function PaneComponent({
           hasDent={hasDent}
         />
       )}
-      <div ref={titleRef} className={styles.title}>
+      <div ref={titleRef} className={clsx(styles.title, titleClassName)}>
         {title}
       </div>
       <div className={clsx(styles.content, contentClassName)}>{children}</div>
