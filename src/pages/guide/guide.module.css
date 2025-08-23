@@ -79,7 +79,7 @@
   }
 }
 
-@media (width <= 720px) {
+@media (width < 720px) {
   .guide {
     .pane {
       .content {

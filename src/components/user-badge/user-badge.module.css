@@ -36,11 +36,19 @@
 
       translate: 0.75em -0.25em;
 
-      font-size: 1.5rem;
+      font-size: clamp(0.75rem, -1.5rem + 3vw, 1.5rem);
       font-weight: 700;
 
       text-overflow: ellipsis;
       text-wrap: nowrap;
+    }
+  }
+}
+
+@media (width < 100px) {
+  .user-badge {
+    .username-box {
+      display: none;
     }
   }
 }

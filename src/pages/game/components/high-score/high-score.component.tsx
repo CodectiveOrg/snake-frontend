@@ -11,14 +11,18 @@ type Props = {
 };
 
 export default function HighScoreComponent({ highScore }: Props): ReactNode {
-  const { ref: highScoreRef, width: highScoreWidth } =
-    useResizeObserverHook<HTMLDivElement>();
+  const {
+    ref: highScoreRef,
+    width: highScoreWidth,
+    height: highScoreHeight,
+  } = useResizeObserverHook<HTMLDivElement>();
 
   return (
     <div className={styles["high-score"]}>
       <HighScoreFrameComponent
         className={styles.frame}
         highScoreWidth={highScoreWidth}
+        highScoreHeight={highScoreHeight}
       />
       <div ref={highScoreRef} className={styles.value}>
         {highScore}
