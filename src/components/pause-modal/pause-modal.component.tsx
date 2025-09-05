@@ -37,6 +37,17 @@ export default function PauseModalComponent({ onExit }: Props): ReactNode {
     setIsSettingsModalOpen(false);
   };
 
+  // useEffect(() => {
+  //   const handlePreventDialogToCloseOnEscape = (): void => {
+  //     modalRef.current?.addEventListener("cancel", (e) => {
+  //       e.preventDefault();
+  //     });
+  //   };
+  //
+  //   handlePreventDialogToCloseOnEscape();
+  //   console.log("preventing");
+  // }, []);
+
   return (
     <ModalComponent
       ref={modalRef}

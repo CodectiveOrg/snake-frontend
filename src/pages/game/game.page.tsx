@@ -12,13 +12,18 @@ import { GameMasterService } from "@/services/game-master.service.ts";
 
 import { useGameStore } from "@/stores/game.store.ts";
 
+// import { DIRECTIONS } from "@/types/direction.type.ts";
+
 import styles from "./game.module.css";
+
+// const pauseButtons: string[] = ["Enter", "KeyP", "Space", "Escape"];
 
 export default function GamePage(): ReactNode {
   const navigate = useNavigate();
 
   const gameState = useGameStore((state) => state.gameState);
   const play = useGameStore((state) => state.play);
+  // const pause = useGameStore((state) => state.pause);
   const reset = useGameStore((state) => state.reset);
   const end = useGameStore((state) => state.end);
 
@@ -47,6 +52,25 @@ export default function GamePage(): ReactNode {
 
     navigate("/");
   };
+
+  // useEffect(() => {
+  //   const initialEventListeners = (): void => {
+  //     document.addEventListener("keydown", (e) => {
+  //       if (e.code === "Escape" && gameState === "playing") {
+  //         console.log(e.code);
+  //         pause();
+  //       } else if (e.code === "Escape" && gameState === "paused") {
+  //         console.log(e.code);
+  //         play();
+  //       }
+  //
+  //       // if (DIRECTIONS.includes(e.code) && gameState !== "end") {
+  //       //   play();
+  //       // }
+  //     });
+  //   };
+  //   initialEventListeners();
+  // }, []);
 
   useEffect(() => {
     if (masterRef.current || !canvasRef.current) {
